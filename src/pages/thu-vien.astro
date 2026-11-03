@@ -63,25 +63,31 @@ const albums = [
   },
 ];
 
-// Gắn danh sách ảnh vào từng album
+// Gắn danh sách ảnh và sản phẩm lưu trữ vào từng album
 const albumsWithPhotos = albums.map((alb) => {
-  const photos = gallery.filter((g) => g.eventSlug === alb.slug);
+  const allItems = gallery.filter((g) => g.eventSlug === alb.slug);
+  const photos = allItems.filter((g) => g.kind !== 'product');
+  const products = allItems.filter((g) => g.kind === 'product');
   return {
     ...alb,
+    items: allItems,
     photos,
-    totalCount: photos.length,
-    initialCount: Math.min(photos.length, 6),
+    products,
+    totalCount: allItems.length,
+    photoCount: photos.length,
+    productCount: products.length,
   };
-}).filter((alb) => alb.photos.length > 0);
+}).filter((alb) => alb.totalCount > 0);
 
-const totalPhotos = gallery.length;
+const totalPhotos = gallery.filter((g) => g.kind !== 'product').length;
+const totalProducts = gallery.filter((g) => g.kind === 'product').length;
 ---
-<Base title="Thư viện ảnh" description="Kho lưu trữ thị giác có cấu trúc từ các đêm thơ, workshop và dự án thể nghiệm của Thơ-là-ai?.">
+<Base title="Thư viện ảnh & Sản phẩm lưu trữ" description="Kho lưu trữ thị giác có cấu trúc từ các đêm thơ, bản thảo chép tay và workshop của Thơ-là-ai?.">
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Kho lưu trữ thị giác · {albumsWithPhotos.length} bộ sưu tập · {totalPhotos} ảnh</p>
+      <p class="eyebrow">Kho lưu trữ thị giác · {albumsWithPhotos.length} bộ sưu tập · {totalPhotos} ảnh chụp · {totalProducts} bản thảo lưu trữ</p>
       <h1 class="shadowed">Thư viện ảnh</h1>
-      <p class="lead">Những khoảnh khắc được sắp xếp theo từng bộ sưu tập sự kiện và trình tự thời gian, từ đêm thơ đầu tiên đến các workshop thể nghiệm cộng đồng.</p>
+      <p class="lead">Những khoảnh khắc sự kiện cùng toàn bộ bản thảo thơ chép tay, thơ thủ công và sản phẩm sáng tác của người tham gia được phân loại ngăn nắp theo từng sự kiện.</p>
 
       <div class="callout" style="border-left-color:var(--chart-cobalt);margin:1.8rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem">
         <div style="max-width:54ch">
@@ -94,10 +100,13 @@ const totalPhotos = gallery.length;
         </div>
       </div>
 
-      <!-- Thanh chọn Album nhanh -->
-      <div class="filter-bar" role="region" aria-label="Lọc theo Album sự kiện">
+      <!-- Thanh chọn lọc nhanh -->
+      <div class="filter-bar" role="region" aria-label="Lọc theo Album hoặc Thể loại">
         <button type="button" class="filter-btn alb-filter-btn" data-slug="all" aria-pressed="true">
           Tất cả Album ({albumsWithPhotos.length})
+        </button>
+        <button type="button" class="filter-btn alb-filter-btn" data-slug="products" aria-pressed="false" style="border-color:var(--chart-terracotta);color:var(--chart-terracotta);font-weight:700">
+          📜 Bản thảo &amp; Sản phẩm lưu trữ ({totalProducts})
         </button>
         {albumsWithPhotos.map((alb) => (
           <button type="button" class="filter-btn alb-filter-btn" data-slug={alb.slug} aria-pressed="false">
@@ -109,14 +118,18 @@ const totalPhotos = gallery.length;
       <!-- Danh sách Album theo trật tự thời gian -->
       <div class="gallery-albums" id="albums-container">
         {albumsWithPhotos.map((alb) => {
-          const hasMore = alb.photos.length > 6;
+          const hasMore = alb.totalCount > 6;
           return (
-            <article class="album-card" id={`album-${alb.slug}`} data-slug={alb.slug}>
+            <article class="album-card" id={`album-${alb.slug}`} data-slug={alb.slug} data-has-products={alb.productCount > 0 ? 'true' : 'false'}>
               <header class="album-header">
                 <div class="album-meta-top">
                   <span class="album-order-badge">Album {alb.order}</span>
                   <span class="meta">{[alb.dateLabel, alb.venue].filter(Boolean).join(' · ')}</span>
-                  <span class="album-count-badge">{alb.totalCount} ảnh</span>
+                  <span class="album-count-badge">
+                    {alb.photoCount > 0 && `${alb.photoCount} ảnh`}
+                    {alb.photoCount > 0 && alb.productCount > 0 && ' · '}
+                    {alb.productCount > 0 && `${alb.productCount} bản thảo`}
+                  </span>
                 </div>
                 <div class="album-title-row">
                   <h2>{alb.title}</h2>
@@ -126,23 +139,27 @@ const totalPhotos = gallery.length;
               </header>
 
               <div class="album-grid" id={`grid-${alb.slug}`}>
-                {alb.photos.map((item, idx) => {
+                {alb.items.map((item, idx) => {
                   const isInitiallyHidden = idx >= 6;
+                  const isProduct = item.kind === 'product';
                   return (
                     <button
                       type="button"
-                      class="gallery-item"
+                      class={`gallery-item ${isProduct ? 'item-product' : 'item-photo'}`}
                       data-prog={item.program}
                       data-slug={u(`/chuong-trinh/${item.eventSlug}`)}
                       data-src={u(item.src)}
                       data-title={item.title}
+                      data-kind={isProduct ? 'product' : 'photo'}
                       data-alb={alb.slug}
                       style={isInitiallyHidden ? 'display: none;' : ''}
                       data-hidden-default={isInitiallyHidden ? 'true' : 'false'}
                     >
                       <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
                       <div class="gallery-caption">
-                        <span class="prog">{alb.title}</span>
+                        <span class="prog" style={isProduct ? 'color:var(--chart-terracotta);font-weight:700' : ''}>
+                          {isProduct ? '📜 Sản phẩm lưu trữ' : alb.title}
+                        </span>
                         <span>{item.title}</span>
                       </div>
                     </button>
@@ -159,7 +176,7 @@ const totalPhotos = gallery.length;
                   data-expanded="false"
                   aria-expanded="false"
                 >
-                  <span>Xem toàn bộ {alb.totalCount} ảnh của album này ↓</span>
+                  <span>Xem toàn bộ {alb.totalCount} tư liệu của album này ↓</span>
                 </button>
               )}
             </article>
@@ -192,7 +209,7 @@ const totalPhotos = gallery.length;
 <script>
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('.alb-filter-btn');
   const albumCards = Array.from(document.querySelectorAll<HTMLElement>('.album-card'));
-  const allPhotoItems = Array.from(document.querySelectorAll<HTMLButtonElement>('.gallery-item'));
+  const allItems = Array.from(document.querySelectorAll<HTMLButtonElement>('.gallery-item'));
   const toggleBtns = document.querySelectorAll<HTMLButtonElement>('.album-toggle-btn');
 
   const dlg = document.getElementById('lightbox') as HTMLDialogElement;
@@ -201,10 +218,10 @@ const totalPhotos = gallery.length;
   const lbLink = document.getElementById('lb-link') as HTMLAnchorElement;
   const lbCount = document.getElementById('lb-count')!;
 
-  let activePhotoList: HTMLButtonElement[] = [...allPhotoItems];
+  let activeList: HTMLButtonElement[] = [...allItems];
   let currentIdx = 0;
 
-  // Lọc theo Album
+  // Lọc theo Album hoặc Sản phẩm lưu trữ
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       filterBtns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
@@ -215,18 +232,41 @@ const totalPhotos = gallery.length;
         // Hiện tất cả album theo chế độ thu gọn tiêu chuẩn (6 ảnh)
         albumCards.forEach((card) => {
           card.style.display = '';
+          const items = card.querySelectorAll<HTMLButtonElement>('.gallery-item');
+          items.forEach((it) => {
+            it.style.display = it.dataset.hiddenDefault === 'true' ? 'none' : '';
+          });
+          const toggle = card.querySelector<HTMLButtonElement>('.album-toggle-btn');
+          if (toggle) {
+            toggle.dataset.expanded = 'false';
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.innerHTML = `<span>Xem toàn bộ ${toggle.dataset.count} tư liệu của album này ↓</span>`;
+          }
         });
+      } else if (slug === 'products') {
+        // Chỉ hiện các album có sản phẩm lưu trữ, và chỉ hiện các item sản phẩm
+        albumCards.forEach((card) => {
+          const hasProducts = card.dataset.hasProducts === 'true';
+          card.style.display = hasProducts ? '' : 'none';
+          const items = card.querySelectorAll<HTMLButtonElement>('.gallery-item');
+          items.forEach((it) => {
+            it.style.display = (hasProducts && it.dataset.kind === 'product') ? '' : 'none';
+          });
+          const toggle = card.querySelector<HTMLButtonElement>('.album-toggle-btn');
+          if (toggle) toggle.style.display = 'none';
+        });
+        document.getElementById('albums-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        // Chỉ hiện album được chọn, và tự động mở toàn bộ ảnh của album đó ra
+        // Chỉ hiện album được chọn, tự động mở bung toàn bộ tư liệu
         albumCards.forEach((card) => {
           const isMatch = card.dataset.slug === slug;
           card.style.display = isMatch ? '' : 'none';
           if (isMatch) {
-            // Mở bung tất cả ảnh của album này
             const items = card.querySelectorAll<HTMLButtonElement>('.gallery-item');
             items.forEach((it) => (it.style.display = ''));
             const toggle = card.querySelector<HTMLButtonElement>('.album-toggle-btn');
             if (toggle) {
+              toggle.style.display = '';
               toggle.dataset.expanded = 'true';
               toggle.setAttribute('aria-expanded', 'true');
               toggle.innerHTML = '<span>Thu gọn bớt ↑</span>';
@@ -236,15 +276,15 @@ const totalPhotos = gallery.length;
         });
       }
 
-      // Cập nhật danh sách ảnh hiển thị cho Lightbox
-      activePhotoList = allPhotoItems.filter((it) => {
+      // Cập nhật danh sách hiển thị cho Lightbox
+      activeList = allItems.filter((it) => {
         const card = it.closest('.album-card') as HTMLElement | null;
-        return card && card.style.display !== 'none';
+        return card && card.style.display !== 'none' && it.style.display !== 'none';
       });
     });
   });
 
-  // Nút mở rộng / thu gọn ảnh trong từng Album
+  // Nút mở rộng / thu gọn
   toggleBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.target;
@@ -257,14 +297,12 @@ const totalPhotos = gallery.length;
       const totalCount = btn.dataset.count || '';
 
       if (isExpanded) {
-        // Thu gọn lại 6 ảnh
         hiddenItems.forEach((it) => (it.style.display = 'none'));
         btn.dataset.expanded = 'false';
         btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = `<span>Xem toàn bộ ${totalCount} ảnh của album này ↓</span>`;
+        btn.innerHTML = `<span>Xem toàn bộ ${totalCount} tư liệu của album này ↓</span>`;
         grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
-        // Mở ra toàn bộ
         hiddenItems.forEach((it) => (it.style.display = ''));
         btn.dataset.expanded = 'true';
         btn.setAttribute('aria-expanded', 'true');
@@ -273,26 +311,25 @@ const totalPhotos = gallery.length;
     });
   });
 
-  // Lightbox xem ảnh lớn
+  // Lightbox
   function showLightbox(i: number) {
-    if (!activePhotoList.length) return;
-    currentIdx = (i + activePhotoList.length) % activePhotoList.length;
-    const it = activePhotoList[currentIdx];
+    if (!activeList.length) return;
+    currentIdx = (i + activeList.length) % activeList.length;
+    const it = activeList[currentIdx];
     lbImg.src = it.dataset.src || '';
     lbImg.alt = it.dataset.title || '';
     lbCap.textContent = `${it.dataset.prog} · ${it.dataset.title}`;
     lbLink.href = it.dataset.slug || '#';
-    lbCount.textContent = `Ảnh ${currentIdx + 1} / ${activePhotoList.length}`;
+    lbCount.textContent = `Tư liệu ${currentIdx + 1} / ${activeList.length}`;
   }
 
-  allPhotoItems.forEach((it) => {
+  allItems.forEach((it) => {
     it.addEventListener('click', () => {
-      // Re-evaluate visible items at click time
-      activePhotoList = allPhotoItems.filter((item) => {
+      activeList = allItems.filter((item) => {
         const card = item.closest('.album-card') as HTMLElement | null;
         return card && card.style.display !== 'none' && item.style.display !== 'none';
       });
-      const pos = activePhotoList.indexOf(it);
+      const pos = activeList.indexOf(it);
       showLightbox(pos >= 0 ? pos : 0);
       dlg.showModal();
     });
