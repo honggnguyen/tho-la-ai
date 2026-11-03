@@ -3,14 +3,85 @@ import Base from '../layouts/Base.astro';
 import gallery from '../data/gallery.json';
 import { u } from '../lib/url';
 
-const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.program)))];
+// Cấu trúc 7 Album theo trình tự thời gian và chủ đề rõ ràng
+const albums = [
+  {
+    slug: '2025-11-dem-tho-dien-xuong',
+    order: '01',
+    title: 'Đêm thơ diễn xướng "Thơ-là-ai?" #1',
+    dateLabel: '21/11/2025',
+    venue: 'Kim Mã, Ba Đình, Hà Nội',
+    summary: 'Đêm thơ đầu tiên kết hợp kịch, âm thanh và cuộc đối thoại liên thế hệ giữa các nghệ sĩ gạo cội và người trẻ.',
+  },
+  {
+    slug: '2025-12-nghe-thay-nhau',
+    order: '02',
+    title: 'Series "Nghe–Thấy–Nhau"',
+    dateLabel: '14/12/2025 – 11/01/2026',
+    venue: 'A Queer Museum, 103 Ngọc Lâm, Long Biên',
+    summary: 'Chuỗi 3 buổi thực hành thơ thủ công, blackout poetry và lắng nghe tự sự Queer qua ngôn ngữ đa giác quan.',
+  },
+  {
+    slug: '2026-03-chong-chu',
+    order: '03',
+    title: 'Workshop "Chồng chữ"',
+    dateLabel: '15/03/2026',
+    venue: 'A Queer Museum, 103 Ngọc Lâm, Long Biên',
+    summary: 'Thực hành cắt dán (collage), tái định hình từ vựng và tự do thể nghiệm thơ thị giác.',
+  },
+  {
+    slug: '2026-04-choi-giua-mua-trang-vong',
+    order: '04',
+    title: 'Sự kiện "Chơi giữa mùa trăng" & Dự án "Vọng"',
+    dateLabel: '24/04/2026',
+    venue: 'Tổ Chim Xanh, 27 Đặng Dung, Ba Đình',
+    summary: 'Không gian diễn xướng và dự án điện ảnh thơ thể nghiệm lấy cảm hứng từ thế giới thi ca Hàn Mặc Tử.',
+  },
+  {
+    slug: '2026-05-03-nuoc-va-mo',
+    order: '05',
+    title: 'Trình diễn thơ nhạc "Nước và Mơ"',
+    dateLabel: '03/05/2026',
+    venue: 'Quán Cầm, Gác 3, Số 6 Nguyễn Thượng Hiền',
+    summary: 'Buổi trình diễn thơ đương đại hòa quyện cùng âm nhạc ứng tác xoay quanh dáng hình của nước và nhạc tính tiếng Việt.',
+  },
+  {
+    slug: '2026-05-dua-tho-ve-mat-dat',
+    order: '06',
+    title: 'Workshop "Đưa thơ về mặt đất"',
+    dateLabel: '17/05/2026',
+    venue: 'TOTO Cafe, Số 1 ngõ 84 Trần Thái Tông, Cầu Giấy',
+    summary: 'Workshop thơ tân hình thức cùng nhà thơ Phapxa Chan: nói thơ, nấu thơ và nối thơ trong nhịp sống đương đại.',
+  },
+  {
+    slug: '2026-09-omlas-echoes-of-asia',
+    order: '07',
+    title: 'OMLAS · Echoes of Asia',
+    dateLabel: '09/2026',
+    venue: 'Quốc tế (Online / 5 Hubs)',
+    summary: 'Dự án Poetic Resilience và năng lực lãnh đạo trẻ tại Việt Nam, Thái Lan, Bangladesh, Pakistan và Uzbekistan.',
+  },
+];
+
+// Gắn danh sách ảnh vào từng album
+const albumsWithPhotos = albums.map((alb) => {
+  const photos = gallery.filter((g) => g.eventSlug === alb.slug);
+  return {
+    ...alb,
+    photos,
+    totalCount: photos.length,
+    initialCount: Math.min(photos.length, 6),
+  };
+}).filter((alb) => alb.photos.length > 0);
+
+const totalPhotos = gallery.length;
 ---
-<Base title="Thư viện ảnh" description="Khoảnh khắc từ các đêm thơ diễn xướng, chuỗi workshop thơ thủ công, Chơi giữa mùa trăng, Nước và Mơ, Đưa thơ về mặt đất của Thơ-là-ai?.">
+<Base title="Thư viện ảnh" description="Kho lưu trữ thị giác có cấu trúc từ các đêm thơ, workshop và dự án thể nghiệm của Thơ-là-ai?.">
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Lưu trữ thị giác · {gallery.length} ảnh</p>
+      <p class="eyebrow">Kho lưu trữ thị giác · {albumsWithPhotos.length} bộ sưu tập · {totalPhotos} ảnh</p>
       <h1 class="shadowed">Thư viện ảnh</h1>
-      <p class="lead">Những khoảnh khắc từ các đêm thơ diễn xướng, chuỗi thực hành thơ thủ công tại A Queer Museum, đêm thơ nhạc Quán Cầm và các buổi ngồi lại cùng nhau.</p>
+      <p class="lead">Những khoảnh khắc được sắp xếp theo từng bộ sưu tập sự kiện và trình tự thời gian, từ đêm thơ đầu tiên đến các workshop thể nghiệm cộng đồng.</p>
 
       <div class="callout" style="border-left-color:var(--chart-cobalt);margin:1.8rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem">
         <div style="max-width:54ch">
@@ -23,36 +94,82 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
         </div>
       </div>
 
-      <div class="filter-bar" role="region" aria-label="Lọc ảnh theo chương trình">
-        {programs.map((prog, idx) => (
-          <button type="button" class="filter-btn" data-prog={prog} aria-pressed={idx === 0 ? 'true' : 'false'}>
-            {prog}
+      <!-- Thanh chọn Album nhanh -->
+      <div class="filter-bar" role="region" aria-label="Lọc theo Album sự kiện">
+        <button type="button" class="filter-btn alb-filter-btn" data-slug="all" aria-pressed="true">
+          Tất cả Album ({albumsWithPhotos.length})
+        </button>
+        {albumsWithPhotos.map((alb) => (
+          <button type="button" class="filter-btn alb-filter-btn" data-slug={alb.slug} aria-pressed="false">
+            {alb.order}. {alb.title.replace(/^[^"]*"|"[^"]*$/g, '')} ({alb.totalCount})
           </button>
         ))}
       </div>
 
-      <div class="gallery-masonry" id="gallery-grid">
-        {gallery.map((item, idx) => (
-          <button
-            type="button"
-            class="gallery-item"
-            data-prog={item.program}
-            data-idx={idx}
-            data-src={u(item.src)}
-            data-title={item.title}
-            data-slug={u(`/chuong-trinh/${item.eventSlug}`)}
-          >
-            <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
-            <div class="gallery-caption">
-              <span class="prog">{item.program}</span>
-              <span>{item.title}</span>
-            </div>
-          </button>
-        ))}
+      <!-- Danh sách Album theo trật tự thời gian -->
+      <div class="gallery-albums" id="albums-container">
+        {albumsWithPhotos.map((alb) => {
+          const hasMore = alb.photos.length > 6;
+          return (
+            <article class="album-card" id={`album-${alb.slug}`} data-slug={alb.slug}>
+              <header class="album-header">
+                <div class="album-meta-top">
+                  <span class="album-order-badge">Album {alb.order}</span>
+                  <span class="meta">{[alb.dateLabel, alb.venue].filter(Boolean).join(' · ')}</span>
+                  <span class="album-count-badge">{alb.totalCount} ảnh</span>
+                </div>
+                <div class="album-title-row">
+                  <h2>{alb.title}</h2>
+                  <a class="album-event-link" href={u(`/chuong-trinh/${alb.slug}`)}>Xem bài sự kiện →</a>
+                </div>
+                <p class="album-summary">{alb.summary}</p>
+              </header>
+
+              <div class="album-grid" id={`grid-${alb.slug}`}>
+                {alb.photos.map((item, idx) => {
+                  const isInitiallyHidden = idx >= 6;
+                  return (
+                    <button
+                      type="button"
+                      class="gallery-item"
+                      data-prog={item.program}
+                      data-slug={u(`/chuong-trinh/${item.eventSlug}`)}
+                      data-src={u(item.src)}
+                      data-title={item.title}
+                      data-alb={alb.slug}
+                      style={isInitiallyHidden ? 'display: none;' : ''}
+                      data-hidden-default={isInitiallyHidden ? 'true' : 'false'}
+                    >
+                      <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
+                      <div class="gallery-caption">
+                        <span class="prog">{alb.title}</span>
+                        <span>{item.title}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {hasMore && (
+                <button
+                  type="button"
+                  class="album-toggle-btn"
+                  data-target={`grid-${alb.slug}`}
+                  data-count={alb.totalCount}
+                  data-expanded="false"
+                  aria-expanded="false"
+                >
+                  <span>Xem toàn bộ {alb.totalCount} ảnh của album này ↓</span>
+                </button>
+              )}
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
 
+  <!-- Lightbox Modal -->
   <dialog class="lightbox" id="lightbox" aria-label="Xem ảnh phóng to">
     <div class="lb-body">
       <div class="lb-bar">
@@ -65,64 +182,133 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
       </div>
       <img id="lb-img" src="" alt="" />
       <div class="lb-bar">
-        <a id="lb-link" href="#" >Xem trang chương trình →</a>
-        <span id="lb-count" class="meta" ></span>
+        <a id="lb-link" href="#">Xem trang chương trình →</a>
+        <span id="lb-count" class="meta"></span>
       </div>
     </div>
   </dialog>
 </Base>
 
 <script>
-  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const items = Array.from(document.querySelectorAll<HTMLButtonElement>('#gallery-grid .gallery-item'));
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.alb-filter-btn');
+  const albumCards = Array.from(document.querySelectorAll<HTMLElement>('.album-card'));
+  const allPhotoItems = Array.from(document.querySelectorAll<HTMLButtonElement>('.gallery-item'));
+  const toggleBtns = document.querySelectorAll<HTMLButtonElement>('.album-toggle-btn');
+
   const dlg = document.getElementById('lightbox') as HTMLDialogElement;
   const lbImg = document.getElementById('lb-img') as HTMLImageElement;
   const lbCap = document.getElementById('lb-caption')!;
   const lbLink = document.getElementById('lb-link') as HTMLAnchorElement;
   const lbCount = document.getElementById('lb-count')!;
-  let visibleItems = [...items];
-  let cur = 0;
 
-  btns.forEach((b) => {
-    b.addEventListener('click', () => {
-      btns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
-      b.setAttribute('aria-pressed', 'true');
-      const prog = b.dataset.prog || 'Tất cả';
-      items.forEach((it) => {
-        const show = prog === 'Tất cả' || it.dataset.prog === prog;
-        it.style.display = show ? '' : 'none';
+  let activePhotoList: HTMLButtonElement[] = [...allPhotoItems];
+  let currentIdx = 0;
+
+  // Lọc theo Album
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      const slug = btn.dataset.slug || 'all';
+
+      if (slug === 'all') {
+        // Hiện tất cả album theo chế độ thu gọn tiêu chuẩn (6 ảnh)
+        albumCards.forEach((card) => {
+          card.style.display = '';
+        });
+      } else {
+        // Chỉ hiện album được chọn, và tự động mở toàn bộ ảnh của album đó ra
+        albumCards.forEach((card) => {
+          const isMatch = card.dataset.slug === slug;
+          card.style.display = isMatch ? '' : 'none';
+          if (isMatch) {
+            // Mở bung tất cả ảnh của album này
+            const items = card.querySelectorAll<HTMLButtonElement>('.gallery-item');
+            items.forEach((it) => (it.style.display = ''));
+            const toggle = card.querySelector<HTMLButtonElement>('.album-toggle-btn');
+            if (toggle) {
+              toggle.dataset.expanded = 'true';
+              toggle.setAttribute('aria-expanded', 'true');
+              toggle.innerHTML = '<span>Thu gọn bớt ↑</span>';
+            }
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      // Cập nhật danh sách ảnh hiển thị cho Lightbox
+      activePhotoList = allPhotoItems.filter((it) => {
+        const card = it.closest('.album-card') as HTMLElement | null;
+        return card && card.style.display !== 'none';
       });
-      visibleItems = items.filter((it) => it.style.display !== 'none');
     });
   });
 
-  function showAt(i: number) {
-    if (!visibleItems.length) return;
-    cur = (i + visibleItems.length) % visibleItems.length;
-    const it = visibleItems[cur];
+  // Nút mở rộng / thu gọn ảnh trong từng Album
+  toggleBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      if (!targetId) return;
+      const grid = document.getElementById(targetId);
+      if (!grid) return;
+
+      const isExpanded = btn.dataset.expanded === 'true';
+      const hiddenItems = grid.querySelectorAll<HTMLButtonElement>('.gallery-item[data-hidden-default="true"]');
+      const totalCount = btn.dataset.count || '';
+
+      if (isExpanded) {
+        // Thu gọn lại 6 ảnh
+        hiddenItems.forEach((it) => (it.style.display = 'none'));
+        btn.dataset.expanded = 'false';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = `<span>Xem toàn bộ ${totalCount} ảnh của album này ↓</span>`;
+        grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        // Mở ra toàn bộ
+        hiddenItems.forEach((it) => (it.style.display = ''));
+        btn.dataset.expanded = 'true';
+        btn.setAttribute('aria-expanded', 'true');
+        btn.innerHTML = '<span>Thu gọn bớt ↑</span>';
+      }
+    });
+  });
+
+  // Lightbox xem ảnh lớn
+  function showLightbox(i: number) {
+    if (!activePhotoList.length) return;
+    currentIdx = (i + activePhotoList.length) % activePhotoList.length;
+    const it = activePhotoList[currentIdx];
     lbImg.src = it.dataset.src || '';
     lbImg.alt = it.dataset.title || '';
     lbCap.textContent = `${it.dataset.prog} · ${it.dataset.title}`;
     lbLink.href = it.dataset.slug || '#';
-    lbCount.textContent = `${cur + 1} / ${visibleItems.length}`;
+    lbCount.textContent = `Ảnh ${currentIdx + 1} / ${activePhotoList.length}`;
   }
 
-  items.forEach((it) => {
+  allPhotoItems.forEach((it) => {
     it.addEventListener('click', () => {
-      const idx = visibleItems.indexOf(it);
-      showAt(idx >= 0 ? idx : 0);
+      // Re-evaluate visible items at click time
+      activePhotoList = allPhotoItems.filter((item) => {
+        const card = item.closest('.album-card') as HTMLElement | null;
+        return card && card.style.display !== 'none' && item.style.display !== 'none';
+      });
+      const pos = activePhotoList.indexOf(it);
+      showLightbox(pos >= 0 ? pos : 0);
       dlg.showModal();
     });
   });
 
-  document.getElementById('lb-prev')?.addEventListener('click', () => showAt(cur - 1));
-  document.getElementById('lb-next')?.addEventListener('click', () => showAt(cur + 1));
+  document.getElementById('lb-prev')?.addEventListener('click', () => showLightbox(currentIdx - 1));
+  document.getElementById('lb-next')?.addEventListener('click', () => showLightbox(currentIdx + 1));
   document.getElementById('lb-close')?.addEventListener('click', () => dlg.close());
-  dlg?.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('click', (e) => {
+    if (e.target === dlg) dlg.close();
+  });
+
   window.addEventListener('keydown', (e) => {
     if (!dlg.open) return;
-    if (e.key === 'ArrowLeft') showAt(cur - 1);
-    if (e.key === 'ArrowRight') showAt(cur + 1);
+    if (e.key === 'ArrowLeft') showLightbox(currentIdx - 1);
+    if (e.key === 'ArrowRight') showLightbox(currentIdx + 1);
+    if (e.key === 'Escape') dlg.close();
   });
 </script>
-
