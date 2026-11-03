@@ -3,63 +3,106 @@
     "id": "ngao-thuyen",
     "name": "Ngạo Thuyên",
     "role": "Nhà thơ diễn xướng",
-    "programs": ["Đêm thơ \"Thơ-là-ai?\"", "Chơi giữa mùa trăng · Vọng"],
+    "programs": [
+      "Đêm thơ \"Thơ-là-ai?\"",
+      "Chơi giữa mùa trăng · Vọng"
+    ],
     "bio": "Nghệ sĩ thơ diễn xướng với chất giọng day dứt, thiết tha và thế giới thi ảnh huyền ảo, siêu thực xoay quanh sự hiện hữu, tình yêu và bản thể.",
-    "works": ["Duyên khởi", "Bất khả", "Alice trong đêm trăng", "Phán quyết (Cái chết của bình minh)", "Bất hoại (Vô thường)"]
+    "works": [
+      "Duyên khởi",
+      "Bất khả",
+      "Alice trong đêm trăng",
+      "Phán quyết (Cái chết của bình minh)",
+      "Bất hoại (Vô thường)"
+    ]
   },
   {
     "id": "dan-linh",
     "name": "Đan Linh",
     "role": "Nhà thơ diễn xướng",
-    "programs": ["Đêm thơ \"Thơ-là-ai?\"", "Chơi giữa mùa trăng · Vọng"],
+    "programs": [
+      "Đêm thơ \"Thơ-là-ai?\"",
+      "Chơi giữa mùa trăng · Vọng"
+    ],
     "bio": "Người thực hành thơ diễn xướng với những dòng ý thức mãnh liệt, giàu kịch tính và nội lực trình diễn trực diện trên sân khấu.",
-    "works": ["Rắn chúa", "Tượng trắng"]
+    "works": [
+      "Rắn chúa",
+      "Tượng trắng"
+    ]
   },
   {
     "id": "minh-tam",
     "name": "Minh Tâm (Cẩn Nhiên)",
     "role": "Người viết tự do · Thực hành diễn xướng & điều phối",
-    "programs": ["Đêm thơ \"Thơ-là-ai?\"", "Series \"Nghe–Thấy–Nhau\"", "Series \"Chồng chữ\""],
+    "programs": [
+      "Đêm thơ \"Thơ-là-ai?\"",
+      "Series \"Nghe–Thấy–Nhau\"",
+      "Series \"Chồng chữ\""
+    ],
     "bio": "\"Người viết tự do, chưa biết tự lo.\" Mang đến không gian diễn xướng trầm lắng, miên man trong nhịp chuông và những vần thơ giàu chất thiền, cổ điển đan xen đương đại.",
-    "works": ["Một cái lá – không tên", "Bóng thuyền ma và tôi đều – không tên", "Đêm thu ngày ấy một ngàn năm trước cũng – không tên"]
+    "works": [
+      "Một cái lá – không tên",
+      "Bóng thuyền ma và tôi đều – không tên",
+      "Đêm thu ngày ấy một ngàn năm trước cũng – không tên"
+    ]
   },
   {
     "id": "phapxa-chan",
     "name": "Phapxa Chan",
     "role": "Nhà thơ · Nhạc sĩ · Host workshop",
-    "programs": ["Workshop \"Đưa thơ về mặt đất\""],
+    "programs": [
+      "Workshop \"Đưa thơ về mặt đất\""
+    ],
     "bio": "Tác giả tập thơ \"Ngày ra đời của gió\". Tự nhận mình là du sĩ di chuyển giữa các miền địa lý và tinh thần, thực hành thơ Tân hình thức Việt với ngôn ngữ đời sống hồn nhiên, gần gũi.",
-    "works": ["Khung giàn giáo cuối cùng", "Ngày ra đời của gió"]
+    "works": [
+      "Khung giàn giáo cuối cùng",
+      "Ngày ra đời của gió"
+    ]
   },
   {
     "id": "huy-bao",
     "name": "Huy Bảo",
     "role": "Nhà thơ khách mời",
-    "programs": ["Đêm thơ \"Thơ-là-ai?\"", "Trình diễn thơ nhạc \"Nước và Mơ\""],
+    "programs": [
+      "Đêm thơ \"Thơ-là-ai?\"",
+      "Trình diễn thơ nhạc \"Nước và Mơ\""
+    ],
     "bio": "Tác giả trẻ với những vần thơ giàu liên tưởng điện ảnh, những lát cắt hiện sinh về ký ức, mùa thu và sự đổ vỡ.",
-    "works": ["Kamikaze 2"]
+    "works": [
+      "Kamikaze 2"
+    ]
   },
   {
     "id": "linh-van",
     "name": "Linh Văn",
     "role": "Nhà thơ",
-    "programs": ["Trình diễn thơ nhạc \"Nước và Mơ\""],
+    "programs": [
+      "Trình diễn thơ nhạc \"Nước và Mơ\""
+    ],
     "bio": "Tác giả có tác phẩm trình diễn trong đêm thơ nhạc \"Nước và Mơ\", khám phá những hình ảnh sâu thẳm của biển cả, sự mất mát và thời gian.",
-    "works": ["tôi đã đến chân trời"]
+    "works": [
+      "tôi đã đến chân trời"
+    ]
   },
   {
     "id": "nguyen-man-nhien",
     "name": "Nguyễn Man Nhiên",
     "role": "Tác giả thơ",
-    "programs": ["Trình diễn thơ nhạc \"Nước và Mơ\""],
+    "programs": [
+      "Trình diễn thơ nhạc \"Nước và Mơ\""
+    ],
     "bio": "Tác giả của những bài thơ giàu chất suy tưởng và mộng tưởng gắn với hình tượng biển và mây được trình diễn trong chương trình \"Nước và Mơ\".",
-    "works": ["Tôi sống trong căn nhà có biển"]
+    "works": [
+      "Tôi sống trong căn nhà có biển"
+    ]
   },
   {
     "id": "bang-giang",
     "name": "Bằng Giang",
     "role": "Host · Người điều phối",
-    "programs": ["Series \"Nghe–Thấy–Nhau\""],
+    "programs": [
+      "Series \"Nghe–Thấy–Nhau\""
+    ],
     "bio": "Đồng hành dẫn dắt không gian lắng nghe, đối thoại và thực hành sáng tạo tự sự Queer tại A Queer Museum.",
     "works": []
   },
@@ -67,7 +110,9 @@
     "id": "khanh-duy-vivi",
     "name": "Khánh Duy & Vivi",
     "role": "Nhạc công ứng tác · Giọng đọc diễn xướng",
-    "programs": ["Trình diễn thơ nhạc \"Nước và Mơ\""],
+    "programs": [
+      "Trình diễn thơ nhạc \"Nước và Mơ\""
+    ],
     "bio": "Cộng hưởng thanh âm của giọng đọc truyền cảm cùng tiếng đàn guitar và sáo ứng tác trực tiếp, làm nổi bật tính nhạc trong thi ca đương đại.",
     "works": []
   }

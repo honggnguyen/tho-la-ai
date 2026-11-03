@@ -24,11 +24,11 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
         </div>
         <div class="zine-controls">
           <div style="display:flex;gap:.5rem;align-items:center">
-            <button type="button" class="btn" id="zine-prev">← Trang trước</button>
-            <button type="button" class="btn" id="zine-next">Trang tiếp →</button>
+            <button type="button" class="btn light" id="zine-prev">← Trang trước</button>
+            <button type="button" class="btn light" id="zine-next">Trang tiếp →</button>
           </div>
           <span id="zine-indicator" style="font-size:1.1rem;letter-spacing:.06em">Trang 1 / 30 (Bản Tiếng Việt)</span>
-          <button type="button" class="btn ghost" id="zine-fs" style="color:#fff;border-color:#fff">Toàn màn hình ⛶</button>
+          <button type="button" class="btn ghost-light" id="zine-fs">Toàn màn hình ⛶</button>
         </div>
       </div>
 
@@ -119,3 +119,4 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
 
   updateMode('vi');
 </script>
+

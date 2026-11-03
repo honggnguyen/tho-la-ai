@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PoemCard from '../../components/PoemCard.astro';
 import gallery from '../../data/gallery.json';
 import poems from '../../data/poems.json';
 import { u } from '../../lib/url';
@@ -13,74 +14,67 @@ const { e } = Astro.props;
 const { Content } = await render(e);
 const d = e.data;
 const statusLabel: Record<string, string> = { done: 'Đã diễn ra', ongoing: 'Đang diễn ra', planned: 'Dự kiến' };
-const eventPhotos = gallery.filter((g) => g.eventSlug === e.id);
-const eventPoems = poems.filter((p) => d.title.includes(p.program.replace(/^.*"/, '').replace(/".*$/, '')));
+const photos = gallery.filter((g) => g.eventSlug === e.id);
+const hero = d.cover || photos.find((p) => p.width >= p.height)?.src;
+const eventPoems = poems.filter((p) => p.eventSlug === e.id);
 ---
 <Base title={d.title} description={d.summary}>
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow"><a href={u('/chuong-trinh')} style="color:inherit">← Chương trình</a></p>
+      <p class="eyebrow"><a href={u('/chuong-trinh')} style="text-decoration:none">← Chương trình</a></p>
       <span class={`tag ${d.status}`}>{statusLabel[d.status]} · {d.type}</span>
       <h1 class="shadowed" style="margin-top:1rem">{d.title}</h1>
       {d.subtitle && <p class="lead">{d.subtitle}</p>}
-      <dl class="meta" style="display:grid;grid-template-columns:max-content 1fr;gap:.25rem 1.2rem;margin:2rem 0">
-        {d.dateLabel && <><dt>Thời gian</dt><dd style="margin:0">{d.dateLabel}</dd></>}
-        {d.venue && <><dt>Địa điểm</dt><dd style="margin:0">{d.venue}</dd></>}
-        {d.attendeesLabel && <><dt>Quy mô</dt><dd style="margin:0">{d.attendeesLabel}</dd></>}
-        {d.partners.length > 0 && <><dt>Đồng hành</dt><dd style="margin:0">{d.partners.join(', ')}</dd></>}
-        {d.instagramPosts.length > 0 && (
-          <>
-            <dt>Bài viết Instagram</dt>
-            <dd style="margin:0">
-              {d.instagramPosts.map((url, idx) => (
-                <>
-                  {idx > 0 && ' · '}
-                  <a href={url} target="_blank" rel="noopener">Bài đăng #{idx + 1} ↗</a>
-                </>
-              ))}
-            </dd>
-          </>
-        )}
-      </dl>
-      <div class="prose"><p style="font-size:1.25rem">{d.summary}</p><Content /></div>
-      {d.youtube && (
-        <div style="margin-top:2rem;aspect-ratio:16/9;max-width:800px">
-          <iframe width="100%" height="100%" src={`https://www.youtube-nocookie.com/embed/${d.youtube}`} title={d.title} loading="lazy" allowfullscreen style="border:0"></iframe>
+
+      {hero && <img class="ev-hero" src={u(hero)} alt={d.title} style="margin-top:2rem" />}
+
+      <div class="ev-layout">
+        <aside class="ev-aside" aria-label="Thông tin chương trình">
+          <dl style="margin:0;display:grid;gap:1rem">
+            {d.dateLabel && <div><dt>Thời gian</dt><dd>{d.dateLabel}</dd></div>}
+            {d.venue && <div><dt>Địa điểm</dt><dd>{d.venue}</dd></div>}
+            {d.attendeesLabel && <div><dt>Quy mô</dt><dd>{d.attendeesLabel}</dd></div>}
+            {d.partners.length > 0 && <div><dt>Đồng hành</dt><dd>{d.partners.join(', ')}</dd></div>}
+            {d.instagramPosts.length > 0 && (
+              <div>
+                <dt>Bài viết Instagram</dt>
+                <dd>
+                  {d.instagramPosts.map((url, idx) => (
+                    <><a href={url} target="_blank" rel="noopener">Bài #{idx + 1} ↗</a>{idx < d.instagramPosts.length - 1 && ' · '}</>
+                  ))}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </aside>
+        <div>
+          <div class="prose"><p style="font-size:1.25rem;margin-top:0">{d.summary}</p><Content /></div>
+          {d.youtube && (
+            <div style="margin-top:2rem;aspect-ratio:16/9;max-width:800px">
+              <iframe width="100%" height="100%" src={`https://www.youtube-nocookie.com/embed/${d.youtube}`} title={d.title} loading="lazy" allowfullscreen style="border:0"></iframe>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {eventPoems.length > 0 && (
-        <div style="margin-top:3.5rem">
-          <p class="eyebrow">Tác phẩm &amp; bản thu âm trong chương trình</p>
-          <h2>Thơ &amp; Thanh âm</h2>
-          <div class="grid cols-2" style="margin-top:1.25rem">
-            {eventPoems.map((p) => (
-              <article class="poem-card">
-                <span class="tag">{p.category}</span>
-                <h3>{p.title}</h3>
-                <div class="poem-author">{p.author}</div>
-                {p.audio && (
-                  <div class="audio-box">
-                    <span class="audio-label">♪ Bản thu âm</span>
-                    <audio controls preload="none" src={u(p.audio)}></audio>
-                  </div>
-                )}
-                <div class="poem-text">{p.text}</div>
-              </article>
-            ))}
+        <div style="margin-top:4rem">
+          <p class="eyebrow">Tác phẩm &amp; bản thu âm</p>
+          <h2>Thơ &amp; thanh âm</h2>
+          <div class="grid cols-2 top" style="margin-top:1.25rem">
+            {eventPoems.map((p) => <PoemCard poem={p} showProgram={false} />)}
           </div>
         </div>
       )}
 
-      {eventPhotos.length > 0 && (
-        <div style="margin-top:3.5rem">
-          <p class="eyebrow">Tư liệu hình ảnh ({eventPhotos.length} ảnh)</p>
-          <h2>Khoảnh khắc từ chương trình</h2>
-          <div class="gallery-grid" style="margin-top:1.25rem">
-            {eventPhotos.map((img) => (
-              <a class="gallery-item" href={u('/thu-vien')} style="text-decoration:none">
+      {photos.length > 0 && (
+        <div style="margin-top:4rem">
+          <p class="eyebrow">Tư liệu hình ảnh · {photos.length} ảnh</p>
+          <h2>Khoảnh khắc</h2>
+          <div class="gallery-masonry" style="margin-top:1.25rem">
+            {photos.map((img) => (
+              <a class="gallery-item" href={u('/thu-vien')}>
                 <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
-                <div class="gallery-caption"><span>{img.title}</span></div>
               </a>
             ))}
           </div>

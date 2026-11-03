@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import EventCard from '../components/EventCard.astro';
+import PoemCard from '../components/PoemCard.astro';
 import site from '../data/site.json';
 import poems from '../data/poems.json';
 import gallery from '../data/gallery.json';
@@ -11,26 +12,56 @@ const all = await getCollection('events');
 const past = all.filter((e) => e.data.status !== 'planned')
   .sort((a, b) => (b.data.sortDate?.getTime() ?? 0) - (a.data.sortDate?.getTime() ?? 0));
 const planned = all.filter((e) => e.data.status === 'planned');
-const featuredPoems = [poems[0], poems[2], poems[8], poems[10]];
-const featuredPhotos = [gallery[0], gallery[8], gallery[22], gallery[30], gallery[35], gallery[37]].filter(Boolean);
+const featuredPoems = ['duyen-khoi', 'kamikaze-2']
+  .map((id) => poems.find((p) => p.id === id)).filter((p): p is (typeof poems)[number] => !!p);
+// Mỗi chương trình lấy 1 ảnh đại diện cho dải ảnh trang chủ
+const seen = new Set<string>();
+const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(g.eventSlug)).slice(0, 6);
 ---
 <Base>
   <section class="hero">
-    <div class="blob" aria-hidden="true"></div>
-    <div class="wrap">
-      <p class="eyebrow">Thơ diễn xướng · Thực hành văn chương đương đại · Hà Nội</p>
-      <h1 class="shadowed"><span class="ghost-text" data-text="Thơ là ai?">Thơ là ai?</span></h1>
-      <p class="lead">{site.tagline} Không có quy tắc nào cả. Đến với Thơ-là-ai, quy tắc để sáng tạo và thể nghiệm là&hellip; không có.</p>
-      <p style="margin-top:2rem; display:flex; gap:.85rem; flex-wrap:wrap">
-        <a class="btn" href={u('/chuong-trinh')}>Chương trình</a>
-        <a class="btn ghost" href={u('/kho-tho')}>Kho thơ &amp; Audio</a>
-        <a class="btn ghost" href={u('/zine')}>Đọc Zine 60 trang</a>
-        <a class="btn ghost" href={u('/tac-dong')}>Con số &amp; Tác động</a>
-      </p>
+    <div class="wrap hero-grid">
+      <div class="wordmark" role="img" aria-label="Thơ là AI?">
+        <span class="wm-tho">Thơ</span>
+        <span class="wm-la"></span>
+        <span class="wm-ai">AI?</span>
+        <i class="spark s1" aria-hidden="true">✦</i>
+        <i class="spark s2" aria-hidden="true">✦</i>
+        <i class="spark s3" aria-hidden="true">✦</i>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Thơ diễn xướng · Hà Nội</p>
+        <p class="lead">{site.tagline} Không có quy tắc nào cả: quy tắc để sáng tạo và thể nghiệm ở đây là&hellip; không có.</p>
+        <div class="btn-row">
+          <a class="btn" href={u('/chuong-trinh')}>Chương trình</a>
+          <a class="btn ghost" href={u('/kho-tho')}>Nghe thơ</a>
+          <a class="btn ghost" href={u('/zine')}>Đọc Zine</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section band-cobalt">
+  <section class="wrap">
+    <div class="stats">
+      {site.numbers.map((n) => (
+        <div class="stat"><div class="num">{n.value}</div><div class="lab">{n.label}</div></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Hành trình đã đi qua</p><h2>Chương trình</h2></div>
+        <a class="link-arrow" href={u('/chuong-trinh')}>Xem tất cả →</a>
+      </div>
+      <div class="grid cols-3">
+        {past.slice(0, 6).map((e) => <EventCard slug={e.id} {...e.data} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-dark">
     <div class="wrap">
       <p class="eyebrow">Một câu hỏi để bắt đầu</p>
       <h2>Khi nghe từ &ldquo;thơ&rdquo;, hình ảnh đầu tiên hiện lên trong đầu bạn là gì?</h2>
@@ -41,100 +72,57 @@ const featuredPhotos = [gallery[0], gallery[8], gallery[22], gallery[30], galler
         <button type="button" data-reply="Tình cảm của bạn, kể bằng cách của bạn.">Tình cảm</button>
       </div>
       <p class="poll-reply" id="poll-reply" aria-live="polite">&nbsp;</p>
-      <p class="meta" style="color:var(--cream);opacity:.8">Bốn đáp án lấy từ khảo sát trong Zine &ldquo;Thơ là ai?&rdquo;.</p>
+      <p class="meta">Bốn đáp án lấy từ khảo sát trong Zine &ldquo;Thơ là ai?&rdquo;.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="stats">
-        {site.numbers.map((n) => (
-          <div class="stat"><div class="num">{n.value}</div><div class="lab">{n.label}</div></div>
-        ))}
+      <div class="section-head">
+        <div><p class="eyebrow">Lắng nghe &amp; đọc</p><h2>Thơ &amp; thanh âm</h2></div>
+        <a class="link-arrow" href={u('/kho-tho')}>Mở Kho thơ →</a>
+      </div>
+      <div class="grid cols-2 top">
+        {featuredPoems.map((p) => <PoemCard poem={p} previewLines={6} />)}
       </div>
     </div>
   </section>
 
-  <section class="section band-cream">
+  <section class="section band-grey">
     <div class="wrap">
-      <p class="eyebrow">Hành trình đã đi qua</p>
-      <h2>Chương trình tiêu biểu</h2>
-      <div class="grid cols-3">
-        {past.map((e) => <EventCard slug={e.id} {...e.data} />)}
+      <div class="section-head">
+        <div><p class="eyebrow">Lưu trữ thị giác</p><h2>Khoảnh khắc</h2></div>
+        <a class="link-arrow" href={u('/thu-vien')}>Xem {gallery.length} ảnh →</a>
       </div>
-      <p style="margin-top:2rem"><a href={u('/chuong-trinh')}>Xem tất cả chương trình và bảng tổng hợp →</a></p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Lắng nghe &amp; đọc</p>
-      <h2>Thơ &amp; Thanh âm chọn lọc</h2>
-      <p class="lead">Khi thơ rời trang giấy để mang một giọng nói, một nhịp thở và âm nhạc ứng tác.</p>
-      <div class="grid cols-2" style="margin-top:2rem">
-        {featuredPoems.map((p) => (
-          <article class="poem-card">
-            <div style="display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
-              <span class="tag">{p.category}</span>
-              <span class="meta">{p.program}</span>
-            </div>
-            <h3>{p.title}</h3>
-            <div class="poem-author">{p.author}</div>
-            {p.audio && (
-              <div class="audio-box">
-                <span class="audio-label">♪ Bản thu âm · Bấm để nghe</span>
-                <audio controls preload="none" src={u(p.audio)}></audio>
-              </div>
-            )}
-            <div class="poem-text">{p.text.slice(0, 320)}{p.text.length > 320 ? '…' : ''}</div>
-          </article>
-        ))}
-      </div>
-      <p style="margin-top:2rem"><a class="btn" href={u('/kho-tho')}>Mở toàn bộ Kho thơ, Audio &amp; Nghệ sĩ →</a></p>
-    </div>
-  </section>
-
-  <section class="section band-cobalt">
-    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;align-items:center">
-      <div>
-        <p class="eyebrow">Ấn phẩm kỹ thuật số</p>
-        <h2>Zine &ldquo;Thơ-là-ai? (Who is Poetry?)&rdquo;</h2>
-        <p style="font-size:1.15rem;opacity:.92">60 trang song ngữ Việt – Anh ghi lại tuyên ngôn nghệ thuật của dự án, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và hậu trường phim ngắn &ldquo;Vọng&rdquo;.</p>
-        <p style="margin-top:1.5rem">
-          <a class="btn" style="background:var(--cream);color:var(--cobalt-deep);border-color:var(--cream)" href={u('/zine')}>Lật đọc Zine trực tuyến →</a>
-        </p>
-      </div>
-      <a href={u('/zine')} style="border:2px solid var(--cream);display:block;box-shadow:8px 8px 0 rgba(0,0,0,.3)">
-        <img src={u('/zine/p01.webp')} alt="Bìa Zine Thơ-là-ai?" loading="lazy" />
-      </a>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Lưu trữ thị giác</p>
-      <h2>Khoảnh khắc từ các đêm thơ &amp; workshop</h2>
-      <div class="gallery-grid" style="margin-top:1.5rem">
+      <div class="gallery-square">
         {featuredPhotos.map((img) => (
-          <a class="gallery-item" href={u('/thu-vien')} style="text-decoration:none">
+          <a class="gallery-item" href={u(`/chuong-trinh/${img.eventSlug}`)}>
             <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
-            <div class="gallery-caption">
-              <span class="prog">{img.program}</span>
-              <span>{img.title}</span>
-            </div>
+            <div class="gallery-caption"><span class="prog">{img.program}</span></div>
           </a>
         ))}
       </div>
-      <p style="margin-top:1.75rem"><a class="btn ghost" href={u('/thu-vien')}>Xem toàn bộ {gallery.length} ảnh trong Thư viện →</a></p>
     </div>
   </section>
 
-  <section class="section band-cream">
+  <section class="section band-dark">
+    <div class="wrap zine-band">
+      <div>
+        <p class="eyebrow">Ấn phẩm kỹ thuật số</p>
+        <h2>Zine &ldquo;Thơ-là-ai?&rdquo;</h2>
+        <p style="font-size:1.15rem;opacity:.9;max-width:44ch">60 trang song ngữ Việt – Anh: tuyên ngôn nghệ thuật, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và hậu trường phim ngắn &ldquo;Vọng&rdquo;.</p>
+        <p style="margin-top:1.5rem"><a class="btn light" href={u('/zine')}>Lật đọc Zine →</a></p>
+      </div>
+      <a class="zine-cover" href={u('/zine')}><img src={u('/zine/p01.webp')} alt="Bìa Zine Thơ-là-ai?" width="1224" height="689" /></a>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap prose">
       <p class="eyebrow">Từ người tham dự</p>
       <blockquote>&ldquo;Hóa ra Queer nó không chỉ ở giới tính mà nó còn ở vần thơ.&rdquo;</blockquote>
       <p>Chúng tôi tin thơ có thể bắt đầu từ chất liệu đời sống bình dị, và mỗi người, kể cả khi chưa từng viết, đều có thể có một bài thơ của riêng mình.</p>
-      <p>Ý tưởng đang ấp ủ: {planned.map((e) => e.data.title).join(' · ')}.</p>
+      {planned.length > 0 && <p class="meta">Đang ấp ủ: {planned.map((e) => e.data.title).join(' · ')}.</p>}
     </div>
   </section>
 </Base>

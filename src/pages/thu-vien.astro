@@ -20,7 +20,7 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
         ))}
       </div>
 
-      <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-masonry" id="gallery-grid">
         {gallery.map((item, idx) => (
           <button
             type="button"
@@ -54,8 +54,8 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
       </div>
       <img id="lb-img" src="" alt="" />
       <div class="lb-bar">
-        <a id="lb-link" href="#" style="color:var(--cream)">Xem trang chương trình →</a>
-        <span id="lb-count" class="meta" style="color:#ccc"></span>
+        <a id="lb-link" href="#" >Xem trang chương trình →</a>
+        <span id="lb-count" class="meta" ></span>
       </div>
     </div>
   </dialog>
@@ -114,3 +114,4 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
     if (e.key === 'ArrowRight') showAt(cur + 1);
   });
 </script>
+

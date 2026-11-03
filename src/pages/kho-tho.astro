@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import poems from '../data/poems.json';
 import artists from '../data/artists.json';
-import { u } from '../lib/url';
+import PoemCard from '../components/PoemCard.astro';
 
 const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poems.map((p) => p.category)))];
 ---
@@ -20,41 +20,24 @@ const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poe
         <input type="search" id="poem-search" class="search-input" placeholder="Tìm theo tên bài, tác giả, câu thơ…" aria-label="Tìm kiếm bài thơ" />
       </div>
 
-      <div class="grid cols-2" id="poem-grid">
-        {poems.map((p) => (
-          <article class="poem-card" id={p.id} data-category={p.category} data-audio={p.audio ? 'yes' : 'no'}>
-            <div style="display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;align-items:center">
-              <span class="tag">{p.category}</span>
-              <span class="meta">{p.program}</span>
-            </div>
-            <h3>{p.title}</h3>
-            <div class="poem-author">{p.author}</div>
-            {p.audio && (
-              <div class="audio-box">
-                <span class="audio-label">♪ Bản thu âm · Bấm để nghe</span>
-                <audio controls preload="none" src={u(p.audio)}></audio>
-              </div>
-            )}
-            <div class="poem-text">{p.text}</div>
-            {p.note && <p class="meta" style="margin-top:auto;padding-top:.5rem;border-top:1px dashed rgba(26,26,26,.2)">{p.note}</p>}
-          </article>
-        ))}
+      <div class="grid cols-2 top" id="poem-grid">
+        {poems.map((p) => <PoemCard poem={p} previewLines={6} />)}
       </div>
     </div>
   </section>
 
-  <section class="section band-cream" id="nghe-si">
+  <section class="section band-grey" id="nghe-si">
     <div class="wrap">
       <p class="eyebrow">Những tiếng nói đồng hành</p>
       <h2>Nghệ sĩ &amp; Người thực hành</h2>
       <p class="lead">Các nhà thơ diễn xướng, tác giả, nhạc công và người điều phối đã cùng kiến tạo không gian Thơ-là-ai?.</p>
-      <div class="grid cols-3" style="margin-top:2rem">
+      <div class="grid cols-3 top" style="margin-top:2rem">
         {artists.map((a) => (
           <div class="artist-card" id={a.id}>
             <span class="tag">{a.role}</span>
             <h3 style="margin-top:.35rem">{a.name}</h3>
             <p style="font-size:1rem;margin:.35rem 0">{a.bio}</p>
-            <p class="meta" style="margin-top:auto"><strong>Chương trình:</strong> {a.programs.join(' · ')}</p>
+            <p class="meta"><strong>Chương trình:</strong> {a.programs.join(' · ')}</p>
             {a.works.length > 0 && <p class="meta"><strong>Tác phẩm tiêu biểu:</strong> {a.works.join(', ')}</p>}
           </div>
         ))}
@@ -101,3 +84,4 @@ const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poe
     });
   });
 </script>
+

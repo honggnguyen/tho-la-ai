@@ -1,0 +1,35 @@
+---
+import { u } from '../lib/url';
+interface Props {
+  poem: { id: string; title: string; author: string; program: string; category: string; audio?: string; note?: string; text: string };
+  previewLines?: number;
+  showProgram?: boolean;
+}
+const { poem, previewLines = 5, showProgram = true } = Astro.props;
+const lines = poem.text ? poem.text.split('\n') : [];
+const needsMore = lines.length > previewLines + 2;
+const preview = needsMore ? lines.slice(0, previewLines).join('\n') : poem.text;
+const rest = needsMore ? lines.slice(previewLines).join('\n') : '';
+---
+<article class="poem-card" id={poem.id} data-category={poem.category} data-audio={poem.audio ? 'yes' : 'no'}>
+  <div class="poem-top">
+    <span class="tag">{poem.category}</span>
+    {showProgram && <span class="meta">{poem.program}</span>}
+  </div>
+  <h3>{poem.title}</h3>
+  <div class="poem-author">{poem.author}</div>
+  {poem.audio && (
+    <div class="audio-box">
+      <span class="audio-label">♪ Bản thu âm</span>
+      <audio controls preload="none" src={u(poem.audio)}></audio>
+    </div>
+  )}
+  {poem.text && <div class="poem-text">{preview}{needsMore ? '…' : ''}</div>}
+  {needsMore && (
+    <details class="poem-more">
+      <summary>Đọc toàn bài</summary>
+      <div class="poem-text">{rest}</div>
+    </details>
+  )}
+  {poem.note && <p class="poem-note">{poem.note}</p>}
+</article>

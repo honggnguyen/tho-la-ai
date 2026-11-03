@@ -16,7 +16,7 @@ const wrap = (s: string, n = 13) => {
   if (cur) out.push(cur); return out;
 };
 ---
-<figure class="figure">
+<figure class="figure wide">
   <h3>{title}</h3>
   <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p) => `${p.label} ${p.value}`).join(', ')}>
     {ticks.map((t) => (
@@ -25,11 +25,11 @@ const wrap = (s: string, n = 13) => {
         <text x={L - 8} y={y(t) + 4} text-anchor="end" font-size="12" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{t}</text>
       </g>
     ))}
-    <path d={area} fill="#284e98" opacity=".12" />
-    <path d={path} fill="none" stroke="#284e98" stroke-width="3" stroke-linejoin="round" />
+    <path d={area} fill="#1a1a1a" opacity=".12" />
+    <path d={path} fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round" />
     {points.map((p, i) => (
       <g>
-        <circle cx={x(i)} cy={y(p.value)} r="5.5" fill="#284e98" />
+        <circle cx={x(i)} cy={y(p.value)} r="5.5" fill="#1a1a1a" />
         <text x={x(i)} y={y(p.value) - 12} text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a" font-family="Barlow Condensed, sans-serif">{p.value}</text>
         {wrap(p.label).map((ln, j) => (
           <text x={x(i)} y={H - B + 22 + j * 15} text-anchor="middle" font-size="12.5" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{ln}</text>

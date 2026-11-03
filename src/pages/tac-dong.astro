@@ -22,19 +22,19 @@ const dots = [5, 4, 3, 2, 1].flatMap((s) => Array.from({ length: dist[String(s)]
         <strong>Đọc kỹ trước khi trích dẫn.</strong> Đa số mẫu rất nhỏ (từ vài người đến vài chục người), nên mỗi biểu đồ đều ghi rõ <em>n</em>. Đây là bức tranh về một cộng đồng nhỏ đang lớn dần, không phải thống kê đại diện. Nhóm dưới 3 người được gộp vào &ldquo;Khác&rdquo; để bảo vệ người trả lời.
       </div>
 
-      <h2 style="margin-top:3rem">Cộng đồng đang lớn lên</h2>
+      <h2 class="chart-title">Cộng đồng đang lớn lên</h2>
       <LineChart title="Người theo dõi Instagram qua các chương trình" points={ig}
         note={`Mốc theo ghi chép của ban tổ chức; điểm cuối là số hiện tại (${stats.instagram.latest_asof}). Facebook: khoảng ${stats.instagram.facebook_followers.toLocaleString('vi-VN')} người theo dõi.`} />
 
-      <h2 style="margin-top:3rem">Mọi người biết đến chúng tôi từ đâu?</h2>
-      <div class="grid cols-2">
+      <h2 class="chart-title">Mọi người biết đến chúng tôi từ đâu?</h2>
+      <div class="grid cols-3 top">
         <BarList title="Đêm thơ đầu tiên (11/2025)" items={stats.dem1.channels} n={stats.dem1.channels_n} unit="lượt" note="Có thể chọn nhiều nguồn." />
         <BarList title='Series "Nghe–Thấy–Nhau" (12/2025)' items={stats.aqm.channels} n={stats.aqm.channels_n} unit="lượt" note="Đối tác đóng vai trò lớn trong buổi giới thiệu ban đầu." />
         <BarList title='Workshop "Đưa thơ về mặt đất" (05/2026)' items={stats.tanhinhthuc.channels} n={stats.tanhinhthuc.channels_n} unit="lượt" note="Phần lớn người đăng ký đến từ chính fanpage của dự án." />
       </div>
 
-      <h2 style="margin-top:3rem">Ai đến với thơ?</h2>
-      <div class="grid cols-2">
+      <h2 class="chart-title">Ai đến với thơ?</h2>
+      <div class="grid cols-2 top">
         <BarList title='Độ tuổi, series "Nghe–Thấy–Nhau"' items={stats.aqm.age.buckets} n={stats.aqm.age.n} />
         <figure class="figure">
           <h3>Đêm thơ đầu tiên: mức hài lòng</h3>
@@ -47,9 +47,9 @@ const dots = [5, 4, 3, 2, 1].flatMap((s) => Array.from({ length: dist[String(s)]
         </figure>
       </div>
 
-      <h2 style="margin-top:3rem">OMLAS · Echoes of Asia</h2>
+      <h2 class="chart-title">OMLAS · Echoes of Asia</h2>
       <p class="prose">Chương trình quốc tế dành cho thanh niên nhiều quốc gia. Người học tự đánh giá năng lực trên thang 1–5 ở đầu kỳ (T0) và giữa kỳ (T1).</p>
-      <div class="grid cols-2">
+      <div class="grid cols-2 top">
         <BarList title="Người học theo hub quốc gia (T0)" items={stats.omlas.hubs_t0} n={stats.omlas.t0_n} />
         <BarList title="Người học theo hub quốc gia (T1)" items={stats.omlas.hubs_t1} n={stats.omlas.t1_n} />
       </div>

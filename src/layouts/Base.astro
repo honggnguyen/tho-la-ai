@@ -12,8 +12,8 @@ const rel = path.startsWith(base) ? path.slice(base.length) || '/' : path;
 const nav = [
   { href: '/ve-chung-toi', label: 'Về TLA' },
   { href: '/chuong-trinh', label: 'Chương trình' },
-  { href: '/kho-tho', label: 'Kho thơ & Audio' },
-  { href: '/thu-vien', label: 'Thư viện ảnh' },
+  { href: '/kho-tho', label: 'Kho thơ' },
+  { href: '/thu-vien', label: 'Ảnh' },
   { href: '/zine', label: 'Zine' },
   { href: '/tac-dong', label: 'Tác động' },
   { href: '/lien-he', label: 'Liên hệ' },
@@ -30,7 +30,7 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#284e98" />
+    <meta name="theme-color" content="#eeeeee" />
     <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,10 +41,11 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
   </head>
   <body>
     <a class="skip" href="#main">Bỏ qua điều hướng</a>
-    <header class="site-header">
+    <header class="site-header" id="site-header">
       <div class="wrap">
         <a class="brand" href={u('/')}>Thơ-là-ai?<span class="star" aria-hidden="true">✦</span></a>
-        <nav class="nav" aria-label="Chính">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" id="nav-toggle">Menu</button>
+        <nav class="nav" id="main-nav" aria-label="Chính">
           {nav.map((n) => <a href={u(n.href)} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>)}
         </nav>
       </div>
@@ -52,19 +53,40 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
     <main id="main"><slot /></main>
     <footer class="site-footer">
       <div class="wrap">
-        <div>
-          <strong>{site.name}</strong> · {site.nameEn}<br />
-          <span class="meta">Dự án thực hành nghệ thuật và văn chương · Hà Nội</span>
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">Thơ là ai?<span aria-hidden="true"> ✦</span></div>
+            <p class="meta" style="margin-top:.6rem;max-width:34ch">{site.tagline} Dự án thực hành nghệ thuật và văn chương, Hà Nội.</p>
+          </div>
+          <div>
+            <h4>Khám phá</h4>
+            <ul>
+              <li><a href={u('/chuong-trinh')}>Chương trình</a></li>
+              <li><a href={u('/kho-tho')}>Kho thơ &amp; Audio</a></li>
+              <li><a href={u('/thu-vien')}>Thư viện ảnh</a></li>
+              <li><a href={u('/zine')}>Zine</a></li>
+              <li><a href={u('/tac-dong')}>Tác động</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Kết nối</h4>
+            <ul>
+              <li><a href={site.facebook} rel="noopener">Facebook</a></li>
+              <li><a href={site.instagram} rel="noopener">Instagram</a></li>
+              <li><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <a href={u('/kho-tho')}>Kho thơ</a> ·
-          <a href={u('/thu-vien')}>Thư viện</a> ·
-          <a href={u('/zine')}>Zine</a> ·
-          <a href={site.facebook} rel="noopener">Facebook</a> ·
-          <a href={site.instagram} rel="noopener">Instagram</a> ·
-          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
-        </div>
+        <div class="footer-bottom">© {new Date().getFullYear()} Thơ-là-ai? · Who is Poetry?</div>
       </div>
     </footer>
+    <script>
+      const header = document.getElementById('site-header')!;
+      const toggle = document.getElementById('nav-toggle')!;
+      toggle.addEventListener('click', () => {
+        const open = header.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    </script>
   </body>
 </html>
