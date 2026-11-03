@@ -1,10 +1,14 @@
 ---
 import { u } from '../lib/url';
-interface Props { slug: string; title: string; subtitle?: string; status: string; type: string; dateLabel?: string; summary: string; }
-const { slug, title, subtitle, status, type, dateLabel, summary } = Astro.props;
+import gallery from '../data/gallery.json';
+
+interface Props { slug: string; title: string; subtitle?: string; status: string; type: string; dateLabel?: string; summary: string; cover?: string; }
+const { slug, title, subtitle, status, type, dateLabel, summary, cover } = Astro.props;
 const statusLabel: Record<string, string> = { done: type, ongoing: 'Đang diễn ra', planned: 'Dự kiến' };
+const autoCover = cover || gallery.find((g) => g.eventSlug === slug)?.src;
 ---
 <a class="card" href={u(`/chuong-trinh/${slug}`)}>
+  {autoCover && <img class="card-thumb" src={u(autoCover)} alt={title} loading="lazy" />}
   <span class={`tag ${status}`}>{statusLabel[status]}</span>
   <h3>{title}</h3>
   {subtitle && <span class="meta">{subtitle}</span>}

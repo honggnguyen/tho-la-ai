@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import zinePages from '../data/zine.json';
+import { u } from '../lib/url';
+
+const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
+---
+<Base title="Zine Thơ-là-ai? (Who is Poetry?)" description="Đọc trực tuyến ấn phẩm Zine song ngữ 60 trang của dự án Thơ-là-ai? (Who is Poetry?).">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Ấn phẩm kỹ thuật số · 60 trang song ngữ Việt – Anh</p>
+      <h1 class="shadowed">Zine &ldquo;Thơ-là-ai?&rdquo;</h1>
+      <p class="lead">Ấn phẩm tổng hợp tuyên ngôn nghệ thuật, hành trình giải phóng &ldquo;TÔI&rdquo; song hành với giải phóng &ldquo;THƠ&rdquo;, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và dự án phim ngắn &ldquo;Vọng&rdquo;.</p>
+
+      <div class="filter-bar" role="region" aria-label="Chế độ ngôn ngữ Zine">
+        <button type="button" class="filter-btn zine-mode" data-mode="vi" aria-pressed="true">Bản Tiếng Việt (30 trang)</button>
+        <button type="button" class="filter-btn zine-mode" data-mode="en" aria-pressed="false">English Version (30 pages)</button>
+        <button type="button" class="filter-btn zine-mode" data-mode="all" aria-pressed="false">Song ngữ toàn bộ (60 trang)</button>
+      </div>
+
+      <div class="zine-stage" id="zine-reader">
+        <div class="zine-frame">
+          <img id="zine-active-img" src={pagesWithUrl[0].fullSrc} alt={pagesWithUrl[0].alt} width={pagesWithUrl[0].width} height={pagesWithUrl[0].height} />
+        </div>
+        <div class="zine-controls">
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <button type="button" class="btn" id="zine-prev">← Trang trước</button>
+            <button type="button" class="btn" id="zine-next">Trang tiếp →</button>
+          </div>
+          <span id="zine-indicator" style="font-size:1.1rem;letter-spacing:.06em">Trang 1 / 30 (Bản Tiếng Việt)</span>
+          <button type="button" class="btn ghost" id="zine-fs" style="color:#fff;border-color:#fff">Toàn màn hình ⛶</button>
+        </div>
+      </div>
+
+      <p class="meta" style="margin-top:.75rem">Mẹo: Bạn có thể dùng phím mũi tên <code>←</code> <code>→</code> trên bàn phím để lật trang, hoặc bấm vào bất kỳ trang nào ở lưới bên dưới.</p>
+
+      <h2 style="margin-top:3rem">Tất cả các trang</h2>
+      <div class="zine-thumbs" id="zine-thumbs">
+        {pagesWithUrl.map((p) => (
+          <button
+            type="button"
+            class="zine-thumb"
+            data-page={p.page}
+            data-lang={p.lang}
+            data-src={p.fullSrc}
+            data-alt={p.alt}
+          >
+            <img src={p.fullSrc} alt={p.alt} loading="lazy" width={p.width} height={p.height} />
+            <span>Trang {p.page} · {p.lang === 'vi' ? `Slide ${p.slide} (VI)` : `Slide ${p.slide} (EN)`}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('#zine-thumbs .zine-thumb'));
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>('.zine-mode');
+  const activeImg = document.getElementById('zine-active-img') as HTMLImageElement;
+  const indicator = document.getElementById('zine-indicator')!;
+  const reader = document.getElementById('zine-reader')!;
+  let mode: 'vi' | 'en' | 'all' = 'vi';
+  let filtered: HTMLButtonElement[] = [];
+  let idx = 0;
+
+  function updateMode(newMode: 'vi' | 'en' | 'all') {
+    mode = newMode;
+    thumbs.forEach((t) => {
+      const show = mode === 'all' || t.dataset.lang === mode;
+      t.style.display = show ? '' : 'none';
+    });
+    filtered = thumbs.filter((t) => t.style.display !== 'none');
+    showSlide(0);
+  }
+
+  function showSlide(i: number) {
+    if (!filtered.length) return;
+    idx = (i + filtered.length) % filtered.length;
+    const t = filtered[idx];
+    activeImg.src = t.dataset.src || '';
+    activeImg.alt = t.dataset.alt || '';
+    thumbs.forEach((x) => x.removeAttribute('aria-current'));
+    t.setAttribute('aria-current', 'true');
+    const modeLabel = mode === 'vi' ? 'Bản Tiếng Việt' : mode === 'en' ? 'English Version' : 'Song ngữ';
+    indicator.textContent = `Trang ${idx + 1} / ${filtered.length} (${modeLabel} · p.${t.dataset.page})`;
+  }
+
+  modeBtns.forEach((b) => {
+    b.addEventListener('click', () => {
+      modeBtns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      updateMode((b.dataset.mode as 'vi' | 'en' | 'all') || 'vi');
+    });
+  });
+
+  thumbs.forEach((t) => {
+    t.addEventListener('click', () => {
+      const pos = filtered.indexOf(t);
+      if (pos >= 0) {
+        showSlide(pos);
+        reader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  document.getElementById('zine-prev')?.addEventListener('click', () => showSlide(idx - 1));
+  document.getElementById('zine-next')?.addEventListener('click', () => showSlide(idx + 1));
+  document.getElementById('zine-fs')?.addEventListener('click', () => {
+    if (!document.fullscreenElement) reader.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+    if (e.key === 'ArrowLeft') showSlide(idx - 1);
+    if (e.key === 'ArrowRight') showSlide(idx + 1);
+  });
+
+  updateMode('vi');
+</script>

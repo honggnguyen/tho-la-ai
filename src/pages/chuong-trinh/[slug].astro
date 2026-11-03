@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import gallery from '../../data/gallery.json';
+import poems from '../../data/poems.json';
 import { u } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -11,6 +13,8 @@ const { e } = Astro.props;
 const { Content } = await render(e);
 const d = e.data;
 const statusLabel: Record<string, string> = { done: 'Đã diễn ra', ongoing: 'Đang diễn ra', planned: 'Dự kiến' };
+const eventPhotos = gallery.filter((g) => g.eventSlug === e.id);
+const eventPoems = poems.filter((p) => d.title.includes(p.program.replace(/^.*"/, '').replace(/".*$/, '')));
 ---
 <Base title={d.title} description={d.summary}>
   <section class="section">
@@ -42,6 +46,44 @@ const statusLabel: Record<string, string> = { done: 'Đã diễn ra', ongoing: '
       {d.youtube && (
         <div style="margin-top:2rem;aspect-ratio:16/9;max-width:800px">
           <iframe width="100%" height="100%" src={`https://www.youtube-nocookie.com/embed/${d.youtube}`} title={d.title} loading="lazy" allowfullscreen style="border:0"></iframe>
+        </div>
+      )}
+
+      {eventPoems.length > 0 && (
+        <div style="margin-top:3.5rem">
+          <p class="eyebrow">Tác phẩm &amp; bản thu âm trong chương trình</p>
+          <h2>Thơ &amp; Thanh âm</h2>
+          <div class="grid cols-2" style="margin-top:1.25rem">
+            {eventPoems.map((p) => (
+              <article class="poem-card">
+                <span class="tag">{p.category}</span>
+                <h3>{p.title}</h3>
+                <div class="poem-author">{p.author}</div>
+                {p.audio && (
+                  <div class="audio-box">
+                    <span class="audio-label">♪ Bản thu âm</span>
+                    <audio controls preload="none" src={u(p.audio)}></audio>
+                  </div>
+                )}
+                <div class="poem-text">{p.text}</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {eventPhotos.length > 0 && (
+        <div style="margin-top:3.5rem">
+          <p class="eyebrow">Tư liệu hình ảnh ({eventPhotos.length} ảnh)</p>
+          <h2>Khoảnh khắc từ chương trình</h2>
+          <div class="gallery-grid" style="margin-top:1.25rem">
+            {eventPhotos.map((img) => (
+              <a class="gallery-item" href={u('/thu-vien')} style="text-decoration:none">
+                <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
+                <div class="gallery-caption"><span>{img.title}</span></div>
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </div>

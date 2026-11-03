@@ -1,8 +1,8 @@
 # Cấu hình Pages CMS (https://pagescms.org): giao diện chỉnh sửa web bằng form, không cần biết code.
 # Người biên tập đăng nhập bằng GitHub, sửa xong bấm Lưu → web tự cập nhật sau ~1 phút.
 media:
-  input: public/images
-  output: /images
+  input: public/gallery
+  output: /gallery
 
 content:
   - name: events
@@ -37,10 +37,39 @@ content:
       - { name: partners, label: Đối tác, type: string, list: true }
       - { name: attendeesLabel, label: Quy mô tham dự, type: string }
       - { name: summary, label: Tóm tắt (1-2 câu), type: text, required: true }
+      - { name: cover, label: Ảnh đại diện chương trình, type: image }
       - { name: youtube, label: Mã video YouTube (đoạn sau "v="), type: string }
       - { name: instagramPosts, label: Link bài viết Instagram, type: string, list: true }
       - { name: needsConfirm, label: Cần xác nhận thông tin, type: boolean }
       - { name: body, label: Nội dung chi tiết, type: rich-text }
+
+  - name: poems
+    label: Kho thơ & Audio
+    type: file
+    path: src/data/poems.json
+    format: json
+    fields:
+      - { name: id, label: Mã định danh (slug), type: string, required: true }
+      - { name: title, label: Tên bài thơ / Bản thu, type: string, required: true }
+      - { name: author, label: Tác giả / Người đọc, type: string, required: true }
+      - { name: program, label: Thuộc chương trình, type: string }
+      - { name: category, label: Thể thức (Thơ diễn xướng / Thơ nhạc / Thơ Tân hình thức / Thơ cộng đồng & Thủ công), type: string }
+      - { name: audio, label: Đường dẫn file audio (ví dụ /audio/ten-file.m4a), type: string }
+      - { name: note, label: Ghi chú ngữ cảnh, type: string }
+      - { name: text, label: Toàn văn bài thơ, type: text }
+
+  - name: artists
+    label: Nghệ sĩ & Người thực hành
+    type: file
+    path: src/data/artists.json
+    format: json
+    fields:
+      - { name: id, label: Mã định danh, type: string, required: true }
+      - { name: name, label: Nghệ danh / Tên, type: string, required: true }
+      - { name: role, label: Vai trò, type: string }
+      - { name: programs, label: Chương trình tham gia, type: string, list: true }
+      - { name: bio, label: Giới thiệu ngắn, type: text }
+      - { name: works, label: Tác phẩm tiêu biểu, type: string, list: true }
 
   - name: site
     label: Thông tin chung & con số trang chủ

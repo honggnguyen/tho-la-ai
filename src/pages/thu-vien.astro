@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+import gallery from '../data/gallery.json';
+import { u } from '../lib/url';
+
+const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.program)))];
+---
+<Base title="Thư viện ảnh" description="Khoảnh khắc từ các đêm thơ diễn xướng, chuỗi workshop thơ thủ công, Chơi giữa mùa trăng, Nước và Mơ, Đưa thơ về mặt đất của Thơ-là-ai?.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Lưu trữ thị giác · {gallery.length} ảnh</p>
+      <h1 class="shadowed">Thư viện ảnh</h1>
+      <p class="lead">Những khoảnh khắc từ các đêm thơ diễn xướng, chuỗi thực hành thơ thủ công tại A Queer Museum, đêm thơ nhạc Quán Cầm và các buổi ngồi lại cùng nhau.</p>
+
+      <div class="filter-bar" role="region" aria-label="Lọc ảnh theo chương trình">
+        {programs.map((prog, idx) => (
+          <button type="button" class="filter-btn" data-prog={prog} aria-pressed={idx === 0 ? 'true' : 'false'}>
+            {prog}
+          </button>
+        ))}
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid">
+        {gallery.map((item, idx) => (
+          <button
+            type="button"
+            class="gallery-item"
+            data-prog={item.program}
+            data-idx={idx}
+            data-src={u(item.src)}
+            data-title={item.title}
+            data-slug={u(`/chuong-trinh/${item.eventSlug}`)}
+          >
+            <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
+            <div class="gallery-caption">
+              <span class="prog">{item.program}</span>
+              <span>{item.title}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Xem ảnh phóng to">
+    <div class="lb-body">
+      <div class="lb-bar">
+        <span id="lb-caption"></span>
+        <div style="display:flex;gap:.5rem">
+          <button type="button" id="lb-prev" aria-label="Ảnh trước">← Trước</button>
+          <button type="button" id="lb-next" aria-label="Ảnh tiếp">Tiếp →</button>
+          <button type="button" id="lb-close" aria-label="Đóng">Đóng ✕</button>
+        </div>
+      </div>
+      <img id="lb-img" src="" alt="" />
+      <div class="lb-bar">
+        <a id="lb-link" href="#" style="color:var(--cream)">Xem trang chương trình →</a>
+        <span id="lb-count" class="meta" style="color:#ccc"></span>
+      </div>
+    </div>
+  </dialog>
+</Base>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = Array.from(document.querySelectorAll<HTMLButtonElement>('#gallery-grid .gallery-item'));
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement;
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCap = document.getElementById('lb-caption')!;
+  const lbLink = document.getElementById('lb-link') as HTMLAnchorElement;
+  const lbCount = document.getElementById('lb-count')!;
+  let visibleItems = [...items];
+  let cur = 0;
+
+  btns.forEach((b) => {
+    b.addEventListener('click', () => {
+      btns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      const prog = b.dataset.prog || 'Tất cả';
+      items.forEach((it) => {
+        const show = prog === 'Tất cả' || it.dataset.prog === prog;
+        it.style.display = show ? '' : 'none';
+      });
+      visibleItems = items.filter((it) => it.style.display !== 'none');
+    });
+  });
+
+  function showAt(i: number) {
+    if (!visibleItems.length) return;
+    cur = (i + visibleItems.length) % visibleItems.length;
+    const it = visibleItems[cur];
+    lbImg.src = it.dataset.src || '';
+    lbImg.alt = it.dataset.title || '';
+    lbCap.textContent = `${it.dataset.prog} · ${it.dataset.title}`;
+    lbLink.href = it.dataset.slug || '#';
+    lbCount.textContent = `${cur + 1} / ${visibleItems.length}`;
+  }
+
+  items.forEach((it) => {
+    it.addEventListener('click', () => {
+      const idx = visibleItems.indexOf(it);
+      showAt(idx >= 0 ? idx : 0);
+      dlg.showModal();
+    });
+  });
+
+  document.getElementById('lb-prev')?.addEventListener('click', () => showAt(cur - 1));
+  document.getElementById('lb-next')?.addEventListener('click', () => showAt(cur + 1));
+  document.getElementById('lb-close')?.addEventListener('click', () => dlg.close());
+  dlg?.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  window.addEventListener('keydown', (e) => {
+    if (!dlg.open) return;
+    if (e.key === 'ArrowLeft') showAt(cur - 1);
+    if (e.key === 'ArrowRight') showAt(cur + 1);
+  });
+</script>

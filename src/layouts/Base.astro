@@ -12,6 +12,9 @@ const rel = path.startsWith(base) ? path.slice(base.length) || '/' : path;
 const nav = [
   { href: '/ve-chung-toi', label: 'Về TLA' },
   { href: '/chuong-trinh', label: 'Chương trình' },
+  { href: '/kho-tho', label: 'Kho thơ & Audio' },
+  { href: '/thu-vien', label: 'Thư viện ảnh' },
+  { href: '/zine', label: 'Zine' },
   { href: '/tac-dong', label: 'Tác động' },
   { href: '/lien-he', label: 'Liên hệ' },
 ];
@@ -28,7 +31,7 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#284e98" />
-    <link rel="icon" type="image/svg+xml" href={u("/favicon.svg")} />
+    <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -51,9 +54,12 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
       <div class="wrap">
         <div>
           <strong>{site.name}</strong> · {site.nameEn}<br />
-          <span class="meta">Dự án thực hành nghệ thuật và văn chương</span>
+          <span class="meta">Dự án thực hành nghệ thuật và văn chương · Hà Nội</span>
         </div>
         <div>
+          <a href={u('/kho-tho')}>Kho thơ</a> ·
+          <a href={u('/thu-vien')}>Thư viện</a> ·
+          <a href={u('/zine')}>Zine</a> ·
           <a href={site.facebook} rel="noopener">Facebook</a> ·
           <a href={site.instagram} rel="noopener">Instagram</a> ·
           <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>

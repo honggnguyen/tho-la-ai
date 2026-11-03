@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import poems from '../data/poems.json';
+import artists from '../data/artists.json';
+import { u } from '../lib/url';
+
+const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poems.map((p) => p.category)))];
+---
+<Base title="Kho thơ, Audio & Nghệ sĩ" description="Kho lưu trữ thơ diễn xướng, bản thu âm thơ nhạc, thơ Tân hình thức, thơ thủ công và các nghệ sĩ đồng hành cùng Thơ-là-ai.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Lưu trữ tác phẩm &amp; thanh âm</p>
+      <h1 class="shadowed">Kho thơ &amp; Audio</h1>
+      <p class="lead">Nơi lưu giữ những vần thơ đã cất lên thành tiếng, những bản thu âm thơ nhạc, thơ Tân hình thức và những mảnh thơ thủ công được tạo tác trong không gian của Thơ-là-ai?.</p>
+
+      <div class="filter-bar" role="region" aria-label="Bộ lọc tác phẩm">
+        {categories.map((cat, idx) => (
+          <button type="button" class="filter-btn" data-cat={cat} aria-pressed={idx === 0 ? 'true' : 'false'}>{cat}</button>
+        ))}
+        <input type="search" id="poem-search" class="search-input" placeholder="Tìm theo tên bài, tác giả, câu thơ…" aria-label="Tìm kiếm bài thơ" />
+      </div>
+
+      <div class="grid cols-2" id="poem-grid">
+        {poems.map((p) => (
+          <article class="poem-card" id={p.id} data-category={p.category} data-audio={p.audio ? 'yes' : 'no'}>
+            <div style="display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;align-items:center">
+              <span class="tag">{p.category}</span>
+              <span class="meta">{p.program}</span>
+            </div>
+            <h3>{p.title}</h3>
+            <div class="poem-author">{p.author}</div>
+            {p.audio && (
+              <div class="audio-box">
+                <span class="audio-label">♪ Bản thu âm · Bấm để nghe</span>
+                <audio controls preload="none" src={u(p.audio)}></audio>
+              </div>
+            )}
+            <div class="poem-text">{p.text}</div>
+            {p.note && <p class="meta" style="margin-top:auto;padding-top:.5rem;border-top:1px dashed rgba(26,26,26,.2)">{p.note}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-cream" id="nghe-si">
+    <div class="wrap">
+      <p class="eyebrow">Những tiếng nói đồng hành</p>
+      <h2>Nghệ sĩ &amp; Người thực hành</h2>
+      <p class="lead">Các nhà thơ diễn xướng, tác giả, nhạc công và người điều phối đã cùng kiến tạo không gian Thơ-là-ai?.</p>
+      <div class="grid cols-3" style="margin-top:2rem">
+        {artists.map((a) => (
+          <div class="artist-card" id={a.id}>
+            <span class="tag">{a.role}</span>
+            <h3 style="margin-top:.35rem">{a.name}</h3>
+            <p style="font-size:1rem;margin:.35rem 0">{a.bio}</p>
+            <p class="meta" style="margin-top:auto"><strong>Chương trình:</strong> {a.programs.join(' · ')}</p>
+            {a.works.length > 0 && <p class="meta"><strong>Tác phẩm tiêu biểu:</strong> {a.works.join(', ')}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const search = document.getElementById('poem-search') as HTMLInputElement;
+  const cards = document.querySelectorAll<HTMLElement>('#poem-grid .poem-card');
+  let activeCat = 'Tất cả';
+
+  function applyFilter() {
+    const q = (search?.value || '').trim().toLowerCase();
+    cards.forEach((c) => {
+      const cat = c.dataset.category || '';
+      const hasAudio = c.dataset.audio === 'yes';
+      const matchCat =
+        activeCat === 'Tất cả' ||
+        (activeCat === 'Có bản thu âm' && hasAudio) ||
+        cat === activeCat;
+      const matchQ = !q || (c.textContent || '').toLowerCase().includes(q);
+      c.style.display = matchCat && matchQ ? '' : 'none';
+    });
+  }
+
+  btns.forEach((b) => {
+    b.addEventListener('click', () => {
+      btns.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      activeCat = b.dataset.cat || 'Tất cả';
+      applyFilter();
+    });
+  });
+  search?.addEventListener('input', applyFilter);
+
+  // Tạm dừng các audio khác khi một audio bắt đầu phát
+  const audios = document.querySelectorAll<HTMLAudioElement>('audio');
+  audios.forEach((a) => {
+    a.addEventListener('play', () => {
+      audios.forEach((other) => { if (other !== a) other.pause(); });
+    });
+  });
+</script>

@@ -1,0 +1,542 @@
+[
+  {
+    "page": 1,
+    "slide": 1,
+    "lang": "vi",
+    "src": "/zine/p01.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THƠ-LÀ-AI ZINE ZINE"
+  },
+  {
+    "page": 2,
+    "slide": 1,
+    "lang": "en",
+    "src": "/zine/p02.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "WHO IS POETRY? ZINE ZINE"
+  },
+  {
+    "page": 3,
+    "slide": 2,
+    "lang": "vi",
+    "src": "/zine/p03.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "TÔi? TÔi? THơ? là ai? là gì? THơ? THơ? THơ? THơ? THơ? THơ? là ai? là ai? là ai? là ai? là ai? là ai? là ai? là ai? là ai? là ai? là ai? TÔi? TÔi? TÔi? TÔi? TÔi? là gì? là gì? là gì"
+  },
+  {
+    "page": 4,
+    "slide": 2,
+    "lang": "en",
+    "src": "/zine/p04.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "I?I? Verse? Who is it? What is that?Verse? Verse? Verse? Verse? Verse? Verse? Who is it? Who is it? Who is it? Who is it? Who is it? Who is it? Who is it? Who is it? Who is it? Who"
+  },
+  {
+    "page": 5,
+    "slide": 3,
+    "lang": "vi",
+    "src": "/zine/p05.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Khi nghe đến từ “thơ”, hình ảnh đầu tiên hiện lên trong đầu bạn là gì? Niêm luật, vần điệu, thơ phải có vần Vẻ đẹp Chạm Tình cảm"
+  },
+  {
+    "page": 6,
+    "slide": 3,
+    "lang": "en",
+    "src": "/zine/p06.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "When you encounter the term \"poetry,\" what is the initial image that arises in your thoughts? Rhyme and meter are fundamental; poetry inherently requires rhyme. Beauty Touch Emotio"
+  },
+  {
+    "page": 7,
+    "slide": 4,
+    "lang": "vi",
+    "src": "/zine/p07.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "“WHY” - Gông cùm vô hình Vấn đề: Song đề 1 (về bản thể): Chúng ta thường đóng khung \"TÔI\" trong những nhãn dán có sẵn (con ngoan, trò giỏi, nhân viên gương mẫu). Chúng ta sợ thể hi"
+  },
+  {
+    "page": 8,
+    "slide": 4,
+    "lang": "en",
+    "src": "/zine/p08.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "“WHY” - Unseen restraints Problem: We frequently restrict the concept of \"I\" to established labels (such as good child, diligent student, or exemplary employee). We hesitate to rev"
+  },
+  {
+    "page": 9,
+    "slide": 5,
+    "lang": "vi",
+    "src": "/zine/p09.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Performance Poem TÔi? TÔi? Và một hành trình đi tìm \"giải phóng TÔI song hành với giải phóng THƠ"
+  },
+  {
+    "page": 10,
+    "slide": 5,
+    "lang": "en",
+    "src": "/zine/p10.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Performance Poetry I?I? And a voyage of exploration. \"Emancipating ME is intrinsically linked to the liberation of POETRY.\""
+  },
+  {
+    "page": 11,
+    "slide": 6,
+    "lang": "vi",
+    "src": "/zine/p11.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "KHÔNG CÓ QUY TẮC NÀO CẢ. ĐẾN VỚI THƠ-LÀ-AI QUY TẮC ĐỂ SÁNG TẠO/THỂ NGHIỆM LÀ...."
+  },
+  {
+    "page": 12,
+    "slide": 6,
+    "lang": "en",
+    "src": "/zine/p12.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "DO NOT POSSESS RULES NOT AT ALL. WHO IS THE POET? THE GUIDELINES FOR CREATION/EXPERIMENTATION ARE...."
+  },
+  {
+    "page": 13,
+    "slide": 7,
+    "lang": "vi",
+    "src": "/zine/p13.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "GIỚI THIỆU DỰ ÁN Thơ-là-ai là một dự án thực hành nghệ thuật và văn chương, hướng tới việc mở rộng cách tiếp cận ngôn ngữ và thi ca trong đời sống đương đại. Thông qua các hoạt độn"
+  },
+  {
+    "page": 14,
+    "slide": 7,
+    "lang": "en",
+    "src": "/zine/p14.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "INTRODUCE PROJECT \"Who Is Poetry?\" is an artistic and literary initiative designed to broaden the understanding of language and poetry in modern society. Through innovative activit"
+  },
+  {
+    "page": 15,
+    "slide": 8,
+    "lang": "vi",
+    "src": "/zine/p15.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "GIỚI THIỆU DỰ ÁN Dự án \"Thơ là ai?\" được khởi xướng từ khát vọng của sinh viên khoa Ngữ Văn với mục tiêu tạo ra một không gian an toàn, nơi đối thoại giữa những người trẻ thông qua"
+  },
+  {
+    "page": 16,
+    "slide": 8,
+    "lang": "en",
+    "src": "/zine/p16.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "INTRODUCE PROJECT The \"Who Is Poetry?\" project was conceived from the aspirations of Literature students, aiming to establish a safe environment for dialogue among youth through th"
+  },
+  {
+    "page": 17,
+    "slide": 9,
+    "lang": "vi",
+    "src": "/zine/p17.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "CÁC DỰ ÁNđãthuchiên ?. . 04/14 ĐÊM THƠ DIỄN XƯỚNG “THƠ-LÀ-AI? Thời gian: 19h30 – 22h00, ngày 08/11/2025 Địa điểm: Montauk by LP club - 174 Kim Mã Mục đích: Đem đến một không gian c"
+  },
+  {
+    "page": 18,
+    "slide": 9,
+    "lang": "en",
+    "src": "/zine/p18.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "PROJECTS 04/14 THE POETRY PERFORMANCE EVENING TITLED \"WHO IS POETRY?\" Time: 7:30 PM – 10:00 PM, November 8, 2025 Location: Montauk by LP Club - 174 Kim Mã Purpose: To create an env"
+  },
+  {
+    "page": 19,
+    "slide": 10,
+    "lang": "vi",
+    "src": "/zine/p19.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Giữa những tháng ngày xô bồ vội vã, đã bao lâu rồi bạn chưa thật sự ngồi yên cùng chính mình, mở một trang sách, đọc một bài thơ? Và câu hỏi tưởng như giản đơn: “Bạn là ai?” dường "
+  },
+  {
+    "page": 20,
+    "slide": 10,
+    "lang": "en",
+    "src": "/zine/p20.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Amidst the hustle and bustle of daily life, how long has it been since you genuinely sat in silence with yourself, opened a book, and read a poem? The seemingly simple question, \"W"
+  },
+  {
+    "page": 21,
+    "slide": 11,
+    "lang": "vi",
+    "src": "/zine/p21.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Không dừng lại ở việc đưa thơ lên sân khấu, mà hướng tới việc mở ra một cách tiếp cận mới mẻ, nơi người tham gia có thể cảm nhận thi ca bằng nhiều giác quan, qua sự giao thoa giữa "
+  },
+  {
+    "page": 22,
+    "slide": 11,
+    "lang": "en",
+    "src": "/zine/p22.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "It is not solely about presenting poetry on stage; rather, it involves introducing a novel approach that allows participants to engage with poetry through various senses, facilitat"
+  },
+  {
+    "page": 23,
+    "slide": 12,
+    "lang": "vi",
+    "src": "/zine/p23.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "ĐÊM THƠ DIỄN XƯỚNG “THƠ-LÀ-AI? Những thảo luận liên thế hệ Điều khiến đêm thơ đạt được thành công chính là không khí đối thoại đầy cởi mở. Thay vì dừng lại ở việc đọc - nghe một ch"
+  },
+  {
+    "page": 24,
+    "slide": 12,
+    "lang": "en",
+    "src": "/zine/p24.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THE POETRY PERFORMANCE EVENING TITLED \"WHO IS POETRY?\" Intergenerational dialogues The success of the poetry night can be attributed to the atmosphere of open dialogue. Rather than"
+  },
+  {
+    "page": 25,
+    "slide": 13,
+    "lang": "vi",
+    "src": "/zine/p25.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Những thảo luận liên thế hệ"
+  },
+  {
+    "page": 26,
+    "slide": 13,
+    "lang": "en",
+    "src": "/zine/p26.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Intergenerational dialogues"
+  },
+  {
+    "page": 27,
+    "slide": 14,
+    "lang": "vi",
+    "src": "/zine/p27.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "ĐÊM THƠ DIỄN XƯỚNG “THƠ-LÀ-AI? Những thảo luận liên thế hệ"
+  },
+  {
+    "page": 28,
+    "slide": 14,
+    "lang": "en",
+    "src": "/zine/p28.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THE POETRY PERFORMANCE EVENING TITLED \"WHO IS POETRY?\" Intergenerational dialogues"
+  },
+  {
+    "page": 29,
+    "slide": 15,
+    "lang": "vi",
+    "src": "/zine/p29.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 29 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 30,
+    "slide": 15,
+    "lang": "en",
+    "src": "/zine/p30.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 30 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 31,
+    "slide": 16,
+    "lang": "vi",
+    "src": "/zine/p31.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 31 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 32,
+    "slide": 16,
+    "lang": "en",
+    "src": "/zine/p32.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 32 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 33,
+    "slide": 17,
+    "lang": "vi",
+    "src": "/zine/p33.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 33 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 34,
+    "slide": 17,
+    "lang": "en",
+    "src": "/zine/p34.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Trang 34 Zine Thơ-là-ai?"
+  },
+  {
+    "page": 35,
+    "slide": 18,
+    "lang": "vi",
+    "src": "/zine/p35.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Điều khiến chúng mình cảm thấy vui sướng và hạnh phúc nhất đó chính là nhận được những lời góp ý chân thành"
+  },
+  {
+    "page": 36,
+    "slide": 18,
+    "lang": "en",
+    "src": "/zine/p36.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "What brings us the greatest happiness and joy is receiving sincere feedback."
+  },
+  {
+    "page": 37,
+    "slide": 19,
+    "lang": "vi",
+    "src": "/zine/p37.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "CÁC DỰ ÁNđãthuchiên ?. . 05/14 Thời gian: 19h30 Địa điểm: 103 Đ. Ngọc Lâm, Ngọc Lâm, Long Biên Mục đích: Series giới thiệu các tự sự Queer qua nhiều phương thức: ngôn ngữ, hình ảnh"
+  },
+  {
+    "page": 38,
+    "slide": 19,
+    "lang": "en",
+    "src": "/zine/p38.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "PROJECTS Satisfi ed foodporch ?. . 05/14 Time: 7:30 PM Location: 103 Ngoc Lam Street, Ngoc Lam Ward, Long Bien District Purpose: This series presents Queer narratives through diver"
+  },
+  {
+    "page": 39,
+    "slide": 20,
+    "lang": "vi",
+    "src": "/zine/p39.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Lần đầu tiên Lần đầu tiên Lần đầu tiên “Lần đầu tiên chị viết thơ có lẽ không hay nên mọi người không được cười chị đâu đấy nhớ.” Phải có những cái được coi là lần đầu như thế thì "
+  },
+  {
+    "page": 40,
+    "slide": 20,
+    "lang": "en",
+    "src": "/zine/p40.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "First occurrence First occurrence First occurrence \"This is my inaugural attempt at writing poetry, so it may not be of the highest quality. I kindly ask that you refrain from laug"
+  },
+  {
+    "page": 41,
+    "slide": 21,
+    "lang": "vi",
+    "src": "/zine/p41.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "CÁC DỰ ÁNđãthuchiên ?. . 06/14 SERIES “CHỒNG CHỮ” Thời gian: 19h30 Địa điểm: 103 Đ. Ngọc Lâm, Ngọc Lâm, Long Biên Mục đích: Series giới thiệu các tự sự Queer qua nhiều phương thức:"
+  },
+  {
+    "page": 42,
+    "slide": 21,
+    "lang": "en",
+    "src": "/zine/p42.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "PROJECTS Satisfi ed foodporch ?. . 06/14 SERIES \"STACKED WORDS\" Time: 7:30 PM Location: 103 Ngoc Lam Street, Ngoc Lam Ward, Long Bien District Purpose: This series presents Queer n"
+  },
+  {
+    "page": 43,
+    "slide": 22,
+    "lang": "vi",
+    "src": "/zine/p43.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "TỔNG QUAN Event Vong. “Vọng” hướng tới việc mở rộng cách tiếp cận thơ ca Việt Nam thông qua ngôn ngữ của truyền thông đa phương tiện, nơi thơ không chỉ được đọc mà còn được cảm nhậ"
+  },
+  {
+    "page": 44,
+    "slide": 22,
+    "lang": "en",
+    "src": "/zine/p44.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "OVERVIEW Event Vong. “Vọng” seeks to expand the exploration of Vietnamese poetry through multimedia, allowing poetry to be experienced not only through reading but also through ima"
+  },
+  {
+    "page": 45,
+    "slide": 23,
+    "lang": "vi",
+    "src": "/zine/p45.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "“Vọng” hướng tới nhóm khán giả trẻ, đặc biệt là sinh viên và những người quan tâm đến nghệ thuật, văn học và các hình thức biểu đạt sáng tạo. Đây là nhóm công chúng có khả năng tiế"
+  },
+  {
+    "page": 46,
+    "slide": 23,
+    "lang": "en",
+    "src": "/zine/p46.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "“Vọng” aims to engage a youthful audience, particularly students and individuals with an interest in art, literature, and creative expressions. This demographic is notably open to "
+  },
+  {
+    "page": 47,
+    "slide": 24,
+    "lang": "vi",
+    "src": "/zine/p47.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "19:30 -19:45 CHECK IN & WARM UP 19:45 - 20:00 KHÁN GIẢ ĐỌC THƠ VỀ HÀN MẶC TỬ (5-6 NGƯỜI ĐỌC) 20:00 - 20:30 DIỄN XƯỚNG THƠ VỀ HÀN MẶC TỬ (ĐAN LINH & NGẠO THUYÊN) 20:30 - 20:45 CHIA "
+  },
+  {
+    "page": 48,
+    "slide": 24,
+    "lang": "en",
+    "src": "/zine/p48.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "19:30 -19:45 CHECK IN & WARM UP 19:45 - 20:00 KHÁN GIẢ ĐỌC THƠ VỀ HÀN MẶC TỬ (5-6 NGƯỜI ĐỌC) 20:00 - 20:30 DIỄN XƯỚNG THƠ VỀ HÀN MẶC TỬ (ĐAN LINH & NGẠO THUYÊN) 20:30 - 20:45 CHIA "
+  },
+  {
+    "page": 49,
+    "slide": 25,
+    "lang": "vi",
+    "src": "/zine/p49.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "KẾ HOẠCH TỔ CHỨC 09/14 CÁC ĐƠN VỊ ĐỒNG HÀNH: SỰ KIỆN TIẾP NỐI:"
+  },
+  {
+    "page": 50,
+    "slide": 25,
+    "lang": "en",
+    "src": "/zine/p50.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "STRATEGIC FRAMEWORK 09/14 PARTNER ORGANIZATIONS: SUBSEQUENT OCCURRENCE:"
+  },
+  {
+    "page": 51,
+    "slide": 26,
+    "lang": "vi",
+    "src": "/zine/p51.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "Ý TƯỞNG Nhân vật trung tâm là một nhà thơ bị cách ly khỏi thế giới, tồn tại trong trạng thái mơ hồ, nơi thực tại và ảo mộng đan xen. Trong không gian khép kín, anh đối diện với nỗi"
+  },
+  {
+    "page": 52,
+    "slide": 26,
+    "lang": "en",
+    "src": "/zine/p52.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "IDEA The protagonist is a poet estranged from society, existing in a realm where reality and fantasy converge. Within this constrained environment, he grapples with physical suffer"
+  },
+  {
+    "page": 53,
+    "slide": 27,
+    "lang": "vi",
+    "src": "/zine/p53.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "MOOD BOARD - FILM TONE AND MOOD COLOR PALETTE CUT SCENE 11/14"
+  },
+  {
+    "page": 54,
+    "slide": 27,
+    "lang": "en",
+    "src": "/zine/p54.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "MOOD BOARD - CINEMA TONE AND ATMOSPHERE COLOR PALETTE CUTSCENE 11/14"
+  },
+  {
+    "page": 55,
+    "slide": 28,
+    "lang": "vi",
+    "src": "/zine/p55.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "12/14 KHÁCH MỜI Nguyên Phan Thái Vu Sinh năm 2004, Vũ là founder của All About Movies – một công ty truyền thông tập trung vào phê bình, giám tuyển và tổ chức các hoạt động điện ản"
+  },
+  {
+    "page": 56,
+    "slide": 28,
+    "lang": "en",
+    "src": "/zine/p56.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "12/14 GUEST Nguyen Phan Thai Vu Born in 2004, Vu is the founder of All About Movies, a media company dedicated to film criticism, curation, and event organization in Vietnam. Addit"
+  },
+  {
+    "page": 57,
+    "slide": 29,
+    "lang": "vi",
+    "src": "/zine/p57.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THÔNG TINliênhê. Điều phối tổ chức: Nguyễn Thị Hồng SĐT: Email: Điều phối sản xuất phim: Nguyễn Ngọc Bảo Nhi SĐT: Email: ĐƠN VỊ TỔ CHỨC: THƠ-LÀ-AI? THOLAAI.PROJECT@GMAIL.COM NGƯỜI "
+  },
+  {
+    "page": 58,
+    "slide": 29,
+    "lang": "en",
+    "src": "/zine/p58.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "INFORMATIONborderhave. Organizer: Nguyen Thi Hồng Phone number: Email: Film Production Coordinator: Nguyen Ngoc Bao Nhi Phone number: Email: ORGANIZER: WHO REPRESENTS POETRY? THOLA"
+  },
+  {
+    "page": 59,
+    "slide": 30,
+    "lang": "vi",
+    "src": "/zine/p59.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THANK YOU THƠ-LÀ-AI DỰ ÁN “VỌNG” 14/14"
+  },
+  {
+    "page": 60,
+    "slide": 30,
+    "lang": "en",
+    "src": "/zine/p60.webp",
+    "width": 1224,
+    "height": 689,
+    "alt": "THANK YOU. WHO IS POETRY? AN INITIATIVE CHARACTERIZED BY OPTIMISM. 14/14"
+  }
+]
