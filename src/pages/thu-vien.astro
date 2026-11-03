@@ -105,8 +105,8 @@ const totalProducts = gallery.filter((g) => g.kind === 'product').length;
         <button type="button" class="filter-btn alb-filter-btn" data-slug="all" aria-pressed="true">
           Tất cả Album ({albumsWithPhotos.length})
         </button>
-        <button type="button" class="filter-btn alb-filter-btn" data-slug="products" aria-pressed="false" style="border-color:var(--chart-terracotta);color:var(--chart-terracotta);font-weight:700">
-          📜 Bản thảo &amp; Sản phẩm lưu trữ ({totalProducts})
+        <button type="button" class="filter-btn alb-filter-btn" data-slug="products" aria-pressed="false" style="border-color:var(--brand-terracotta);color:var(--brand-terracotta);font-weight:700">
+          ✦ Bản thảo &amp; Sản phẩm lưu trữ ({totalProducts})
         </button>
         {albumsWithPhotos.map((alb) => (
           <button type="button" class="filter-btn alb-filter-btn" data-slug={alb.slug} aria-pressed="false">
@@ -155,10 +155,12 @@ const totalProducts = gallery.filter((g) => g.kind === 'product').length;
                       style={isInitiallyHidden ? 'display: none;' : ''}
                       data-hidden-default={isInitiallyHidden ? 'true' : 'false'}
                     >
-                      <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
+                      <div class="gallery-thumb-box">
+                        <img src={u(item.src)} width={item.width} height={item.height} alt={item.title} loading="lazy" />
+                      </div>
                       <div class="gallery-caption">
-                        <span class="prog" style={isProduct ? 'color:var(--chart-terracotta);font-weight:700' : ''}>
-                          {isProduct ? '📜 Sản phẩm lưu trữ' : alb.title}
+                        <span class="prog" style={isProduct ? 'color:var(--brand-terracotta);font-weight:700' : ''}>
+                          {isProduct ? '✦ Sản phẩm lưu trữ' : alb.title}
                         </span>
                         <span>{item.title}</span>
                       </div>

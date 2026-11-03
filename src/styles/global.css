@@ -1,28 +1,39 @@
-/* ===== Design tokens: bảng màu LOGO "Thơ là AI?" =====
-   Logo = chữ đen nghiêng + bóng đổ xám trên nền xám ngọc trai + sao 4 cánh.
-   Toàn bộ site đơn sắc (xám – đen), không dùng màu nhấn khác. */
+/* ===== Design tokens: Bảng màu LOGO & THI CA "Thơ-là-ai?" =====
+   Nền giấy ngà mỹ thuật cao cấp (Warm Ivory Paper) + Mực than đen sâu (Deep Ink)
+   + Màu nhấn nhận diện từ Avatar FB (Đỏ rượu trăng) & Avatar IG/Zine (Chàm đêm). */
 :root {
-  --pearl: #eeeeee;      /* nền logo */
-  --pearl-2: #e0e0e0;
-  --paper: #f7f7f7;      /* thẻ / giấy */
-  --grey: #adadad;       /* xám trung (logo) */
-  --grey-d: #6f6f6f;
-  --ink: #1a1a1a;        /* chữ logo */
-  --ink-soft: #4a4a4a;
-  --shadow: rgba(26, 26, 26, .18); /* bóng đổ chữ logo */
+  --pearl: #f4efe6;         /* Nền giấy ngà mỹ thuật ấm áp, cổ điển, không bị nhạt nhòa */
+  --pearl-2: #e5decb;       /* Phân cách, đường kẻ & track thanh lịch */
+  --paper: #ffffff;         /* Nền thẻ bài viết trắng ngà sáng rõ, tương phản cao */
+  --paper-card: #fdfcf9;
+  --grey: #9a9386;          /* Xám ấm trung tính */
+  --grey-d: #5e574b;        /* Xám đậm đọc rõ */
+  --ink: #141210;           /* Mực tàu than đá sâu thẳm */
+  --ink-soft: #383229;      /* Chữ nội dung dễ chịu cho mắt */
+  --shadow: rgba(20, 18, 16, .16); /* Bóng đổ chữ logo */
+
+  /* Sắc màu nhận diện cốt lõi (Signature Brand Accents) */
+  --brand-crimson: #8c2435;       /* Đỏ rượu trăng (theo Avatar Facebook "Chơi giữa mùa trăng") */
+  --brand-crimson-light: #faeaed;
+  --brand-cobalt: #1e3d6b;        /* Chàm trăng đêm (theo Avatar Instagram & Zine "Vọng") */
+  --brand-cobalt-light: #e8eef6;
+  --brand-terracotta: #b85d38;    /* Đất nung ấm ("Đưa thơ về mặt đất") */
+  --brand-terracotta-light: #f8ece6;
+  --brand-gold: #c98a2c;          /* Hoàng thổ ánh trăng non */
+  --brand-gold-light: #fbf3e6;
 
   /* Bảng màu phân tích dữ liệu & tác động (Editorial Data Palette) */
-  --chart-cobalt: #23497d;       /* Chàm mực / Tăng trưởng Instagram & Kênh chủ đạo */
+  --chart-cobalt: #1e3d6b;
   --chart-cobalt-light: #e8eef6;
-  --chart-crimson: #8c2435;      /* Sơn tra rượu vang (avatar FB) / Đêm thơ & Đánh giá */
-  --chart-crimson-light: #fbebee;
-  --chart-terracotta: #b85d38;   /* Đất nung (Workshop Đưa thơ về mặt đất) */
+  --chart-crimson: #8c2435;
+  --chart-crimson-light: #faeaed;
+  --chart-terracotta: #b85d38;
   --chart-terracotta-light: #f8ece6;
-  --chart-sage: #2a6f55;         /* Khổng tước / Thảo mộc trầm (OMLAS T0 & Quốc gia) */
+  --chart-sage: #2a6f55;
   --chart-sage-light: #eaf3ee;
-  --chart-ochre: #c48528;        /* Hoàng thổ / Ánh trăng & Đối tác */
+  --chart-ochre: #c98a2c;
   --chart-ochre-light: #fbf3e6;
-  --chart-emerald: #166534;      /* Tăng trưởng tích cực (+Delta năng lực) */
+  --chart-emerald: #166534;
   --chart-emerald-light: #e6f4ea;
 
   --font-display: 'Fraunces', 'Times New Roman', serif;
@@ -58,22 +69,23 @@ h3 { font-size: 1.4rem; }
   font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .16em;
   font-size: .95rem; color: var(--grey-d); font-weight: 600; margin: 0 0 .75rem;
 }
-.eyebrow::before { content: '✦ '; color: var(--ink); }
+.eyebrow::before { content: '✦ '; color: var(--brand-crimson); }
 .shadowed { text-shadow: 5px 5px 0 var(--shadow); }
-.lead { font-size: 1.3rem; color: var(--ink-soft); max-width: 48ch; }
+.lead { font-size: 1.3rem; color: var(--ink-soft); max-width: 52ch; }
 .meta { font-family: var(--font-ui); letter-spacing: .04em; font-size: 1rem; color: var(--grey-d); }
 .section-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
 .section-head h2 { margin: 0; }
-.link-arrow { font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; font-size: 1rem; }
+.link-arrow { font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; font-size: 1rem; color: var(--brand-crimson); }
 
 /* ===== Header ===== */
-.site-header { border-bottom: 1px solid var(--ink); background: var(--pearl); position: sticky; top: 0; z-index: 30; }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .7rem; }
+.site-header { border-bottom: 1px solid var(--ink); border-top: 3px solid var(--brand-crimson); background: var(--pearl); position: sticky; top: 0; z-index: 30; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .75rem; }
 .brand { font-family: var(--font-display); font-style: italic; font-size: 1.65rem; color: var(--ink); text-decoration: none; text-shadow: 2px 2px 0 var(--shadow); white-space: nowrap; }
-.brand .star { font-style: normal; margin-left: .15em; font-size: .8em; }
+.brand .star { font-style: normal; margin-left: .15em; font-size: .8em; color: var(--brand-crimson); }
 .nav { display: flex; gap: 1.2rem; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .1em; font-size: 1rem; font-weight: 600; }
-.nav a { color: var(--ink); text-decoration: none; padding-block: .25rem; border-bottom: 2px solid transparent; white-space: nowrap; }
-.nav a:hover, .nav a[aria-current='page'] { border-color: var(--ink); }
+.nav a { color: var(--ink); text-decoration: none; padding-block: .25rem; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; }
+.nav a:hover { color: var(--brand-crimson); border-color: var(--brand-crimson); }
+.nav a[aria-current='page'] { color: var(--brand-crimson); border-color: var(--brand-crimson); font-weight: 700; }
 .nav-toggle { display: none; font: inherit; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; background: none; border: 1px solid var(--ink); padding: .35rem .8rem; cursor: pointer; color: var(--ink); }
 @media (max-width: 980px) {
   .nav-toggle { display: block; }
@@ -86,12 +98,14 @@ h3 { font-size: 1.4rem; }
 .btn {
   display: inline-block; font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .12em;
   font-weight: 600; font-size: 1.02rem; padding: .7rem 1.4rem; background: var(--ink); color: var(--pearl);
-  text-decoration: none; border: 2px solid var(--ink); cursor: pointer; transition: box-shadow .15s, transform .15s;
+  text-decoration: none; border: 2px solid var(--ink); cursor: pointer; transition: box-shadow .15s, transform .15s, background .15s, border-color .15s;
 }
-.btn:hover { box-shadow: 4px 4px 0 var(--grey); transform: translate(-2px, -2px); }
+.btn:hover { box-shadow: 4px 4px 0 var(--brand-crimson); transform: translate(-2px, -2px); }
 .btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--paper); border-color: var(--brand-crimson); }
 .btn.light { background: var(--pearl); color: var(--ink); border-color: var(--pearl); }
 .btn.ghost-light { background: transparent; color: var(--pearl); border-color: var(--pearl); }
+.btn.ghost-light:hover { background: rgba(255, 255, 255, .1); border-color: var(--brand-gold); }
 .btn-row { display: flex; gap: .8rem; flex-wrap: wrap; }
 
 /* ===== Section ===== */
@@ -260,11 +274,222 @@ a.t-row:hover { background: var(--paper); }
 .gallery-square { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .gallery-square .gallery-item img { aspect-ratio: 1; object-fit: cover; }
 @media (max-width: 640px) { .gallery-square { grid-template-columns: repeat(2, 1fr); } }
-.gallery-item { background: var(--paper); border: 1px solid var(--ink); padding: 0; cursor: pointer; overflow: hidden; text-align: left; text-decoration: none; color: inherit; transition: transform .15s, box-shadow .15s; font: inherit; }
-.gallery-item:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
-.gallery-item img { width: 100%; height: auto; background: var(--pearl-2); }
-.gallery-caption { padding: .55rem .75rem .7rem; font-family: var(--font-ui); font-size: .95rem; line-height: 1.3; display: flex; flex-direction: column; gap: .15rem; }
+.gallery-item { background: var(--paper); border: 1px solid var(--ink); padding: 0; cursor: pointer; overflow: hidden; text-align: left; text-decoration: none; color: inherit; transition: transform .15s, box-shadow .15s; font: inherit; display: flex; flex-direction: column; height: 100%; }
+.gallery-item:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--brand-crimson); }
+.gallery-thumb-box { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--pearl-2); position: relative; }
+.gallery-thumb-box img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .25s ease; }
+.gallery-item:hover .gallery-thumb-box img { transform: scale(1.05); }
+.gallery-caption { padding: .65rem .85rem .8rem; font-family: var(--font-ui); font-size: .95rem; line-height: 1.35; display: flex; flex-direction: column; gap: .25rem; flex: 1; background: var(--paper); border-top: 1px solid var(--pearl-2); }
 .gallery-caption .prog { color: var(--grey-d); font-weight: 600; text-transform: uppercase; font-size: .8rem; letter-spacing: .08em; }
+
+/* ===== Layout trang Về TLA (/ve-chung-toi) ===== */
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.about-hero-copy .lead {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
+  max-width: none;
+}
+.about-hero-copy p {
+  font-size: 1.12rem;
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+  color: var(--ink-soft);
+}
+.about-quote-box {
+  border-left: 4px solid var(--brand-crimson);
+  background: var(--paper);
+  padding: 1.2rem 1.6rem;
+  margin: 1.8rem 0;
+  box-shadow: 4px 4px 0 var(--pearl-2);
+}
+.about-quote-box blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--brand-crimson);
+  border-left: none;
+  padding-left: 0;
+}
+.project-profile-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 1.6rem 1.8rem;
+}
+.profile-card-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: .8rem;
+  margin-bottom: 1.2rem;
+}
+.profile-card-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-style: italic;
+}
+.profile-card-header .profile-badge {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--brand-crimson);
+}
+.profile-dl {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+.profile-dl dt {
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  font-size: .82rem;
+  letter-spacing: .1em;
+  font-weight: 700;
+  color: var(--grey-d);
+  margin-bottom: .2rem;
+}
+.profile-dl dd {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* 3 Trụ cột Thực hành */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.pillar-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pillar-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--brand-cobalt);
+}
+.pillar-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--brand-crimson);
+}
+.pillar-card h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  font-style: italic;
+}
+.pillar-card p {
+  margin: 0;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* 4 Hình thức Thể nghiệm */
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.form-card {
+  background: var(--pearl);
+  border: 1px solid var(--ink);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.form-card .form-tag {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--brand-terracotta);
+}
+.form-card h4 {
+  margin: .2rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+}
+.form-card p {
+  margin: 0;
+  font-size: .98rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* Đội ngũ & Nghệ sĩ */
+.artist-grid-about {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+.artist-item-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: transform .15s, box-shadow .15s;
+}
+.artist-item-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.artist-item-card h3 {
+  font-style: italic;
+  font-size: 1.35rem;
+  margin: 0;
+}
+.artist-item-card .artist-role {
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  color: var(--brand-crimson);
+}
+.artist-item-card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.artist-item-card .artist-tags {
+  margin-top: auto;
+  padding-top: .6rem;
+  border-top: 1px dashed var(--pearl-2);
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--grey-d);
+}
+
+@media (max-width: 860px) {
+  .about-hero-grid { grid-template-columns: 1fr; }
+}
 dialog.lightbox { border: 2px solid var(--ink); background: var(--ink); color: var(--pearl); padding: 1rem; max-width: min(94vw, 1080px); max-height: 92vh; width: 100%; }
 dialog.lightbox::backdrop { background: rgba(10, 10, 10, .88); }
 .lb-body { display: flex; flex-direction: column; align-items: center; gap: .75rem; }

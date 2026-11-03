@@ -1,29 +1,197 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import artists from '../data/artists.json';
+import { u } from '../lib/url';
 ---
-<Base title="Về TLA">
+<Base title="Về TLA · Dự án Thơ là ai?" description="Dự án thực hành nghệ thuật và văn chương, mở rộng cách tiếp cận ngôn ngữ và thi ca trong đời sống đương đại.">
+  <!-- Phần Hero & Hồ sơ dự án -->
+  <section class="section" style="padding-top: clamp(2rem, 5vw, 3.5rem);">
+    <div class="wrap">
+      <div class="about-hero-grid">
+        <!-- Cột trái: Tuyên ngôn & Câu chuyện -->
+        <div class="about-hero-copy">
+          <p class="eyebrow">Giới thiệu dự án</p>
+          <h1 class="shadowed" style="margin-bottom:.4em">Thơ là ai?</h1>
+          <p class="lead">
+            Một dự án thực hành nghệ thuật và văn chương đương đại, nơi thi ca rời khỏi trang giấy tĩnh để cất lên tiếng nói, hóa thân thành hình thể, âm thanh và không gian đối thoại.
+          </p>
+          <p>
+            Dự án khởi xướng từ khát vọng của nhóm sinh viên khoa Ngữ văn, Trường Đại học Sư phạm Hà Nội (HNUE), với mong muốn làm mới cách công chúng trẻ tiếp cận thi ca. Thay vì xem thơ như những văn bản kinh viện đóng khung trong trường quy, &ldquo;Thơ là ai?&rdquo; mở ra một không gian mở và an toàn: <strong>thể thức là những thỏa thuận, không phải quy tắc</strong>.
+          </p>
+          <p>
+            Thông qua các hoạt động diễn xướng, cắt dán thơ thủ công (blackout poetry, collage), điện ảnh thơ và âm nhạc thể nghiệm, dự án khơi gợi khả năng khám phá chất thơ từ đời sống bình dị, chuyển hóa những tự sự cá nhân dễ tổn thương thành tác phẩm biểu đạt có chiều sâu nghệ thuật.
+          </p>
+
+          <div class="about-quote-box">
+            <blockquote>
+              &ldquo;Vì sao &lsquo;Tôi&rsquo; và &lsquo;Thơ&rsquo; cùng cần được giải phóng? Giải phóng TÔI song hành với giải phóng THƠ.&rdquo;
+            </blockquote>
+            <p style="margin:.6rem 0 0;font-size:1rem;color:var(--grey-d);font-style:italic">
+              Chúng ta thường đóng khung &ldquo;tôi&rdquo; trong những định kiến xã hội, và đóng khung &ldquo;thơ&rdquo; trong những vần luật gò bó. Phá vỡ rào cản ấy là bước đầu tiên để tiếng nói chân thật được lắng nghe.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cột phải: Thẻ Hồ sơ dự án (Project Profile Card) -->
+        <aside class="project-profile-card" aria-label="Hồ sơ tóm tắt dự án">
+          <div class="profile-card-header">
+            <span class="profile-badge">✦ Thông tin tổng quan</span>
+            <h2>Hồ sơ &ldquo;Thơ là ai?&rdquo;</h2>
+          </div>
+          <dl class="profile-dl">
+            <div>
+              <dt>Năm khởi xướng</dt>
+              <dd><strong>2025</strong> · Hà Nội, Việt Nam</dd>
+            </div>
+            <div>
+              <dt>Cội nguồn &amp; Nền tảng</dt>
+              <dd>Khoa Ngữ văn, Trường Đại học Sư phạm Hà Nội (HNUE)</dd>
+            </div>
+            <div>
+              <dt>Phương thức thực hành</dt>
+              <dd>Thơ diễn xướng (Performance Poetry), Thơ thị giác &amp; Cắt dán (Collage/Blackout Poetry), Điện ảnh thơ (Video Poetry), Âm nhạc ứng tác</dd>
+            </div>
+            <div>
+              <dt>Không gian văn hóa đồng hành</dt>
+              <dd>A Queer Museum · Tổ Chim Xanh · Quán Cầm · TOTO Cafe</dd>
+            </div>
+            <div>
+              <dt>Mạng lưới quốc tế</dt>
+              <dd>Dự án OMLAS · Echoes of Asia (Việt Nam, Thái Lan, Bangladesh, Pakistan, Uzbekistan)</dd>
+            </div>
+            <div>
+              <dt>Tôn chỉ thực hành</dt>
+              <dd>
+                <em style="color:var(--brand-crimson);font-weight:600">Không gian an toàn · Thể thức là thỏa thuận · Tôn trọng mọi căn tính</em>
+              </dd>
+            </div>
+          </dl>
+          <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px dashed var(--pearl-2)">
+            <a class="btn" href={`mailto:${site.contactEmail}`} style="width:100%;text-align:center">Hợp tác cùng chúng tôi →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Trụ cột Thực hành -->
+  <section class="section band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Phương pháp &amp; Triết lý</p>
+          <h2>3 Trụ cột Thực hành</h2>
+        </div>
+      </div>
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <span class="pillar-num">01</span>
+          <h3>Bản thể &amp; Tiếng nói</h3>
+          <p>
+            Mỗi cá nhân đều mang trong mình một căn tính và tự sự riêng biệt. Dự án tạo dựng môi trường tôn trọng sự tổn thương, khuyến khích người tham gia đối diện với chính mình và cất lên tiếng nói mà không sợ bị phán xét chuẩn mực.
+          </p>
+        </article>
+        <article class="pillar-card">
+          <span class="pillar-num">02</span>
+          <h3>Thể nghiệm &amp; Đa giác quan</h3>
+          <p>
+            Thơ ca không tồn tại biệt lập mà hòa quyện cùng nghệ thuật thị giác, kịch nghệ, điện ảnh và âm nhạc ngẫu hứng. Thi ca trở thành một trải nghiệm sống động đánh thức mọi giác quan của người nghe và người xem.
+          </p>
+        </article>
+        <article class="pillar-card">
+          <span class="pillar-num">03</span>
+          <h3>Đối thoại Liên thế hệ &amp; Quốc tế</h3>
+          <p>
+            Tạo nhịp cầu kết nối giữa các thế hệ người viết đi trước và những tiếng nói trẻ đương thời, đồng thời mở rộng hợp tác xuyên biên giới qua mạng lưới OMLAS Châu Á nhằm nâng cao năng lực phục hồi tâm lý qua văn học.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Hình thức Thể nghiệm -->
   <section class="section">
-    <div class="wrap prose">
-      <p class="eyebrow">Giới thiệu dự án</p>
-      <h1 class="shadowed">Thơ là ai?</h1>
-      <p class="lead">Một dự án thực hành nghệ thuật và văn chương, mở rộng cách tiếp cận ngôn ngữ và thi ca trong đời sống đương đại.</p>
-      <p>Thông qua các hoạt động sáng tạo và thực hành nghệ thuật, dự án khơi gợi khả năng khám phá tính thơ từ những chất liệu đời sống bình dị, và chuyển hóa tự sự cá nhân thành biểu đạt có chiều sâu.</p>
-      <p>Dự án khởi xướng từ khát vọng của sinh viên khoa Ngữ văn, Trường Đại học Sư phạm Hà Nội, nhằm tạo ra một <strong>không gian an toàn</strong> để người trẻ đối thoại qua những thể nghiệm thơ ca: thể thức là những <em>thỏa thuận</em>, không phải <em>quy tắc</em>.</p>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Thể loại &amp; Không gian</p>
+          <h2>Thơ diễn xướng &amp; Các thể nghiệm</h2>
+        </div>
+      </div>
+      <div class="forms-grid">
+        <div class="form-card">
+          <span class="form-tag">Trực tiếp trên sân khấu</span>
+          <h4>Thơ Slam &amp; Đối thoại kịch</h4>
+          <p>Thơ được cất lên trực tiếp từ lồng ngực, giàu tính phản biện xã hội, nhịp điệu dồn dập và năng lượng đối thoại mạnh mẽ với khán phòng.</p>
+        </div>
+        <div class="form-card">
+          <span class="form-tag">Thủ công &amp; Thị giác</span>
+          <h4>Blackout Poetry &amp; Chồng chữ</h4>
+          <p>Tái tạo ngữ nghĩa từ các trang sách báo cũ, bôi đen từ thừa, dán ghép mảnh chữ và hình ảnh để kiến tạo một cấu trúc thị giác hoàn toàn mới.</p>
+        </div>
+        <div class="form-card">
+          <span class="form-tag">Điện ảnh &amp; Hình ảnh động</span>
+          <h4>Video Poetry (Dự án &ldquo;Vọng&rdquo;)</h4>
+          <p>Giao thoa giữa ngôn từ thơ và ngôn ngữ điện ảnh đương đại, nơi thi tứ của Hàn Mặc Tử được tái hiện qua ánh sáng, góc máy và chuyển động.</p>
+        </div>
+        <div class="form-card">
+          <span class="form-tag">Âm nhạc &amp; Ứng tác</span>
+          <h4>Trình diễn thơ nhạc (&ldquo;Nước và Mơ&rdquo;)</h4>
+          <p>Sự cộng hưởng giữa giọng đọc thơ và âm thanh ứng tác của sáo, guitar và âm thanh tự nhiên, khám phá nhạc tính bản địa của tiếng Việt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <h2 style="margin-top:3rem">Vì sao &ldquo;Tôi&rdquo; và &ldquo;Thơ&rdquo; cùng cần được giải phóng?</h2>
-      <p>Chúng ta thường đóng khung &ldquo;tôi&rdquo; trong những nhãn dán có sẵn, và đóng khung &ldquo;thơ&rdquo; trong những quy tắc chặt chẽ. Cả hai nỗi sợ, sợ sai, sợ &ldquo;không đúng chuẩn&rdquo;, đều đến từ định kiến bên ngoài.</p>
-      <blockquote>Giải phóng TÔI song hành với giải phóng THƠ.</blockquote>
+  <!-- Đội ngũ Thực hành & Nghệ sĩ Đồng hành -->
+  <section class="section band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Mạng lưới sáng tạo</p>
+          <h2>Nghệ sĩ &amp; Người điều phối</h2>
+        </div>
+        <a class="link-arrow" href={u('/kho-tho')}>Khám phá Kho thơ →</a>
+      </div>
+      <p class="lead" style="margin-bottom:2rem">
+        Những gương mặt tham gia sáng tác, dẫn dắt workshop và cất giọng trong các chương trình của &ldquo;Thơ là ai?&rdquo;.
+      </p>
 
-      <h2 style="margin-top:3rem">Thơ diễn xướng là gì?</h2>
-      <p>Thơ diễn xướng (performance poetry) đưa thơ ra khỏi trang sách và trao cho nó một cơ thể, một giọng nói, một nhịp đập. Đó có thể là:</p>
-      <ul>
-        <li><strong>Thơ slam</strong>: cuộc đối đầu của những vần thơ gai góc, giàu tính phản biện.</li>
-        <li><strong>Thơ video</strong>: thi ca gặp ngôn ngữ điện ảnh.</li>
-        <li><strong>Trình diễn đa phương tiện</strong>: thơ cùng âm nhạc thể nghiệm, visual art và nghệ thuật hình thể.</li>
-      </ul>
-      <p>Người tham gia không chỉ nghe mà cùng kiến tạo tác phẩm: mỗi đêm thơ là một tác phẩm khác nhau, khi thô sơ, khi rừng rực.</p>
-      <p><a class="btn" href={`mailto:${site.contactEmail}`}>Hợp tác cùng chúng tôi</a></p>
+      <div class="artist-grid-about">
+        {artists.map((artist) => (
+          <article class="artist-item-card">
+            <span class="artist-role">{artist.role}</span>
+            <h3>{artist.name}</h3>
+            <p>{artist.bio}</p>
+            {artist.programs && artist.programs.length > 0 && (
+              <div class="artist-tags">
+                <strong>Chương trình:</strong> {artist.programs.join(' · ')}
+              </div>
+            )}
+            {artist.works && artist.works.length > 0 && (
+              <div class="artist-tags" style="border-top:none;padding-top:0">
+                <strong>Tác phẩm:</strong> {artist.works.slice(0, 2).map((w: string) => `"${w}"`).join(', ')}{artist.works.length > 2 ? '...' : ''}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Không gian An toàn & Kêu gọi Hợp tác -->
+  <section class="section band-dark">
+    <div class="wrap" style="text-align:center;max-width:760px;margin-inline:auto">
+      <p class="eyebrow" style="color:var(--brand-gold)">Nguyên tắc cộng đồng</p>
+      <h2 style="font-size:clamp(2rem, 5vw, 3rem);margin-bottom:1rem">Cam kết Không gian An toàn</h2>
+      <p style="font-size:1.15rem;line-height:1.7;color:var(--pearl-2);margin-bottom:2rem">
+        &ldquo;Thơ là ai?&rdquo; luôn chào đón mọi cá nhân không phân biệt bản dạng giới, xu hướng tính dục, độ tuổi hay xuất thân. Mọi thực hành thơ tại đây đều đặt trên nền tảng của sự tôn trọng, đồng cảm và bảo mật tự sự cá nhân.
+      </p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn light" href={`mailto:${site.contactEmail}`}>Liên hệ Hợp tác hoặc Đóng góp</a>
+        <a class="btn ghost-light" href={u('/chuong-trinh')}>Xem các Chương trình →</a>
+      </div>
     </div>
   </section>
 </Base>
