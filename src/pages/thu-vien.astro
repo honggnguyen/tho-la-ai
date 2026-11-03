@@ -12,6 +12,17 @@ const programs = ['Tất cả', ...Array.from(new Set(gallery.map((g) => g.progr
       <h1 class="shadowed">Thư viện ảnh</h1>
       <p class="lead">Những khoảnh khắc từ các đêm thơ diễn xướng, chuỗi thực hành thơ thủ công tại A Queer Museum, đêm thơ nhạc Quán Cầm và các buổi ngồi lại cùng nhau.</p>
 
+      <div class="callout" style="border-left-color:var(--chart-cobalt);margin:1.8rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem">
+        <div style="max-width:54ch">
+          <strong style="font-family:var(--font-ui);text-transform:uppercase;letter-spacing:.08em;color:var(--chart-cobalt)">▶ Kho tư liệu Video &amp; Thước phim 4K</strong>
+          <p style="margin:.3rem 0 0;font-size:1.02rem">Để đảm bảo tốc độ tải trang nhanh và trải nghiệm mượt mà, video recap và diễn xướng được nhúng qua YouTube. Các footage quay 4K gốc được lưu trữ mở trên Google Drive.</p>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="btn" href="https://www.youtube.com" target="_blank" rel="noopener" style="font-size:.92rem;padding:.45rem .95rem">Kênh YouTube ↗</a>
+          <a class="btn ghost" href="https://drive.google.com/drive/folders/19qD6_pfXld1Jijt-MJMrI35ZvI8V6j1h" target="_blank" rel="noopener" style="font-size:.92rem;padding:.45rem .95rem">Kho Google Drive ↗</a>
+        </div>
+      </div>
+
       <div class="filter-bar" role="region" aria-label="Lọc ảnh theo chương trình">
         {programs.map((prog, idx) => (
           <button type="button" class="filter-btn" data-prog={prog} aria-pressed={idx === 0 ? 'true' : 'false'}>

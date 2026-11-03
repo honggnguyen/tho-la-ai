@@ -248,14 +248,6 @@
     "eventSlug": "2026-05-03-nuoc-va-mo"
   },
   {
-    "src": "/gallery/nuoc-va-mo-01.webp",
-    "width": 960,
-    "height": 1280,
-    "title": "Đêm thơ nhạc \"Nước và Mơ\" tại Quán Cầm (03/05/2026) #1",
-    "program": "Trình diễn thơ nhạc \"Nước và Mơ\"",
-    "eventSlug": "2026-05-03-nuoc-va-mo"
-  },
-  {
     "src": "/gallery/dua-tho-ve-mat-dat-01.webp",
     "width": 1200,
     "height": 1200,
@@ -296,14 +288,6 @@
     "eventSlug": "2026-04-choi-giua-mua-trang-vong"
   },
   {
-    "src": "/gallery/nuoc-va-mo-02.webp",
-    "width": 1024,
-    "height": 1280,
-    "title": "Poster trình diễn thơ nhạc \"Nước và Mơ\" (03/05/2026)",
-    "program": "Trình diễn thơ nhạc \"Nước và Mơ\"",
-    "eventSlug": "2026-05-03-nuoc-va-mo"
-  },
-  {
     "src": "/gallery/dua-tho-ve-mat-dat-02.webp",
     "width": 1280,
     "height": 1280,
@@ -318,5 +302,1125 @@
     "title": "Poster Workshop \"Đưa thơ về mặt đất\" cùng Phapxa Chan",
     "program": "Workshop \"Đưa thơ về mặt đất\"",
     "eventSlug": "2026-05-dua-tho-ve-mat-dat"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-01.webp",
+    "width": 884,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #01",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-02.webp",
+    "width": 1280,
+    "height": 876,
+    "title": "Tư liệu Đêm thơ diễn xướng #02",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-extra-01.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #01",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-03.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Tư liệu Đêm thơ diễn xướng #03",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-04.webp",
+    "width": 856,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #04",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-extra-02.webp",
+    "width": 1280,
+    "height": 916,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #02",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-05.webp",
+    "width": 1023,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #05",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-01.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #01",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-02.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #02",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-03.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #03",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-04.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #04",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-05.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #05",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-06.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #06",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-07.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #07",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-01.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #01",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-02.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #02",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-03.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #03",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-04.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #04",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-05.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #05",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-06.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #06",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-01.webp",
+    "width": 1280,
+    "height": 670,
+    "title": "Visual Workshop Chồng chữ #01",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-07.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #07",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-06.webp",
+    "width": 842,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #06",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-extra-03.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #03",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-extra-04.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #04",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-05.webp",
+    "width": 1078,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #05",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-06.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #06",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-07.webp",
+    "width": 1280,
+    "height": 724,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #07",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-08.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #08",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-09.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #09",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-10.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #10",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-11.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #11",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-12.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #12",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-13.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #13",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-14.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #14",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-extra-08.webp",
+    "width": 576,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #08",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-09.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #09",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-10.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #10",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-01.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #01",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-07.webp",
+    "width": 1280,
+    "height": 910,
+    "title": "Tư liệu Đêm thơ diễn xướng #07",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-08.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #08",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-09.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #09",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-10.webp",
+    "width": 999,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #10",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-11.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #11",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-12.webp",
+    "width": 1280,
+    "height": 738,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #12",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-08.webp",
+    "width": 879,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #08",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-13.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #13",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-09.webp",
+    "width": 867,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #09",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-10.webp",
+    "width": 833,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #10",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-15.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #15",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-11.webp",
+    "width": 1280,
+    "height": 914,
+    "title": "Tư liệu Đêm thơ diễn xướng #11",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-16.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #16",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-17.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #17",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-18.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #18",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-14.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #14",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-11.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #11",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-12.webp",
+    "width": 661,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #12",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-13.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #13",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-02.webp",
+    "width": 1280,
+    "height": 1280,
+    "title": "Visual Workshop Chồng chữ #02",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-02.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #02",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-03.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #03",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-03.webp",
+    "width": 1280,
+    "height": 1280,
+    "title": "Visual Workshop Chồng chữ #03",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-12.webp",
+    "width": 880,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #12",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-15.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #15",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-13.webp",
+    "width": 867,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #13",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-14.webp",
+    "width": 860,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #14",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-16.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #16",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-17.webp",
+    "width": 674,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #17",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-18.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #18",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-19.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #19",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-20.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #20",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-21.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #21",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-22.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #22",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-23.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #23",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-24.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #24",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-25.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #25",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-26.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #26",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dua-tho-toto-01.webp",
+    "width": 1200,
+    "height": 1200,
+    "title": "Đưa thơ về mặt đất #01",
+    "program": "Workshop \"Đưa thơ về mặt đất\"",
+    "eventSlug": "2026-05-dua-tho-ve-mat-dat"
+  },
+  {
+    "src": "/gallery/dem-tho-1-14.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #14",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-15.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #15",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-16.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #16",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-17.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #17",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-18.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #18",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-19.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #19",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-20.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #20",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-21.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #21",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-04.webp",
+    "width": 1280,
+    "height": 670,
+    "title": "Visual Workshop Chồng chữ #04",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-04.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #04",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-05.webp",
+    "width": 720,
+    "height": 1280,
+    "title": "Visual Workshop Chồng chữ #05",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-05.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #05",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-06.webp",
+    "width": 1280,
+    "height": 1280,
+    "title": "Visual Workshop Chồng chữ #06",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-06.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #06",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-15.webp",
+    "width": 1280,
+    "height": 882,
+    "title": "Tư liệu Đêm thơ diễn xướng #15",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-19.webp",
+    "width": 1280,
+    "height": 798,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #19",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-16.webp",
+    "width": 1280,
+    "height": 902,
+    "title": "Tư liệu Đêm thơ diễn xướng #16",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-20.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #20",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-17.webp",
+    "width": 833,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #17",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-21.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #21",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-22.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #22",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-23.webp",
+    "width": 700,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #23",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-18.webp",
+    "width": 1280,
+    "height": 888,
+    "title": "Tư liệu Đêm thơ diễn xướng #18",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-19.webp",
+    "width": 1280,
+    "height": 923,
+    "title": "Tư liệu Đêm thơ diễn xướng #19",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-24.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #24",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-25.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #25",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-20.webp",
+    "width": 1280,
+    "height": 930,
+    "title": "Tư liệu Đêm thơ diễn xướng #20",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-27.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #27",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-28.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #28",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-29.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #29",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-30.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #30",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-31.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #31",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-26.webp",
+    "width": 1280,
+    "height": 679,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #26",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-22.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #22",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-23.webp",
+    "width": 899,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #23",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-24.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #24",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-25.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #25",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-26.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #26",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/chong-chu-dsg-07.webp",
+    "width": 1280,
+    "height": 1280,
+    "title": "Visual Workshop Chồng chữ #07",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-07.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #07",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-extra-08.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #08",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-21.webp",
+    "width": 877,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #21",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-27.webp",
+    "width": 577,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #27",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-28.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #28",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-29.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #29",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-30.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #30",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-31.webp",
+    "width": 577,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #31",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-32.webp",
+    "width": 980,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #32",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-33.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #33",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-34.webp",
+    "width": 575,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #34",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/dem-tho-1-tl-22.webp",
+    "width": 875,
+    "height": 1280,
+    "title": "Tư liệu Đêm thơ diễn xướng #22",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-35.webp",
+    "width": 1280,
+    "height": 575,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #35",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-36.webp",
+    "width": 1280,
+    "height": 963,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #36",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-32.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #32",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-33.webp",
+    "width": 1280,
+    "height": 960,
+    "title": "Workshop Chồng chữ #33",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-b1-37.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Nghe–Thấy–Nhau (Buổi 1) #37",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/chong-chu-ws2-34.webp",
+    "width": 960,
+    "height": 1280,
+    "title": "Workshop Chồng chữ #34",
+    "program": "Workshop \"Chồng chữ\"",
+    "eventSlug": "2026-03-chong-chu"
+  },
+  {
+    "src": "/gallery/dem-tho-1-27.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Đêm thơ diễn xướng #27",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-28.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #28",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/dem-tho-1-29.webp",
+    "width": 853,
+    "height": 1280,
+    "title": "Đêm thơ diễn xướng #29",
+    "program": "Đêm thơ diễn xướng \"Thơ-là-ai?\"",
+    "eventSlug": "2025-11-dem-tho-dien-xuong"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-09.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #09",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
+  },
+  {
+    "src": "/gallery/nghe-thay-nhau-10.webp",
+    "width": 1280,
+    "height": 853,
+    "title": "Series Nghe–Thấy–Nhau #10",
+    "program": "Series \"Nghe–Thấy–Nhau\"",
+    "eventSlug": "2025-12-nghe-thay-nhau"
   }
 ]
