@@ -18,6 +18,7 @@ const events = defineCollection({
     summary: z.string(),
     cover: z.string().optional(),
     youtube: z.string().optional(),
+    instagramPosts: z.array(z.string()).default([]),
     needsConfirm: z.boolean().default(false),
   }),
 });

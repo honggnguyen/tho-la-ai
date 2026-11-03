@@ -38,6 +38,7 @@ content:
       - { name: attendeesLabel, label: Quy mô tham dự, type: string }
       - { name: summary, label: Tóm tắt (1-2 câu), type: text, required: true }
       - { name: youtube, label: Mã video YouTube (đoạn sau "v="), type: string }
+      - { name: instagramPosts, label: Link bài viết Instagram, type: string, list: true }
       - { name: needsConfirm, label: Cần xác nhận thông tin, type: boolean }
       - { name: body, label: Nội dung chi tiết, type: rich-text }
 

@@ -28,3 +28,4 @@ for p, m in bad:
     print(f"PII? {p.relative_to(ROOT)}: {m}")
 print("OK: không phát hiện PII" if not bad else f"{len(bad)} mục cần kiểm tra")
 sys.exit(1 if bad else 0)
+

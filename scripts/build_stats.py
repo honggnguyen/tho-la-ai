@@ -81,7 +81,7 @@ def main():
     c = read("campaign.xlsx")
     ig = []
     labels = {"Thơ là ai": "Đêm thơ đầu tiên", "AQM": "Series Nghe–Thấy–Nhau",
-              "Chơi giữa mùa trăng": "Chơi giữa mùa trăng",
+              "Chơi giữa mùa trăng": "Chơi giữa mùa trăng", "Nước và mơ": "Nước và mơ",
               "Thơ tân hình th": "Thơ tân hình thức"}
     for _, r in c.iterrows():
         v = pd.to_numeric(r.get("Instagram"), errors="coerce")

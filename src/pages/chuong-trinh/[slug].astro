@@ -23,7 +23,20 @@ const statusLabel: Record<string, string> = { done: 'Đã diễn ra', ongoing: '
         {d.dateLabel && <><dt>Thời gian</dt><dd style="margin:0">{d.dateLabel}</dd></>}
         {d.venue && <><dt>Địa điểm</dt><dd style="margin:0">{d.venue}</dd></>}
         {d.attendeesLabel && <><dt>Quy mô</dt><dd style="margin:0">{d.attendeesLabel}</dd></>}
-        {d.partners.length > 0 && <><dt>Đối tác</dt><dd style="margin:0">{d.partners.join(', ')}</dd></>}
+        {d.partners.length > 0 && <><dt>Đồng hành</dt><dd style="margin:0">{d.partners.join(', ')}</dd></>}
+        {d.instagramPosts.length > 0 && (
+          <>
+            <dt>Bài viết Instagram</dt>
+            <dd style="margin:0">
+              {d.instagramPosts.map((url, idx) => (
+                <>
+                  {idx > 0 && ' · '}
+                  <a href={url} target="_blank" rel="noopener">Bài đăng #{idx + 1} ↗</a>
+                </>
+              ))}
+            </dd>
+          </>
+        )}
       </dl>
       <div class="prose"><p style="font-size:1.25rem">{d.summary}</p><Content /></div>
       {d.youtube && (
