@@ -1,11 +1,18 @@
 ---
 // Biểu đồ cột ngang bằng HTML/CSS thuần: nhẹ, truy cập tốt, kèm bảng số liệu thay thế.
-interface Props { title: string; items: Record<string, number>; n: number; note?: string; unit?: string; }
-const { title, items, n, note, unit = 'người' } = Astro.props;
+interface Props {
+  title: string;
+  items: Record<string, number>;
+  n: number;
+  note?: string;
+  unit?: string;
+  color?: 'ink' | 'cobalt' | 'crimson' | 'terracotta' | 'sage' | 'ochre';
+}
+const { title, items, n, note, unit = 'người', color = 'ink' } = Astro.props;
 const entries = Object.entries(items);
 const max = Math.max(...entries.map(([, v]) => v), 1);
 ---
-<figure class="figure">
+<figure class={`figure chart-${color}`}>
   <h3>{title}</h3>
   <span class="n-badge">n = {n}</span>
   <div class="bars" role="img" aria-label={`${title}: ` + entries.map(([k, v]) => `${k} ${v}`).join(', ')}>

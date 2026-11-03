@@ -23,26 +23,29 @@ const dots = [5, 4, 3, 2, 1].flatMap((s) => Array.from({ length: dist[String(s)]
       </div>
 
       <h2 class="chart-title">Cộng đồng đang lớn lên</h2>
-      <LineChart title="Người theo dõi Instagram qua các chương trình" points={ig}
+      <LineChart title="Người theo dõi Instagram qua các chương trình" points={ig} strokeColor="var(--chart-cobalt)"
         note={`Mốc theo ghi chép của ban tổ chức; điểm cuối là số hiện tại (${stats.instagram.latest_asof}). Facebook: khoảng ${stats.instagram.facebook_followers.toLocaleString('vi-VN')} người theo dõi.`} />
 
       <h2 class="chart-title">Mọi người biết đến chúng tôi từ đâu?</h2>
       <div class="grid cols-3 top">
-        <BarList title="Đêm thơ đầu tiên (11/2025)" items={stats.dem1.channels} n={stats.dem1.channels_n} unit="lượt" note="Có thể chọn nhiều nguồn." />
-        <BarList title='Series "Nghe–Thấy–Nhau" (12/2025)' items={stats.aqm.channels} n={stats.aqm.channels_n} unit="lượt" note="Đối tác đóng vai trò lớn trong buổi giới thiệu ban đầu." />
-        <BarList title='Workshop "Đưa thơ về mặt đất" (05/2026)' items={stats.tanhinhthuc.channels} n={stats.tanhinhthuc.channels_n} unit="lượt" note="Phần lớn người đăng ký đến từ chính fanpage của dự án." />
+        <BarList title="Đêm thơ đầu tiên (11/2025)" items={stats.dem1.channels} n={stats.dem1.channels_n} unit="lượt" color="crimson" note="Có thể chọn nhiều nguồn." />
+        <BarList title='Series "Nghe–Thấy–Nhau" (12/2025)' items={stats.aqm.channels} n={stats.aqm.channels_n} unit="lượt" color="cobalt" note="Đối tác đóng vai trò lớn trong buổi giới thiệu ban đầu." />
+        <BarList title='Workshop "Đưa thơ về mặt đất" (05/2026)' items={stats.tanhinhthuc.channels} n={stats.tanhinhthuc.channels_n} unit="lượt" color="terracotta" note="Phần lớn người đăng ký đến từ chính fanpage của dự án." />
       </div>
 
       <h2 class="chart-title">Ai đến với thơ?</h2>
       <div class="grid cols-2 top">
-        <BarList title='Độ tuổi, series "Nghe–Thấy–Nhau"' items={stats.aqm.age.buckets} n={stats.aqm.age.n} />
-        <figure class="figure">
+        <BarList title='Độ tuổi, series "Nghe–Thấy–Nhau"' items={stats.aqm.age.buckets} n={stats.aqm.age.n} color="sage" />
+        <figure class="figure chart-ochre">
           <h3>Đêm thơ đầu tiên: mức hài lòng</h3>
-          <span class="n-badge">n = {stats.dem1.rating.n}</span>
-          <div class="dots" role="img" aria-label={`Điểm trung bình ${stats.dem1.rating.mean} trên 5, ${stats.dem1.rating.n} phản hồi`} style="margin-top:1rem">
+          <span class="n-badge">n = {stats.dem1.rating.n} phản hồi</span>
+          <div class="dots" role="img" aria-label={`Điểm trung bình ${stats.dem1.rating.mean} trên 5, ${stats.dem1.rating.n} phản hồi`} style="margin-top:1.1rem">
             {dots.map((s) => <span class="dot" title={`${s} sao`}></span>)}
           </div>
-          <p style="font-size:2.4rem;font-family:var(--font-display);font-style:italic;margin:.5rem 0 0">{stats.dem1.rating.mean.toString().replace('.', ',')} <span style="font-size:1.1rem">/ 5</span></p>
+          <div class="rating-display">
+            <span class="rating-num">{stats.dem1.rating.mean.toString().replace('.', ',')}</span>
+            <span class="rating-max">/ 5 sao</span>
+          </div>
           <figcaption>Mỗi chấm là một phản hồi (5 phản hồi 5 sao, 3 phản hồi 4 sao). Với mẫu này chúng tôi chỉ chia sẻ như một lát cắt, không như kết luận.</figcaption>
         </figure>
       </div>
@@ -50,12 +53,12 @@ const dots = [5, 4, 3, 2, 1].flatMap((s) => Array.from({ length: dist[String(s)]
       <h2 class="chart-title">OMLAS · Echoes of Asia</h2>
       <p class="prose">Chương trình quốc tế dành cho thanh niên nhiều quốc gia. Người học tự đánh giá năng lực trên thang 1–5 ở đầu kỳ (T0) và giữa kỳ (T1).</p>
       <div class="grid cols-2 top">
-        <BarList title="Người học theo hub quốc gia (T0)" items={stats.omlas.hubs_t0} n={stats.omlas.t0_n} />
-        <BarList title="Người học theo hub quốc gia (T1)" items={stats.omlas.hubs_t1} n={stats.omlas.t1_n} />
+        <BarList title="Người học theo hub quốc gia (T0)" items={stats.omlas.hubs_t0} n={stats.omlas.t0_n} color="sage" />
+        <BarList title="Người học theo hub quốc gia (T1)" items={stats.omlas.hubs_t1} n={stats.omlas.t1_n} color="cobalt" />
       </div>
       <Dumbbell title="Tự đánh giá năng lực: đầu kỳ và giữa kỳ" items={stats.omlas.items} n0={stats.omlas.t0_n} n1={stats.omlas.t1_n}
         note="Chấm rỗng = đầu kỳ (T0), chấm đặc = giữa kỳ (T1). Số bên phải là chênh lệch điểm trung bình." />
-      <div class="callout">{stats.omlas.caveat} Mục &ldquo;viết/thơ để xử lý cảm xúc&rdquo; gần như không đổi, nên cần theo dõi thêm về sau.</div>
+      <div class="callout" style="border-left-color:var(--chart-terracotta)">{stats.omlas.caveat} Mục &ldquo;viết/thơ để xử lý cảm xúc&rdquo; gần như không đổi, nên cần theo dõi thêm về sau.</div>
     </div>
   </section>
 </Base>

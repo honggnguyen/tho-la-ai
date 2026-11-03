@@ -1,9 +1,9 @@
 ---
 // Đường tăng trưởng (SVG dựng sẵn lúc build, không cần JS).
 interface Pt { label: string; value: number; }
-interface Props { title: string; points: Pt[]; note?: string; ylabel?: string; }
-const { title, points, note, ylabel = '' } = Astro.props;
-const W = 760, H = 330, L = 56, R = 28, T = 24, B = 92;
+interface Props { title: string; points: Pt[]; note?: string; ylabel?: string; strokeColor?: string; }
+const { title, points, note, ylabel = '', strokeColor = '#23497d' } = Astro.props;
+const W = 760, H = 330, L = 56, R = 28, T = 28, B = 92;
 const maxV = Math.ceil(Math.max(...points.map((p) => p.value)) / 100) * 100;
 const x = (i: number) => L + (i * (W - L - R)) / Math.max(points.length - 1, 1);
 const y = (v: number) => T + (1 - v / maxV) * (H - T - B);
@@ -16,21 +16,30 @@ const wrap = (s: string, n = 13) => {
   if (cur) out.push(cur); return out;
 };
 ---
-<figure class="figure wide">
-  <h3>{title}</h3>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p) => `${p.label} ${p.value}`).join(', ')}>
+<figure class="figure wide chart-growth">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+    <h3 style="margin:0">{title}</h3>
+    <span class="n-badge" style="border-color:var(--chart-cobalt);color:var(--chart-cobalt)">Chàm tri thức · Instagram</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p) => `${p.label} ${p.value}`).join(', ')} style="margin-top:1rem">
+    <defs>
+      <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color={strokeColor} stop-opacity="0.25" />
+        <stop offset="100%" stop-color={strokeColor} stop-opacity="0.02" />
+      </linearGradient>
+    </defs>
     {ticks.map((t) => (
       <g>
-        <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="#d4d4d4" stroke-width="1" />
-        <text x={L - 8} y={y(t) + 4} text-anchor="end" font-size="12" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{t}</text>
+        <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="#dedbd3" stroke-width="1" stroke-dasharray="2 3" />
+        <text x={L - 10} y={y(t) + 4} text-anchor="end" font-size="12" fill="#6f6f6f" font-family="Barlow Condensed, sans-serif">{t}</text>
       </g>
     ))}
-    <path d={area} fill="#1a1a1a" opacity=".12" />
-    <path d={path} fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round" />
+    <path d={area} fill="url(#lineGrad)" />
+    <path d={path} fill="none" stroke={strokeColor} stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" />
     {points.map((p, i) => (
       <g>
-        <circle cx={x(i)} cy={y(p.value)} r="5.5" fill="#1a1a1a" />
-        <text x={x(i)} y={y(p.value) - 12} text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a" font-family="Barlow Condensed, sans-serif">{p.value}</text>
+        <circle cx={x(i)} cy={y(p.value)} r="6" fill="#ffffff" stroke={strokeColor} stroke-width="3" />
+        <text x={x(i)} y={y(p.value) - 13} text-anchor="middle" font-size="14.5" font-weight="700" fill={strokeColor} font-family="Barlow Condensed, sans-serif">{p.value}</text>
         {wrap(p.label).map((ln, j) => (
           <text x={x(i)} y={H - B + 22 + j * 15} text-anchor="middle" font-size="12.5" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{ln}</text>
         ))}

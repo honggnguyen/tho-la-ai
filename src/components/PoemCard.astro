@@ -24,12 +24,33 @@ const rest = needsMore ? lines.slice(previewLines).join('\n') : '';
       <audio controls preload="none" src={u(poem.audio)}></audio>
     </div>
   )}
-  {poem.text && <div class="poem-text">{preview}{needsMore ? '…' : ''}</div>}
-  {needsMore && (
-    <details class="poem-more">
-      <summary>Đọc toàn bài</summary>
-      <div class="poem-text">{rest}</div>
-    </details>
+  {poem.text && (
+    <div class="poem-body-wrap">
+      {!needsMore ? (
+        <div class="poem-text">{poem.text}</div>
+      ) : (
+        <div class="poem-expandable">
+          <div class="poem-text poem-preview">{preview}…</div>
+          <div class="poem-text poem-full" hidden>{poem.text}</div>
+          <button type="button" class="poem-expand-btn">Đọc toàn bài ↓</button>
+        </div>
+      )}
+    </div>
   )}
   {poem.note && <p class="poem-note">{poem.note}</p>}
 </article>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    const btn = target?.closest('.poem-expand-btn');
+    if (!btn) return;
+    const parent = btn.closest('.poem-expandable');
+    if (!parent) return;
+    const preview = parent.querySelector('.poem-preview') as HTMLElement | null;
+    const full = parent.querySelector('.poem-full') as HTMLElement | null;
+    if (preview) preview.hidden = true;
+    if (full) full.hidden = false;
+    btn.remove();
+  });
+</script>

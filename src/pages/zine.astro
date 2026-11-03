@@ -4,6 +4,79 @@ import zinePages from '../data/zine.json';
 import { u } from '../lib/url';
 
 const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
+
+const chapters = [
+  {
+    num: 'Phần I',
+    title: 'Khởi nguồn & Tuyên ngôn nghệ thuật',
+    range: 'Slide 1 – 8',
+    summary: 'Khởi xướng từ sinh viên Ngữ văn ĐH Sư phạm Hà Nội: đi tìm bản thể, giải phóng TÔI song hành giải phóng THƠ, phá bỏ định kiến và niêm luật gò bó.',
+    slides: [
+      { slide: 1, titleVi: 'Bìa Zine "Thơ-là-ai?"', titleEn: 'Cover: Who is Poetry? Zine', desc: 'Ấn phẩm nghệ thuật & tuyên ngôn dự án' },
+      { slide: 2, titleVi: 'Bản thể: Tôi? Tôi? Thơ? Là ai? Là gì?', titleEn: 'Identity: Me? Poetry? Who & What?', desc: 'Những câu hỏi tự vấn về bản thân và thi ca' },
+      { slide: 3, titleVi: 'Định kiến & Lối mòn về thơ', titleEn: 'Preconceptions & Rhyme Constraints', desc: 'Thơ phải có vần? Vẻ đẹp của sự rung cảm và chạm' },
+      { slide: 4, titleVi: 'Song đề bản thể & "Gông cùm vô hình"', titleEn: 'The Existential Dilemma & Invisible Chains', desc: 'Thoát khỏi những nhãn dán định kiến xã hội' },
+      { slide: 5, titleVi: 'Tuyên ngôn: Giải phóng "Tôi" & "Thơ"', titleEn: 'Manifesto: Emancipating Me & Poetry', desc: 'Hành trình sáng tạo không khoảng cách' },
+      { slide: 6, titleVi: 'Không có quy tắc nào cả', titleEn: 'There are no rules', desc: 'Quy tắc để sáng tạo và thể nghiệm là: không có quy tắc' },
+      { slide: 7, titleVi: 'Giới thiệu dự án Thơ-là-ai?', titleEn: 'About the Project: Who is Poetry?', desc: 'Thực hành nghệ thuật & văn chương đương đại' },
+      { slide: 8, titleVi: 'Khát vọng & Sứ mệnh tuổi trẻ', titleEn: 'Youth Vision & Mission', desc: 'Kết nối những tâm hồn đồng điệu giữa cuộc sống xô bồ' },
+    ],
+  },
+  {
+    num: 'Phần II',
+    title: 'Đêm thơ diễn xướng đầu tiên',
+    range: 'Slide 9 – 18',
+    summary: 'Đêm diễn xướng mở màn chuỗi dự án tại Kim Mã (21/11/2025): kết hợp thơ, kịch, âm thanh và cuộc đối thoại liên thế hệ giữa các thế hệ người yêu thơ.',
+    slides: [
+      { slide: 9, titleVi: 'Đêm thơ diễn xướng "Thơ-là-ai?" #1', titleEn: 'Poetry Performance Night #1', desc: '19:30 – 22:00 ngày 21/11/2025 tại Kim Mã, Hà Nội' },
+      { slide: 10, titleVi: 'Tĩnh lặng cùng chính mình', titleEn: 'Quietude with oneself', desc: 'Đã bao lâu rồi bạn chưa thật sự ngồi yên?' },
+      { slide: 11, titleVi: 'Đưa thơ lên không gian sân khấu', titleEn: 'Bringing poetry to the stage', desc: 'Phá vỡ giới hạn trang giấy để chạm vào khán giả' },
+      { slide: 12, titleVi: 'Những thảo luận liên thế hệ', titleEn: 'Intergenerational dialogues', desc: 'Sự gặp gỡ giữa nhà thơ gạo cội và người trẻ' },
+      { slide: 13, titleVi: 'Góc nhìn & Tiếng nói người trẻ', titleEn: 'Youth perspectives', desc: 'Cảm nhận đa chiều về không gian diễn xướng' },
+      { slide: 14, titleVi: 'Kết nối không ranh giới', titleEn: 'Connection without boundaries', desc: 'Khi thơ trở thành chiếc cầu nối tâm hồn' },
+      { slide: 15, titleVi: 'Khoảnh khắc sân khấu & Ánh sáng', titleEn: 'Stage & lighting moments', desc: 'Hình ảnh trình diễn thị giác' },
+      { slide: 16, titleVi: 'Tiếng đọc & Âm vang cảm xúc', titleEn: 'Voices & emotional resonance', desc: 'Lời thơ cất lên thành thanh âm và nhịp điệu' },
+      { slide: 17, titleVi: 'Không gian mở của khán phòng', titleEn: 'Auditorium intimacy', desc: 'Sự tương tác giữa người biểu diễn và người xem' },
+      { slide: 18, titleVi: 'Dư âm & Phản hồi khán giả', titleEn: 'Feedback & audience warmth', desc: 'Niềm vui sướng khi nhận được những chia sẻ chân thành' },
+    ],
+  },
+  {
+    num: 'Phần III',
+    title: 'Không gian A Queer Museum & Chồng chữ',
+    range: 'Slide 19 – 21',
+    summary: 'Chuỗi workshop tương tác đa giác quan tại A Queer Museum (Ngọc Lâm, Long Biên): cắt dán từ vựng, thể nghiệm thị giác và vượt qua nỗi sợ sáng tác.',
+    slides: [
+      { slide: 19, titleVi: 'Series "Nghe–Thấy–Nhau"', titleEn: 'Series "Hear–See–Each Other"', desc: 'Không gian tương tác và lắng nghe tại 103 Ngọc Lâm' },
+      { slide: 20, titleVi: '"Lần đầu tiên" – Tự do viết và chia sẻ', titleEn: '"The First Time" – Freedom to Write', desc: 'Lần đầu tiên viết thơ, gạt bỏ lo lắng hay/dở' },
+      { slide: 21, titleVi: 'Workshop "Chồng chữ"', titleEn: 'Workshop "Layering Words"', desc: 'Nghệ thuật cắt dán (collage), tái định hình văn bản thơ' },
+    ],
+  },
+  {
+    num: 'Phần IV',
+    title: 'Dự án phim "Vọng" & Hàn Mặc Tử',
+    range: 'Slide 22 – 28',
+    summary: 'Dự án thể nghiệm điện ảnh thơ lấy cảm hứng từ thế giới thi ca Hàn Mặc Tử: đêm diễn "Chơi giữa mùa trăng", mood board và concept nghệ thuật.',
+    slides: [
+      { slide: 22, titleVi: 'Tổng quan dự án điện ảnh thơ "Vọng"', titleEn: 'Overview: "Echo" Poetry Film', desc: 'Mở rộng tiếp cận thơ ca Việt Nam qua ngôn ngữ điện ảnh' },
+      { slide: 23, titleVi: 'Khán giả mục tiêu & Tính nghệ thuật', titleEn: 'Audience & Artistic vision', desc: 'Hướng tới giới trẻ, sinh viên và người yêu nghệ thuật thể nghiệm' },
+      { slide: 24, titleVi: 'Sự kiện "Chơi giữa mùa trăng"', titleEn: 'Event "Playing in the Moonlight"', desc: 'Tại Tổ Chim Xanh (24/04/2026): đọc thơ theo nhóm và diễn xướng' },
+      { slide: 25, titleVi: 'Kế hoạch tổ chức & Đơn vị đồng hành', titleEn: 'Organization plan & Partners', desc: 'Mạng lưới hỗ trợ và lộ trình sản xuất' },
+      { slide: 26, titleVi: 'Ý tưởng kịch bản & Nhân vật nhà thơ', titleEn: 'Script concept & The Poet persona', desc: 'Trạng thái cách ly khỏi thế giới và hành trình giải phóng nội tâm' },
+      { slide: 27, titleVi: 'Mood Board: Tone màu & Ánh trăng', titleEn: 'Mood Board: Film tone & color palette', desc: 'Bảng màu điện ảnh, ánh sáng trăng và các lát cắt phân cảnh' },
+      { slide: 28, titleVi: 'Khách mời & Đội ngũ sản xuất', titleEn: 'Guest Artists & Creative team', desc: 'Thái Vũ (Founder All About Movies) và cộng sự' },
+    ],
+  },
+  {
+    num: 'Phần V',
+    title: 'Thông tin & Lời cảm ơn',
+    range: 'Slide 29 – 30',
+    summary: 'Đội ngũ điều phối, thông tin liên hệ và lời tri ân gửi tới những người đã đồng hành cùng Thơ-là-ai.',
+    slides: [
+      { slide: 29, titleVi: 'Đội ngũ điều phối & Thông tin', titleEn: 'Coordination team & Contact', desc: 'Ban điều phối tổ chức và sản xuất dự án' },
+      { slide: 30, titleVi: 'Lời cảm ơn từ Thơ-là-ai?', titleEn: 'Thank you from Who is Poetry?', desc: 'Tri ân người tham gia, khán giả và các cộng sự' },
+    ],
+  },
+];
 ---
 <Base title="Zine Thơ-là-ai? (Who is Poetry?)" description="Đọc trực tuyến ấn phẩm Zine song ngữ 60 trang của dự án Thơ-là-ai? (Who is Poetry?).">
   <section class="section">
@@ -13,8 +86,8 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
       <p class="lead">Ấn phẩm tổng hợp tuyên ngôn nghệ thuật, hành trình giải phóng &ldquo;TÔI&rdquo; song hành với giải phóng &ldquo;THƠ&rdquo;, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và dự án phim ngắn &ldquo;Vọng&rdquo;.</p>
 
       <div class="filter-bar" role="region" aria-label="Chế độ ngôn ngữ Zine">
-        <button type="button" class="filter-btn zine-mode" data-mode="vi" aria-pressed="true">Bản Tiếng Việt (30 trang)</button>
-        <button type="button" class="filter-btn zine-mode" data-mode="en" aria-pressed="false">English Version (30 pages)</button>
+        <button type="button" class="filter-btn zine-mode" data-mode="vi" aria-pressed="true">Bản Tiếng Việt (30 slide)</button>
+        <button type="button" class="filter-btn zine-mode" data-mode="en" aria-pressed="false">English Version (30 slides)</button>
         <button type="button" class="filter-btn zine-mode" data-mode="all" aria-pressed="false">Song ngữ toàn bộ (60 trang)</button>
       </div>
 
@@ -23,67 +96,152 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
           <img id="zine-active-img" src={pagesWithUrl[0].fullSrc} alt={pagesWithUrl[0].alt} width={pagesWithUrl[0].width} height={pagesWithUrl[0].height} />
         </div>
         <div class="zine-controls">
-          <div style="display:flex;gap:.5rem;align-items:center">
+          <div class="zine-ctrl-group">
             <button type="button" class="btn light" id="zine-prev">← Trang trước</button>
             <button type="button" class="btn light" id="zine-next">Trang tiếp →</button>
           </div>
-          <span id="zine-indicator" style="font-size:1.1rem;letter-spacing:.06em">Trang 1 / 30 (Bản Tiếng Việt)</span>
-          <button type="button" class="btn ghost-light" id="zine-fs">Toàn màn hình ⛶</button>
+
+          <div class="zine-ctrl-group">
+            <label for="zine-jump-select" class="sr-only">Chuyển nhanh đến slide</label>
+            <select id="zine-jump-select" class="zine-select">
+              <!-- Rendered dynamically by JS -->
+            </select>
+          </div>
+
+          <div class="zine-ctrl-group">
+            <span id="zine-indicator" style="font-size:1.05rem;letter-spacing:.05em">Slide 1 / 30 (Bản Tiếng Việt)</span>
+            <button type="button" class="btn ghost-light" id="zine-fs" title="Xem toàn màn hình">Toàn màn hình ⛶</button>
+          </div>
         </div>
       </div>
 
-      <p class="meta" style="margin-top:.75rem">Mẹo: Bạn có thể dùng phím mũi tên <code>←</code> <code>→</code> trên bàn phím để lật trang, hoặc bấm vào bất kỳ trang nào ở lưới bên dưới.</p>
+      <p class="meta" style="margin-top:.85rem">Mẹo: Bạn có thể dùng phím mũi tên <code>←</code> <code>→</code> trên bàn phím để lật trang, hoặc bấm vào bất kỳ mục nào trong <strong>Mục lục chuyên đề</strong> bên dưới để nhảy thẳng đến trang đó.</p>
 
-      <h2 style="margin-top:3rem">Tất cả các trang</h2>
-      <div class="zine-thumbs" id="zine-thumbs">
-        {pagesWithUrl.map((p) => (
-          <button
-            type="button"
-            class="zine-thumb"
-            data-page={p.page}
-            data-lang={p.lang}
-            data-src={p.fullSrc}
-            data-alt={p.alt}
-          >
-            <img src={p.fullSrc} alt={p.alt} loading="lazy" width={p.width} height={p.height} />
-            <span>Trang {p.page} · {p.lang === 'vi' ? `Slide ${p.slide} (VI)` : `Slide ${p.slide} (EN)`}</span>
-          </button>
-        ))}
-      </div>
+      <!-- Mục lục chuyên đề (Table of Contents) thay thế cho lưới ảnh thumbnail rối mắt -->
+      <section class="zine-toc-section" aria-label="Mục lục ấn phẩm Zine">
+        <div class="zine-toc-head">
+          <div>
+            <p class="eyebrow">Cấu trúc nội dung</p>
+            <h2>Mục lục Zine</h2>
+          </div>
+          <span class="meta">5 phần chuyên đề · Bấm để xem ngay</span>
+        </div>
+
+        <div class="zine-toc-grid">
+          {chapters.map((ch) => (
+            <div class="zine-chapter">
+              <div class="zine-chapter-header">
+                <div>
+                  <span class="zine-chapter-badge">{ch.num} · {ch.range}</span>
+                  <h3 style="margin-top:.4rem">{ch.title}</h3>
+                </div>
+              </div>
+              <p class="zine-chapter-desc">{ch.summary}</p>
+              <ul class="zine-slide-list">
+                {ch.slides.map((s) => (
+                  <li>
+                    <button
+                      type="button"
+                      class="zine-slide-btn"
+                      data-slide={s.slide}
+                      data-title-vi={s.titleVi}
+                      data-title-en={s.titleEn}
+                    >
+                      <span class="slide-num">Slide {s.slide}</span>
+                      <span class="slide-title">{s.titleVi}</span>
+                      <span class="slide-meta">{s.desc}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   </section>
 </Base>
 
 <script>
-  const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('#zine-thumbs .zine-thumb'));
+  import zinePages from '../data/zine.json';
+  import { u } from '../lib/url';
+
+  const pages = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
   const modeBtns = document.querySelectorAll<HTMLButtonElement>('.zine-mode');
   const activeImg = document.getElementById('zine-active-img') as HTMLImageElement;
   const indicator = document.getElementById('zine-indicator')!;
+  const jumpSelect = document.getElementById('zine-jump-select') as HTMLSelectElement;
   const reader = document.getElementById('zine-reader')!;
+  const slideBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.zine-slide-btn'));
+
   let mode: 'vi' | 'en' | 'all' = 'vi';
-  let filtered: HTMLButtonElement[] = [];
+  let currentList: typeof pages = [];
   let idx = 0;
+
+  function populateJumpSelect() {
+    jumpSelect.innerHTML = '';
+    currentList.forEach((item, i) => {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      if (mode === 'all') {
+        opt.textContent = `Trang ${item.page}: Slide ${item.slide} (${item.lang.toUpperCase()})`;
+      } else {
+        const matchingBtn = slideBtns.find((b) => b.dataset.slide === String(item.slide));
+        const title = matchingBtn
+          ? (mode === 'en' ? matchingBtn.dataset.titleEn : matchingBtn.dataset.titleVi)
+          : `Slide ${item.slide}`;
+        opt.textContent = `Slide ${item.slide}: ${title}`;
+      }
+      jumpSelect.appendChild(opt);
+    });
+  }
+
+  function updateTOCLanguage() {
+    slideBtns.forEach((btn) => {
+      const titleSpan = btn.querySelector('.slide-title');
+      if (titleSpan) {
+        titleSpan.textContent = mode === 'en' ? (btn.dataset.titleEn || '') : (btn.dataset.titleVi || '');
+      }
+    });
+  }
 
   function updateMode(newMode: 'vi' | 'en' | 'all') {
     mode = newMode;
-    thumbs.forEach((t) => {
-      const show = mode === 'all' || t.dataset.lang === mode;
-      t.style.display = show ? '' : 'none';
-    });
-    filtered = thumbs.filter((t) => t.style.display !== 'none');
+    if (mode === 'all') {
+      currentList = [...pages];
+    } else {
+      currentList = pages.filter((p) => p.lang === mode);
+    }
+    populateJumpSelect();
+    updateTOCLanguage();
     showSlide(0);
   }
 
-  function showSlide(i: number) {
-    if (!filtered.length) return;
-    idx = (i + filtered.length) % filtered.length;
-    const t = filtered[idx];
-    activeImg.src = t.dataset.src || '';
-    activeImg.alt = t.dataset.alt || '';
-    thumbs.forEach((x) => x.removeAttribute('aria-current'));
-    t.setAttribute('aria-current', 'true');
-    const modeLabel = mode === 'vi' ? 'Bản Tiếng Việt' : mode === 'en' ? 'English Version' : 'Song ngữ';
-    indicator.textContent = `Trang ${idx + 1} / ${filtered.length} (${modeLabel} · p.${t.dataset.page})`;
+  function showSlide(newIdx: number) {
+    if (!currentList.length) return;
+    idx = (newIdx + currentList.length) % currentList.length;
+    const cur = currentList[idx];
+
+    activeImg.src = cur.fullSrc;
+    activeImg.alt = cur.alt || `Slide ${cur.slide}`;
+
+    // Update select
+    jumpSelect.value = String(idx);
+
+    // Update indicator
+    const modeLabel = mode === 'vi' ? 'Bản Tiếng Việt' : mode === 'en' ? 'English Version' : 'Song ngữ toàn bộ';
+    indicator.textContent = mode === 'all'
+      ? `Trang ${idx + 1} / ${currentList.length} (Slide ${cur.slide} · ${cur.lang.toUpperCase()})`
+      : `Slide ${idx + 1} / ${currentList.length} (${modeLabel} · p.${cur.page})`;
+
+    // Highlight active slide in TOC
+    slideBtns.forEach((btn) => {
+      if (btn.dataset.slide === String(cur.slide)) {
+        btn.setAttribute('aria-current', 'true');
+      } else {
+        btn.removeAttribute('aria-current');
+      }
+    });
   }
 
   modeBtns.forEach((b) => {
@@ -94,14 +252,22 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
     });
   });
 
-  thumbs.forEach((t) => {
-    t.addEventListener('click', () => {
-      const pos = filtered.indexOf(t);
-      if (pos >= 0) {
-        showSlide(pos);
+  slideBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetSlide = parseInt(btn.dataset.slide || '1', 10);
+      const targetIdx = currentList.findIndex((p) => p.slide === targetSlide);
+      if (targetIdx >= 0) {
+        showSlide(targetIdx);
         reader.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
+  });
+
+  jumpSelect.addEventListener('change', () => {
+    const chosen = parseInt(jumpSelect.value, 10);
+    if (!isNaN(chosen)) {
+      showSlide(chosen);
+    }
   });
 
   document.getElementById('zine-prev')?.addEventListener('click', () => showSlide(idx - 1));
@@ -112,11 +278,11 @@ const pagesWithUrl = zinePages.map((p) => ({ ...p, fullSrc: u(p.src) }));
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLSelectElement) return;
     if (e.key === 'ArrowLeft') showSlide(idx - 1);
     if (e.key === 'ArrowRight') showSlide(idx + 1);
   });
 
+  // Initialize
   updateMode('vi');
 </script>
-
