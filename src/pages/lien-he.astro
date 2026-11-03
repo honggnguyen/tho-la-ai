@@ -2,17 +2,58 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
-<Base title="Liên hệ">
+<Base title="Liên hệ · Thơ-là-ai?">
   <section class="section">
-    <div class="wrap prose">
-      <p class="eyebrow">Kết nối</p>
-      <h1 class="shadowed">Liên hệ</h1>
-      <p class="lead">Bạn muốn tham gia, hợp tác hay đơn giản là hỏi &ldquo;thơ là ai&rdquo;? Hãy viết cho chúng tôi.</p>
-      <ul>
-        <li>Email: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
-        <li>Facebook: <a href={site.facebook} rel="noopener">Thơ là ai? Project</a></li>
-        <li>Instagram: <a href={site.instagram} rel="noopener">@tho.la.ai</a></li>
-      </ul>
+    <div class="wrap">
+      <div class="about-hero-grid">
+        <div class="about-hero-copy">
+          <p class="eyebrow">Kết nối &amp; Đồng hành</p>
+          <h1 class="shadowed">Liên hệ</h1>
+          <p class="lead">
+            Bạn muốn gửi tác phẩm thơ, đề xuất không gian trình diễn, hợp tác tổ chức workshop hay đơn giản là cùng hỏi &ldquo;thơ là ai&rdquo;? Hãy viết cho chúng tôi.
+          </p>
+          <div class="pillars-grid" style="grid-template-columns:1fr;gap:1rem;margin-top:1.5rem">
+            <div class="form-card">
+              <span class="form-tag">01 · Dành cho người viết &amp; nghệ sĩ</span>
+              <h4>Đóng góp tác phẩm &amp; Biểu diễn</h4>
+              <p>Gửi bản thảo thơ, bản thu âm hoặc đăng ký tham gia trình diễn trong các đêm thơ diễn xướng và ấn phẩm Zine tiếp theo.</p>
+            </div>
+            <div class="form-card">
+              <span class="form-tag">02 · Dành cho không gian &amp; đối tác</span>
+              <h4>Hợp tác tổ chức &amp; Tài trợ</h4>
+              <p>Kết nối đồng tổ chức workshop thực hành nghệ thuật, đối thoại văn chương hoặc hỗ trợ nguồn lực phát triển cộng đồng thơ trẻ.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="project-profile-card" aria-label="Kênh liên hệ chính thức">
+          <div class="profile-card-header">
+            <span class="profile-badge">✦ Kênh chính thức</span>
+            <h2>Hộp thư &amp; Mạng xã hội</h2>
+          </div>
+          <dl class="profile-dl">
+            <div>
+              <dt>Thư điện tử (Email)</dt>
+              <dd><a href={`mailto:${site.contactEmail}`} style="font-weight:600;color:var(--brand-cobalt)">{site.contactEmail}</a></dd>
+            </div>
+            <div>
+              <dt>Instagram</dt>
+              <dd><a href={site.instagram} target="_blank" rel="noopener">@tho.la.ai ↗</a></dd>
+            </div>
+            <div>
+              <dt>Facebook</dt>
+              <dd><a href={site.facebook} target="_blank" rel="noopener">Thơ là ai? Project ↗</a></dd>
+            </div>
+            <div>
+              <dt>Địa điểm hoạt động</dt>
+              <dd>Hà Nội, Việt Nam</dd>
+            </div>
+          </dl>
+          <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px dashed var(--pearl-2)">
+            <a class="btn" href={`mailto:${site.contactEmail}`} style="width:100%;text-align:center">Gửi Email ngay →</a>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 </Base>

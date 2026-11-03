@@ -69,12 +69,23 @@ const eventPoems = poems.filter((p) => p.eventSlug === e.id);
 
       {photos.length > 0 && (
         <div style="margin-top:4rem">
-          <p class="eyebrow">Tư liệu hình ảnh · {photos.length} ảnh</p>
-          <h2>Khoảnh khắc</h2>
-          <div class="gallery-masonry" style="margin-top:1.25rem">
-            {photos.map((img) => (
-              <a class="gallery-item" href={u('/thu-vien')}>
-                <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Tư liệu hình ảnh · {photos.length} tư liệu</p>
+              <h2>Khoảnh khắc</h2>
+            </div>
+            <a class="link-arrow" href={u(`/thu-vien#album-${e.id}`)}>Xem trọn bộ {photos.length} ảnh &amp; bản thảo →</a>
+          </div>
+          <div class="album-grid" style="margin-top:1.25rem">
+            {photos.slice(0, 8).map((img) => (
+              <a class="gallery-item" href={u(`/thu-vien#album-${e.id}`)}>
+                <div class="gallery-thumb-box">
+                  <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
+                </div>
+                <div class="gallery-caption">
+                  <span class="prog">{img.kind === 'product' ? '✦ Sản phẩm lưu trữ' : d.title}</span>
+                  <span>{img.title}</span>
+                </div>
               </a>
             ))}
           </div>

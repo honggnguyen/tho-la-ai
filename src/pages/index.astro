@@ -97,8 +97,13 @@ const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(
       <div class="gallery-square">
         {featuredPhotos.map((img) => (
           <a class="gallery-item" href={u(`/chuong-trinh/${img.eventSlug}`)}>
-            <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
-            <div class="gallery-caption"><span class="prog">{img.program}</span></div>
+            <div class="gallery-thumb-box">
+              <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
+            </div>
+            <div class="gallery-caption">
+              <span class="prog">{img.program}</span>
+              <span>{img.title}</span>
+            </div>
           </a>
         ))}
       </div>
@@ -110,7 +115,7 @@ const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(
       <div>
         <p class="eyebrow">Ấn phẩm kỹ thuật số</p>
         <h2>Zine &ldquo;Thơ-là-ai?&rdquo;</h2>
-        <p style="font-size:1.15rem;opacity:.9;max-width:44ch">60 trang song ngữ Việt – Anh: tuyên ngôn nghệ thuật, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và hậu trường phim ngắn &ldquo;Vọng&rdquo;.</p>
+        <p style="font-size:1.12rem;opacity:.92;max-width:46ch">60 trang song ngữ Việt – Anh: tuyên ngôn nghệ thuật, các đêm thơ diễn xướng, chuỗi thực hành tại A Queer Museum và hậu trường phim ngắn &ldquo;Vọng&rdquo;.</p>
         <p style="margin-top:1.5rem"><a class="btn light" href={u('/zine')}>Lật đọc Zine →</a></p>
       </div>
       <a class="zine-cover" href={u('/zine')}><img src={u('/zine/p01.webp')} alt="Bìa Zine Thơ-là-ai?" width="1224" height="689" /></a>
@@ -118,11 +123,32 @@ const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(
   </section>
 
   <section class="section">
-    <div class="wrap prose">
-      <p class="eyebrow">Từ người tham dự</p>
-      <blockquote>&ldquo;Hóa ra Queer nó không chỉ ở giới tính mà nó còn ở vần thơ.&rdquo;</blockquote>
-      <p>Chúng tôi tin thơ có thể bắt đầu từ chất liệu đời sống bình dị, và mỗi người, kể cả khi chưa từng viết, đều có thể có một bài thơ của riêng mình.</p>
-      {planned.length > 0 && <p class="meta">Đang ấp ủ: {planned.map((e) => e.data.title).join(' · ')}.</p>}
+    <div class="wrap">
+      <div class="about-hero-grid" style="align-items:center">
+        <div>
+          <p class="eyebrow">Tiếng vọng từ người tham dự</p>
+          <div class="about-quote-box" style="margin:0.8rem 0 1.2rem">
+            <blockquote>&ldquo;Hóa ra Queer nó không chỉ ở giới tính mà nó còn ở vần thơ.&rdquo;</blockquote>
+          </div>
+          <p style="font-size:1.1rem;color:var(--ink-soft);margin:0">
+            Chúng tôi tin thơ có thể bắt đầu từ chất liệu đời sống bình dị, và mỗi người — kể cả khi chưa từng viết — đều có thể cất lên một bài thơ của riêng mình trong một không gian an toàn, tôn trọng mọi biểu đạt.
+          </p>
+        </div>
+        {planned.length > 0 && (
+          <aside class="project-profile-card">
+            <div class="profile-card-header">
+              <span class="profile-badge">✦ Hành trình sắp tới</span>
+              <h2>Dự án đang ấp ủ</h2>
+            </div>
+            <p style="margin:0 0 1rem;font-size:.98rem;color:var(--ink-soft)">Các không gian thực hành và đêm thơ tiếp theo đang được đội ngũ chuẩn bị:</p>
+            <ul style="margin:0;padding-left:1.2rem;display:grid;gap:.45rem;font-weight:500">
+              {planned.map((e) => (
+                <li><a href={u(`/chuong-trinh/${e.id}`)} style="text-decoration:none">{e.data.title} →</a></li>
+              ))}
+            </ul>
+          </aside>
+        )}
+      </div>
     </div>
   </section>
 </Base>
