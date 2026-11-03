@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "stats": "python3 scripts/build_stats.py",
-    "check:pii": "python3 scripts/check_pii.py"
+    "check:pii": "python3 scripts/check_pii.py",
+    "deploy": "npm run check:pii && npm run build && npx --yes wrangler@3 pages deploy dist --project-name=tho-la-ai"
   },
   "dependencies": {
     "astro": "^5.0.0"
