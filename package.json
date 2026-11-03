@@ -1,0 +1,16 @@
+{
+  "name": "tla-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "stats": "python3 scripts/build_stats.py",
+    "check:pii": "python3 scripts/check_pii.py"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}

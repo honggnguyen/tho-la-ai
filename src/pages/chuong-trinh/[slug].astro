@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { u } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const all = await getCollection('events');
+  return all.map((e) => ({ params: { slug: e.id }, props: { e } }));
+}
+const { e } = Astro.props;
+const { Content } = await render(e);
+const d = e.data;
+const statusLabel: Record<string, string> = { done: 'Đã diễn ra', ongoing: 'Đang diễn ra', planned: 'Dự kiến' };
+---
+<Base title={d.title} description={d.summary}>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow"><a href={u('/chuong-trinh')} style="color:inherit">← Chương trình</a></p>
+      <span class={`tag ${d.status}`}>{statusLabel[d.status]} · {d.type}</span>
+      <h1 class="shadowed" style="margin-top:1rem">{d.title}</h1>
+      {d.subtitle && <p class="lead">{d.subtitle}</p>}
+      <dl class="meta" style="display:grid;grid-template-columns:max-content 1fr;gap:.25rem 1.2rem;margin:2rem 0">
+        {d.dateLabel && <><dt>Thời gian</dt><dd style="margin:0">{d.dateLabel}</dd></>}
+        {d.venue && <><dt>Địa điểm</dt><dd style="margin:0">{d.venue}</dd></>}
+        {d.attendeesLabel && <><dt>Quy mô</dt><dd style="margin:0">{d.attendeesLabel}</dd></>}
+        {d.partners.length > 0 && <><dt>Đối tác</dt><dd style="margin:0">{d.partners.join(', ')}</dd></>}
+      </dl>
+      <div class="prose"><p style="font-size:1.25rem">{d.summary}</p><Content /></div>
+      {d.youtube && (
+        <div style="margin-top:2rem;aspect-ratio:16/9;max-width:800px">
+          <iframe width="100%" height="100%" src={`https://www.youtube-nocookie.com/embed/${d.youtube}`} title={d.title} loading="lazy" allowfullscreen style="border:0"></iframe>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

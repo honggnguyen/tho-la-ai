@@ -1,0 +1,28 @@
+---
+// Biểu đồ cột ngang bằng HTML/CSS thuần: nhẹ, truy cập tốt, kèm bảng số liệu thay thế.
+interface Props { title: string; items: Record<string, number>; n: number; note?: string; unit?: string; }
+const { title, items, n, note, unit = 'người' } = Astro.props;
+const entries = Object.entries(items);
+const max = Math.max(...entries.map(([, v]) => v), 1);
+---
+<figure class="figure">
+  <h3>{title}</h3>
+  <span class="n-badge">n = {n}</span>
+  <div class="bars" role="img" aria-label={`${title}: ` + entries.map(([k, v]) => `${k} ${v}`).join(', ')}>
+    {entries.map(([k, v]) => (
+      <div class="bar-row">
+        <span>{k}</span>
+        <div class="bar-track"><div class="bar-fill" style={`width:${(v / max) * 100}%`}></div></div>
+        <span class="val">{v}</span>
+      </div>
+    ))}
+  </div>
+  <details class="alt">
+    <summary>Xem dạng bảng</summary>
+    <table class="data">
+      <thead><tr><th>Nhóm</th><th>Số {unit}</th></tr></thead>
+      <tbody>{entries.map(([k, v]) => <tr><td>{k}</td><td>{v}</td></tr>)}</tbody>
+    </table>
+  </details>
+  {note && <figcaption>{note}</figcaption>}
+</figure>

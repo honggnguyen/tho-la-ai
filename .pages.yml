@@ -1,0 +1,62 @@
+# Cấu hình Pages CMS (https://pagescms.org): giao diện chỉnh sửa web bằng form, không cần biết code.
+# Người biên tập đăng nhập bằng GitHub, sửa xong bấm Lưu → web tự cập nhật sau ~1 phút.
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: events
+    label: Chương trình
+    type: collection
+    path: src/content/events
+    format: yaml-frontmatter
+    view:
+      fields: [title, status, type, dateLabel]
+      primary: title
+    fields:
+      - { name: title, label: Tên chương trình, type: string, required: true }
+      - { name: subtitle, label: Phụ đề, type: string }
+      - name: status
+        label: Trạng thái
+        type: select
+        required: true
+        options:
+          values:
+            - { value: done, label: Đã diễn ra }
+            - { value: ongoing, label: Đang diễn ra }
+            - { value: planned, label: Dự kiến (chưa triển khai) }
+      - name: type
+        label: Loại
+        type: select
+        required: true
+        options:
+          values: [Đêm thơ, Series, Workshop, Phim & Trình diễn, Chương trình quốc tế, Câu lạc bộ]
+      - { name: sortDate, label: Ngày (để sắp xếp), type: date }
+      - { name: dateLabel, label: Thời gian hiển thị (ví dụ "08/11/2025"), type: string }
+      - { name: venue, label: Địa điểm, type: string }
+      - { name: partners, label: Đối tác, type: string, list: true }
+      - { name: attendeesLabel, label: Quy mô tham dự, type: string }
+      - { name: summary, label: Tóm tắt (1-2 câu), type: text, required: true }
+      - { name: youtube, label: Mã video YouTube (đoạn sau "v="), type: string }
+      - { name: needsConfirm, label: Cần xác nhận thông tin, type: boolean }
+      - { name: body, label: Nội dung chi tiết, type: rich-text }
+
+  - name: site
+    label: Thông tin chung & con số trang chủ
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: name, label: Tên dự án, type: string }
+      - { name: tagline, label: Khẩu hiệu, type: string }
+      - { name: description, label: Mô tả ngắn (SEO), type: text }
+      - { name: contactEmail, label: Email liên hệ công khai, type: string }
+      - { name: facebook, label: Link Facebook, type: string }
+      - { name: instagram, label: Link Instagram, type: string }
+      - name: numbers
+        label: Các con số ở trang chủ
+        type: object
+        list: true
+        fields:
+          - { name: value, label: Con số, type: string }
+          - { name: label, label: Chú thích, type: string }

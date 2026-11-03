@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="Liên hệ">
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">Kết nối</p>
+      <h1 class="shadowed">Liên hệ</h1>
+      <p class="lead">Bạn muốn tham gia, hợp tác hay đơn giản là hỏi &ldquo;thơ là ai&rdquo;? Hãy viết cho chúng tôi.</p>
+      <ul>
+        <li>Email: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
+        <li>Facebook: <a href={site.facebook} rel="noopener">Thơ là ai? Project</a></li>
+        <li>Instagram: <a href={site.instagram} rel="noopener">@tho.la.ai</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="Về TLA">
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">Giới thiệu dự án</p>
+      <h1 class="shadowed">Thơ là ai?</h1>
+      <p class="lead">Một dự án thực hành nghệ thuật và văn chương, mở rộng cách tiếp cận ngôn ngữ và thi ca trong đời sống đương đại.</p>
+      <p>Thông qua các hoạt động sáng tạo và thực hành nghệ thuật, dự án khơi gợi khả năng khám phá tính thơ từ những chất liệu đời sống bình dị, và chuyển hóa tự sự cá nhân thành biểu đạt có chiều sâu.</p>
+      <p>Dự án khởi xướng từ khát vọng của sinh viên khoa Ngữ văn, Trường Đại học Sư phạm Hà Nội, nhằm tạo ra một <strong>không gian an toàn</strong> để người trẻ đối thoại qua những thể nghiệm thơ ca: thể thức là những <em>thỏa thuận</em>, không phải <em>quy tắc</em>.</p>
+
+      <h2 style="margin-top:3rem">Vì sao &ldquo;Tôi&rdquo; và &ldquo;Thơ&rdquo; cùng cần được giải phóng?</h2>
+      <p>Chúng ta thường đóng khung &ldquo;tôi&rdquo; trong những nhãn dán có sẵn, và đóng khung &ldquo;thơ&rdquo; trong những quy tắc chặt chẽ. Cả hai nỗi sợ, sợ sai, sợ &ldquo;không đúng chuẩn&rdquo;, đều đến từ định kiến bên ngoài.</p>
+      <blockquote>Giải phóng TÔI song hành với giải phóng THƠ.</blockquote>
+
+      <h2 style="margin-top:3rem">Thơ diễn xướng là gì?</h2>
+      <p>Thơ diễn xướng (performance poetry) đưa thơ ra khỏi trang sách và trao cho nó một cơ thể, một giọng nói, một nhịp đập. Đó có thể là:</p>
+      <ul>
+        <li><strong>Thơ slam</strong>: cuộc đối đầu của những vần thơ gai góc, giàu tính phản biện.</li>
+        <li><strong>Thơ video</strong>: thi ca gặp ngôn ngữ điện ảnh.</li>
+        <li><strong>Trình diễn đa phương tiện</strong>: thơ cùng âm nhạc thể nghiệm, visual art và nghệ thuật hình thể.</li>
+      </ul>
+      <p>Người tham gia không chỉ nghe mà cùng kiến tạo tác phẩm: mỗi đêm thơ là một tác phẩm khác nhau, khi thô sơ, khi rừng rực.</p>
+      <p><a class="btn" href={`mailto:${site.contactEmail}`}>Hợp tác cùng chúng tôi</a></p>
+    </div>
+  </section>
+</Base>

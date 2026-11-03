@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EventCard from '../../components/EventCard.astro';
+
+const all = await getCollection('events');
+const byDate = (a: any, b: any) => (b.data.sortDate?.getTime() ?? 0) - (a.data.sortDate?.getTime() ?? 0);
+const running = all.filter((e) => e.data.status !== 'planned').sort(byDate);
+const planned = all.filter((e) => e.data.status === 'planned');
+---
+<Base title="Chương trình">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Lưu trữ &amp; kế hoạch</p>
+      <h1>Chương trình</h1>
+      <div class="grid cols-3" style="margin-top:2rem">
+        {running.map((e) => <EventCard slug={e.id} {...e.data} />)}
+      </div>
+
+      <h2 style="margin-top:4rem">Dự kiến</h2>
+      <p class="meta">Các ý tưởng đang ấp ủ, chưa triển khai.</p>
+      <div class="grid cols-3" style="margin-top:1rem">
+        {planned.map((e) => <EventCard slug={e.id} {...e.data} />)}
+      </div>
+
+      <h2 style="margin-top:4rem">Bảng tổng hợp</h2>
+      <figure class="figure">
+        <table class="data">
+          <thead><tr><th>Chương trình</th><th>Loại</th><th>Thời gian</th><th>Quy mô</th><th>Đối tác</th></tr></thead>
+          <tbody>
+            {running.map((e) => (
+              <tr>
+                <td>{e.data.title}</td><td>{e.data.type}</td><td>{e.data.dateLabel ?? '—'}</td>
+                <td>{e.data.attendeesLabel ?? '—'}</td><td>{e.data.partners.join(', ') || '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <figcaption>Quy mô là số ước lượng theo ghi chép của ban tổ chức.</figcaption>
+      </figure>
+    </div>
+  </section>
+</Base>

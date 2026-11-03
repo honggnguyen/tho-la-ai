@@ -1,0 +1,49 @@
+---
+// Đường tăng trưởng (SVG dựng sẵn lúc build, không cần JS).
+interface Pt { label: string; value: number; }
+interface Props { title: string; points: Pt[]; note?: string; ylabel?: string; }
+const { title, points, note, ylabel = '' } = Astro.props;
+const W = 760, H = 330, L = 56, R = 28, T = 24, B = 92;
+const maxV = Math.ceil(Math.max(...points.map((p) => p.value)) / 100) * 100;
+const x = (i: number) => L + (i * (W - L - R)) / Math.max(points.length - 1, 1);
+const y = (v: number) => T + (1 - v / maxV) * (H - T - B);
+const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join(' ');
+const area = `${path} L${x(points.length - 1)},${H - B} L${x(0)},${H - B} Z`;
+const ticks = [0, maxV / 2, maxV];
+const wrap = (s: string, n = 13) => {
+  const out: string[] = []; let cur = '';
+  for (const w of s.split(' ')) { if ((cur + ' ' + w).trim().length > n) { out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }
+  if (cur) out.push(cur); return out;
+};
+---
+<figure class="figure">
+  <h3>{title}</h3>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p) => `${p.label} ${p.value}`).join(', ')}>
+    {ticks.map((t) => (
+      <g>
+        <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="#d4d4d4" stroke-width="1" />
+        <text x={L - 8} y={y(t) + 4} text-anchor="end" font-size="12" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{t}</text>
+      </g>
+    ))}
+    <path d={area} fill="#284e98" opacity=".12" />
+    <path d={path} fill="none" stroke="#284e98" stroke-width="3" stroke-linejoin="round" />
+    {points.map((p, i) => (
+      <g>
+        <circle cx={x(i)} cy={y(p.value)} r="5.5" fill="#284e98" />
+        <text x={x(i)} y={y(p.value) - 12} text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a" font-family="Barlow Condensed, sans-serif">{p.value}</text>
+        {wrap(p.label).map((ln, j) => (
+          <text x={x(i)} y={H - B + 22 + j * 15} text-anchor="middle" font-size="12.5" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{ln}</text>
+        ))}
+      </g>
+    ))}
+    {ylabel && <text x="10" y="14" font-size="12" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{ylabel}</text>}
+  </svg>
+  <details class="alt">
+    <summary>Xem dạng bảng</summary>
+    <table class="data">
+      <thead><tr><th>Mốc</th><th>Số người theo dõi</th></tr></thead>
+      <tbody>{points.map((p) => <tr><td>{p.label}</td><td>{p.value}</td></tr>)}</tbody>
+    </table>
+  </details>
+  {note && <figcaption>{note}</figcaption>}
+</figure>

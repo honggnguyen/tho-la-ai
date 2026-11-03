@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import EventCard from '../components/EventCard.astro';
+import site from '../data/site.json';
+import { u } from '../lib/url';
+
+const all = await getCollection('events');
+const past = all.filter((e) => e.data.status !== 'planned')
+  .sort((a, b) => (b.data.sortDate?.getTime() ?? 0) - (a.data.sortDate?.getTime() ?? 0));
+const planned = all.filter((e) => e.data.status === 'planned');
+---
+<Base>
+  <section class="hero">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Thơ diễn xướng · Hà Nội</p>
+      <h1 class="shadowed"><span class="ghost-text" data-text="Thơ là ai?">Thơ là ai?</span></h1>
+      <p class="lead">{site.tagline} Không có quy tắc nào cả. Đến với Thơ-là-ai, quy tắc để sáng tạo và thể nghiệm là&hellip; không có.</p>
+      <p style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+        <a class="btn" href={u('/chuong-trinh')}>Xem chương trình</a>
+        <a class="btn ghost" href={u('/tac-dong')}>Con số &amp; tác động</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section band-cobalt">
+    <div class="wrap">
+      <p class="eyebrow">Một câu hỏi để bắt đầu</p>
+      <h2>Khi nghe từ &ldquo;thơ&rdquo;, hình ảnh đầu tiên hiện lên trong đầu bạn là gì?</h2>
+      <div class="poll" role="group" aria-label="Chọn một hình ảnh">
+        <button type="button" data-reply="Có thể. Và thơ cũng có thể không cần vần.">Niêm luật, vần điệu</button>
+        <button type="button" data-reply="Vẻ đẹp nằm ở cả những điều bình dị.">Vẻ đẹp</button>
+        <button type="button" data-reply="Chạm: khi chữ có một cơ thể và một giọng nói.">Chạm</button>
+        <button type="button" data-reply="Tình cảm của bạn, kể bằng cách của bạn.">Tình cảm</button>
+      </div>
+      <p class="poll-reply" id="poll-reply" aria-live="polite">&nbsp;</p>
+      <p class="meta" style="color:var(--cream);opacity:.8">Bốn đáp án lấy từ khảo sát trong Zine &ldquo;Thơ là ai?&rdquo;.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="stats">
+        {site.numbers.map((n) => (
+          <div class="stat"><div class="num">{n.value}</div><div class="lab">{n.label}</div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-cream">
+    <div class="wrap">
+      <p class="eyebrow">Đã diễn ra</p>
+      <h2>Chương trình</h2>
+      <div class="grid cols-3">
+        {past.map((e) => <EventCard slug={e.id} {...e.data} />)}
+      </div>
+      <p style="margin-top:2rem"><a href={u('/chuong-trinh')}>Xem tất cả, gồm cả các chương trình dự kiến →</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">Từ người tham dự</p>
+      <blockquote>&ldquo;Hóa ra Queer nó không chỉ ở giới tính mà nó còn ở vần thơ.&rdquo;</blockquote>
+      <p>Chúng tôi tin thơ có thể bắt đầu từ chất liệu đời sống bình dị, và mỗi người, kể cả khi chưa từng viết, đều có thể có một bài thơ của riêng mình.</p>
+      <p>Sắp tới: {planned.map((e) => e.data.title).join(' · ')}.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const reply = document.getElementById('poll-reply')!;
+  document.querySelectorAll<HTMLButtonElement>('.poll button').forEach((b) => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.poll button').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      reply.textContent = b.dataset.reply ?? '';
+    });
+  });
+</script>

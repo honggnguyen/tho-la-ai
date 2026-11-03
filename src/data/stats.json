@@ -1,0 +1,152 @@
+{
+  "_note": "Số liệu tổng hợp, đã ẩn danh. Sinh tự động bởi scripts/build_stats.py",
+  "instagram": {
+    "milestones": [
+      {
+        "label": "Đêm thơ đầu tiên",
+        "followers": 50
+      },
+      {
+        "label": "Series Nghe–Thấy–Nhau",
+        "followers": 200
+      },
+      {
+        "label": "Chơi giữa mùa trăng",
+        "followers": 353
+      },
+      {
+        "label": "Thơ tân hình thức",
+        "followers": 462
+      }
+    ],
+    "latest_followers": 508,
+    "latest_asof": "2026-11",
+    "facebook_followers": 3820
+  },
+  "dem1": {
+    "registrations": 52,
+    "channels_n": 30,
+    "channels": {
+      "Bạn bè, người thân": 21,
+      "Khác": 7,
+      "Nhóm cộng đồng thơ": 3
+    },
+    "rating": {
+      "n": 8,
+      "mean": 4.62,
+      "dist": {
+        "4": 3,
+        "5": 5
+      }
+    }
+  },
+  "aqm": {
+    "registrations": 21,
+    "channels_n": 20,
+    "channels": {
+      "Đối tác (AQM)": 12,
+      "Fanpage TLA": 6,
+      "Bạn bè, người thân": 3
+    },
+    "age": {
+      "n": 21,
+      "buckets": {
+        "Đến 22 tuổi": 12,
+        "Trên 22 tuổi": 9
+      }
+    }
+  },
+  "tanhinhthuc": {
+    "registrations": 11,
+    "channels_n": 10,
+    "channels": {
+      "Fanpage TLA": 7,
+      "Bạn bè, người thân": 4
+    },
+    "rating": {
+      "n": 2,
+      "mean": 4.0
+    }
+  },
+  "omlas": {
+    "t0_n": 44,
+    "t1_n": 23,
+    "hubs_t0": {
+      "Bangladesh": 31,
+      "Việt Nam": 8,
+      "Uzbekistan": 4,
+      "Khác": 1
+    },
+    "hubs_t1": {
+      "Bangladesh": 15,
+      "Việt Nam": 6,
+      "Khác": 2
+    },
+    "items": [
+      {
+        "id": "Q1",
+        "label": "Mục đích & giá trị lãnh đạo",
+        "t0": 4.27,
+        "t1": 4.35,
+        "delta": 0.08
+      },
+      {
+        "id": "Q2",
+        "label": "Hiểu biết SDGs",
+        "t0": 3.68,
+        "t1": 4.17,
+        "delta": 0.49
+      },
+      {
+        "id": "Q3",
+        "label": "Dẫn dắt nhóm có đạo đức",
+        "t0": 4.2,
+        "t1": 4.57,
+        "delta": 0.36
+      },
+      {
+        "id": "Q4",
+        "label": "Nhận diện căng thẳng",
+        "t0": 4.23,
+        "t1": 4.48,
+        "delta": 0.25
+      },
+      {
+        "id": "Q5",
+        "label": "Công cụ tự chăm sóc",
+        "t0": 4.0,
+        "t1": 4.17,
+        "delta": 0.17
+      },
+      {
+        "id": "Q6",
+        "label": "Viết/thơ để xử lý cảm xúc",
+        "t0": 4.3,
+        "t1": 4.22,
+        "delta": -0.08
+      },
+      {
+        "id": "Q7",
+        "label": "Diễn giải di sản văn hoá",
+        "t0": 3.91,
+        "t1": 4.17,
+        "delta": 0.26
+      },
+      {
+        "id": "Q8",
+        "label": "Thiết kế dự án cộng đồng",
+        "t0": 3.77,
+        "t1": 3.91,
+        "delta": 0.14
+      },
+      {
+        "id": "Q9",
+        "label": "Dạy lại cho thanh niên địa phương",
+        "t0": 4.14,
+        "t1": 4.26,
+        "delta": 0.12
+      }
+    ],
+    "caveat": "T0 và T1 là hai nhóm trả lời khác quy mô, chưa ghép cặp: chỉ mang tính tham khảo."
+  }
+}

@@ -1,0 +1,42 @@
+---
+// So sánh hai thời điểm (T0 → T1) cho từng mục: chấm rỗng = trước, chấm đặc = giữa kỳ.
+interface Item { id: string; label: string; t0: number; t1: number; delta: number; }
+interface Props { title: string; items: Item[]; n0: number; n1: number; note?: string; }
+const { title, items, n0, n1, note } = Astro.props;
+const W = 760, rowH = 38, L = 250, R = 70, T = 40;
+const H = T + items.length * rowH + 20;
+const lo = 3, hi = 5;
+const x = (v: number) => L + ((v - lo) / (hi - lo)) * (W - L - R);
+---
+<figure class="figure">
+  <h3>{title}</h3>
+  <span class="n-badge">T0: n = {n0}</span> <span class="n-badge">T1: n = {n1}</span>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + items.map((i) => `${i.label} từ ${i.t0} lên ${i.t1}`).join('; ')}>
+    {[3, 3.5, 4, 4.5, 5].map((t) => (
+      <g>
+        <line x1={x(t)} x2={x(t)} y1={T - 8} y2={H - 14} stroke="#e0e0e0" />
+        <text x={x(t)} y={T - 16} text-anchor="middle" font-size="12" fill="#4a4a4a" font-family="Barlow Condensed, sans-serif">{t.toFixed(1)}</text>
+      </g>
+    ))}
+    {items.map((it, i) => {
+      const cy = T + i * rowH + rowH / 2;
+      return (
+        <g>
+          <text x={L - 14} y={cy + 5} text-anchor="end" font-size="14.5" fill="#1a1a1a" font-family="Barlow Condensed, sans-serif">{it.label}</text>
+          <line x1={x(it.t0)} x2={x(it.t1)} y1={cy} y2={cy} stroke="#284e98" stroke-width="3" opacity=".5" />
+          <circle cx={x(it.t0)} cy={cy} r="6.5" fill="#eeeeee" stroke="#284e98" stroke-width="2.5" />
+          <circle cx={x(it.t1)} cy={cy} r="6.5" fill="#284e98" />
+          <text x={W - R + 14} y={cy + 5} font-size="13.5" font-weight="700" fill={it.delta >= 0 ? '#284e98' : '#54051b'} font-family="Barlow Condensed, sans-serif">{it.delta >= 0 ? '+' : '−'}{Math.abs(it.delta).toFixed(2)}</text>
+        </g>
+      );
+    })}
+  </svg>
+  <details class="alt">
+    <summary>Xem dạng bảng</summary>
+    <table class="data">
+      <thead><tr><th>Mục tự đánh giá</th><th>T0</th><th>T1</th><th>Chênh lệch</th></tr></thead>
+      <tbody>{items.map((i) => <tr><td>{i.label}</td><td>{i.t0}</td><td>{i.t1}</td><td>{i.delta}</td></tr>)}</tbody>
+    </table>
+  </details>
+  {note && <figcaption>{note}</figcaption>}
+</figure>

@@ -1,0 +1,30 @@
+# Tự động build và đăng lên GitHub Pages mỗi khi có thay đổi ở nhánh main.
+# Bật: Settings → Pages → Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: true }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://${{ github.repository_owner }}.github.io
+      # Nếu repo tên <user>.github.io hoặc dùng tên miền riêng, đổi dòng dưới thành BASE: /
+      BASE: /${{ github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Kiểm tra không có thông tin cá nhân
+        run: python3 scripts/check_pii.py
+      - uses: withastro/action@v3
+        with: { node-version: 20 }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: '${{ steps.deployment.outputs.page_url }}' }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import { u } from '../lib/url';
+
+interface Props { title?: string; description?: string; }
+const { title, description = site.description } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.nameEn}`;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const rel = path.startsWith(base) ? path.slice(base.length) || '/' : path;
+const nav = [
+  { href: '/ve-chung-toi', label: 'Về TLA' },
+  { href: '/chuong-trinh', label: 'Chương trình' },
+  { href: '/tac-dong', label: 'Tác động' },
+  { href: '/lien-he', label: 'Liên hệ' },
+];
+const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#284e98" />
+    <link rel="icon" type="image/svg+xml" href={u("/favicon.svg")} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap&subset=vietnamese"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Bỏ qua điều hướng</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={u('/')}>Thơ-là-ai?<span class="star" aria-hidden="true">✦</span></a>
+        <nav class="nav" aria-label="Chính">
+          {nav.map((n) => <a href={u(n.href)} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div>
+          <strong>{site.name}</strong> · {site.nameEn}<br />
+          <span class="meta">Dự án thực hành nghệ thuật và văn chương</span>
+        </div>
+        <div>
+          <a href={site.facebook} rel="noopener">Facebook</a> ·
+          <a href={site.instagram} rel="noopener">Instagram</a> ·
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

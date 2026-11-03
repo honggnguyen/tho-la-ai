@@ -1,0 +1,15 @@
+{
+  "name": "Thơ-là-ai?",
+  "nameEn": "Who is Poetry?",
+  "tagline": "Giải phóng TÔI song hành với giải phóng THƠ.",
+  "description": "Dự án thực hành nghệ thuật và văn chương về thơ diễn xướng, khởi xướng từ sinh viên khoa Ngữ văn, Hà Nội.",
+  "contactEmail": "tholaai.project@gmail.com",
+  "facebook": "https://www.facebook.com/tholaaiproject",
+  "instagram": "https://www.instagram.com/tho.la.ai/",
+  "numbers": [
+    { "value": "508", "label": "người theo dõi Instagram" },
+    { "value": "3,8k", "label": "người theo dõi Facebook" },
+    { "value": "5", "label": "chương trình đã diễn ra" },
+    { "value": "4", "label": "quốc gia trong chương trình OMLAS" }
+  ]
+}
