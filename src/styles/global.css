@@ -493,14 +493,260 @@ dialog.lightbox::backdrop { background: rgba(10, 10, 10, .88); }
 .lb-bar button { font-family: var(--font-ui); text-transform: uppercase; letter-spacing: .08em; background: transparent; color: var(--pearl); border: 1px solid var(--pearl); padding: .4rem .9rem; cursor: pointer; font-size: .95rem; }
 .lb-bar button:hover { background: var(--pearl); color: var(--ink); }
 
-/* ===== Zine Reader & Cấu trúc Mục lục ===== */
-.zine-stage { background: var(--ink); color: var(--pearl); padding: 1.25rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; border: 1px solid var(--ink); }
-.zine-frame { width: 100%; max-width: 980px; aspect-ratio: 16/9; background: #0c0c0c; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,.4); }
-.zine-frame img { width: 100%; height: 100%; object-fit: contain; }
-.zine-controls { width: 100%; max-width: 980px; display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; font-family: var(--font-ui); letter-spacing: .05em; }
-.zine-ctrl-group { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
-.zine-select { background: #262626; color: var(--pearl); border: 1px solid #555; padding: .45rem .8rem; font-family: var(--font-ui); font-size: 1rem; cursor: pointer; border-radius: 2px; }
-.zine-select:focus { outline: 2px solid var(--pearl); }
+/* ===== Zine Reader & Cấu trúc Mục lục (Không viền đen, Bố cục khoa học) ===== */
+.zine-reader-card {
+  margin-top: 1.75rem;
+  background: var(--paper);
+  border: 1px solid rgba(18, 18, 16, 0.16);
+  box-shadow: 0 12px 34px rgba(18, 18, 16, 0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Thanh trên: Chuyển ngôn ngữ & Trạng thái */
+.zine-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: .65rem 1rem;
+  background: var(--pearl);
+  border-bottom: 1px solid rgba(18, 18, 16, 0.1);
+  flex-wrap: wrap;
+}
+
+.zine-lang-switch {
+  display: inline-flex;
+  background: var(--pearl-2);
+  padding: 3px;
+  border-radius: 4px;
+  gap: 2px;
+}
+
+.zine-lang-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 600;
+  padding: .35rem .75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background .15s, color .15s, box-shadow .15s;
+}
+.zine-lang-btn:hover {
+  color: var(--ink);
+}
+.zine-lang-btn[aria-pressed='true'] {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.zine-page-badge {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--grey-d);
+  letter-spacing: .02em;
+}
+
+/* Khung ảnh Zine tràn khít tỷ lệ gốc, bỏ hoàn toàn viền đen */
+.zine-viewport {
+  position: relative;
+  width: 100%;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.zine-viewport img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Nút mũi tên nổi nhẹ hai bên mép trang khi di chuột */
+.zine-edge-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(18, 18, 16, 0.15);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .18s ease, background .15s ease, transform .15s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+.zine-viewport:hover .zine-edge-nav {
+  opacity: 1;
+}
+.zine-edge-nav:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-50%) scale(1.06);
+}
+.zine-edge-nav.prev { left: 1rem; }
+.zine-edge-nav.next { right: 1rem; }
+
+/* Thanh điều khiển dưới: 3 vùng cân đối (Chọn nhanh | Lật trang trung tâm | Icon phóng to) */
+.zine-bottombar {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(44px, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: .7rem 1rem;
+  background: var(--paper);
+  border-top: 1px solid rgba(18, 18, 16, 0.1);
+  font-family: var(--font-ui);
+}
+
+.zine-jump-wrap {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  width: 100%;
+  max-width: 320px;
+}
+
+.zine-select {
+  width: 100%;
+  background: var(--pearl);
+  color: var(--ink);
+  border: 1px solid rgba(18, 18, 16, 0.22);
+  padding: .42rem .75rem;
+  font-family: var(--font-ui);
+  font-size: .86rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 3px;
+  text-overflow: ellipsis;
+  transition: border-color .15s, background .15s;
+}
+.zine-select:hover, .zine-select:focus {
+  border-color: var(--ink);
+  background: var(--paper);
+  outline: none;
+}
+
+.zine-pager {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  justify-self: center;
+  background: var(--pearl);
+  padding: 3px;
+  border-radius: 4px;
+  border: 1px solid rgba(18, 18, 16, 0.12);
+}
+
+.zine-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid rgba(18, 18, 16, 0.15);
+  padding: .36rem .75rem;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background .14s, color .14s, border-color .14s;
+}
+.zine-nav-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.zine-counter-pill {
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--ink);
+  min-width: 62px;
+  text-align: center;
+  letter-spacing: .03em;
+}
+
+.zine-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
+
+.zine-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pearl);
+  color: var(--ink);
+  border: 1px solid rgba(18, 18, 16, 0.2);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, transform .12s;
+}
+.zine-icon-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+/* Chế độ Toàn màn hình (Fullscreen) */
+.zine-reader-card:fullscreen {
+  background: var(--pearl);
+  border: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+.zine-reader-card:fullscreen .zine-viewport {
+  flex: 1;
+  background: var(--pearl);
+  padding: 1rem;
+}
+.zine-reader-card:fullscreen .zine-viewport img {
+  max-height: calc(100vh - 125px);
+  width: auto;
+  max-width: 100%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 760px) {
+  .zine-bottombar {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "pager actions"
+      "jump jump";
+    gap: .65rem;
+  }
+  .zine-pager { grid-area: pager; justify-self: start; }
+  .zine-actions { grid-area: actions; justify-self: end; }
+  .zine-jump-wrap { grid-area: jump; max-width: none; }
+  .zine-edge-nav { opacity: 0.85; width: 34px; height: 34px; }
+}
 
 /* Mục lục Zine (Table of Contents) thay thế lưới thumbnail */
 .zine-toc-section { margin-top: 3.5rem; }
