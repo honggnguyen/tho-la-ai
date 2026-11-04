@@ -21,13 +21,8 @@ const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(
 <Base>
   <section class="hero">
     <div class="wrap hero-grid">
-      <div class="wordmark" role="img" aria-label="Thơ là AI?">
-        <span class="wm-tho">Thơ</span>
-        <span class="wm-la"></span>
-        <span class="wm-ai">AI?</span>
-        <i class="spark s1" aria-hidden="true">✦</i>
-        <i class="spark s2" aria-hidden="true">✦</i>
-        <i class="spark s3" aria-hidden="true">✦</i>
+      <div class="wordmark">
+        <img class="wordmark-img" src={u('/logo-wordmark.webp')} alt="Thơ là AI?" width="1100" height="870" fetchpriority="high" />
       </div>
       <div class="hero-copy">
         <p class="eyebrow">Thơ diễn xướng · Hà Nội</p>
