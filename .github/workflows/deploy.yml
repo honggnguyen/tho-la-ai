@@ -20,7 +20,7 @@ jobs:
       - name: Kiểm tra không có thông tin cá nhân
         run: python3 scripts/check_pii.py
       - uses: withastro/action@v3
-        with: { node-version: 20 }
+        with: { node-version: 22 }
   deploy:
     needs: build
     runs-on: ubuntu-latest
