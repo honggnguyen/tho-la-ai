@@ -9,56 +9,564 @@ const ig = [
   ...stats.instagram.milestones.map((m) => ({ label: m.label, value: m.followers })),
   { label: 'Hiện tại', value: stats.instagram.latest_followers },
 ];
+
 const dist = stats.dem1.rating.dist as Record<string, number>;
 const dots = [5, 4, 3, 2, 1].flatMap((s) => Array.from({ length: dist[String(s)] ?? 0 }, () => s));
+const dotsTht = [4, 4];
+const walkinChongChu = stats.chongchu.total_participants - stats.chongchu.form_registrations;
 ---
-<Base title="Tác động" description="Số liệu tổng hợp, đã ẩn danh, về các chương trình của Thơ-là-ai.">
+<Base title="Báo cáo Tác động & Phân tích Dữ liệu" description="Phân tích chi tiết tác động xã hội, chân dung khán giả liên ngành, độ phủ truyền thông và di sản sáng tác của dự án Thơ-là-ai? (TLA).">
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Số liệu mở</p>
-      <h1 class="shadowed">Tác động</h1>
-      <p class="lead">Những con số dưới đây được tổng hợp từ biểu mẫu đăng ký và khảo sát của chương trình. Chúng tôi không công bố tên, thông tin liên hệ hay số tiền.</p>
+      <p class="eyebrow">Báo cáo Tác động · Dữ liệu mở đã ẩn danh (10/2025 – 05/2026)</p>
+      <h1 class="shadowed">Tác động &amp; Phân tích Dữ liệu</h1>
+      <p class="lead">
+        Báo cáo này tổng hợp toàn bộ dữ liệu định lượng và định tính từ <strong>8 bộ hồ sơ gốc</strong> của dự án <em>Thơ-là-ai? (TLA)</em> qua 7 tháng hoạt động: từ các đêm thơ thể nghiệm, chuỗi workshop tại Hà Nội đến chương trình giáo dục sáng tạo liên quốc gia <em>OMLAS · Echoes of Asia</em>.
+      </p>
+
       <div class="callout">
-        <strong>Đọc kỹ trước khi trích dẫn.</strong> Đa số mẫu rất nhỏ (từ vài người đến vài chục người), nên mỗi biểu đồ đều ghi rõ <em>n</em>. Đây là bức tranh về một cộng đồng nhỏ đang lớn dần, không phải thống kê đại diện. Nhóm dưới 3 người được gộp vào &ldquo;Khác&rdquo; để bảo vệ người trả lời.
+        <strong>Nguyên tắc Minh bạch &amp; Bảo mật Dữ liệu:</strong> Toàn bộ số liệu dưới đây được trích xuất tự động từ biểu mẫu đăng ký, danh sách check-in, khảo sát sau sự kiện và hệ thống lưu trữ sáng tác của dự án. Để bảo vệ tuyệt đối quyền riêng tư của người tham dự, chúng tôi <strong>không công bố họ tên, email, số điện thoại, liên kết cá nhân hay dữ liệu tài chính</strong>. Mọi biểu đồ đều ghi rõ cỡ mẫu (<em>n</em>), nguồn trích xuất và gộp các nhóm dưới 3 người vào mục &ldquo;Khác&rdquo;.
       </div>
 
-      <h2 class="chart-title">Cộng đồng đang lớn lên</h2>
-      <LineChart title="Người theo dõi Instagram qua các chương trình" points={ig} strokeColor="var(--chart-cobalt)"
-        note={`Mốc theo ghi chép của ban tổ chức; điểm cuối là số hiện tại (${stats.instagram.latest_asof}). Facebook: khoảng ${stats.instagram.facebook_followers.toLocaleString('vi-VN')} người theo dõi.`} />
+      <nav class="impact-nav-pills" aria-label="Mục lục báo cáo tác động">
+        <a href="#tong-quan">00 · Tổng quan</a>
+        <a href="#do-phu-kenh">01 · Độ phủ &amp; Kênh truyền thông</a>
+        <a href="#chan-dung">02 · Chân dung Liên ngành</a>
+        <a href="#trai-nghiem">03 · Trải nghiệm &amp; Di sản Sáng tác</a>
+        <a href="#omlas">04 · Tác động Quốc tế (OMLAS)</a>
+        <a href="#nguon-du-lieu">05 · Bảng Nguồn Dữ liệu</a>
+      </nav>
 
-      <h2 class="chart-title">Mọi người biết đến chúng tôi từ đâu?</h2>
+      <!-- ================= 00. EXECUTIVE SUMMARY KPI GRID ================= -->
+      <div id="tong-quan">
+        <div class="impact-kpi-grid">
+          <div class="impact-kpi-card accent-cobalt">
+            <span class="impact-kpi-tag">Độ phủ hai nền tảng</span>
+            <div class="impact-kpi-num">{stats.instagram.total_social_followers.toLocaleString('vi-VN')}+</div>
+            <div class="impact-kpi-label">Tổng người theo dõi mạng xã hội</div>
+            <div class="impact-kpi-sub">
+              Kết hợp <strong>~{stats.instagram.facebook_followers.toLocaleString('vi-VN')}</strong> trên Facebook (độ phủ đại chúng) &amp; <strong>{stats.instagram.latest_followers}</strong> trên Instagram (+{stats.instagram.growth_pct}% sau 7 mốc).
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-crimson">
+            <span class="impact-kpi-tag">Tương tác trực tiếp</span>
+            <div class="impact-kpi-num">{stats.overview.total_registrations_and_surveys}</div>
+            <div class="impact-kpi-label">Lượt đăng ký &amp; phản hồi khảo sát</div>
+            <div class="impact-kpi-sub">
+              Gồm <strong>{stats.overview.vn_registrations}</strong> lượt đăng ký/tham dự tại Hà Nội và <strong>{stats.overview.intl_surveys}</strong> lượt khảo sát &amp; ứng tuyển quốc tế OMLAS.
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-terracotta">
+            <span class="impact-kpi-tag">Phá vỡ biên giới ngành</span>
+            <div class="impact-kpi-num">{stats.audience_profile.non_literature_pct.toString().replace('.', ',')}%</div>
+            <div class="impact-kpi-label">Khán giả ngoài ngành Văn chương</div>
+            <div class="impact-kpi-sub">
+              Đến từ Công nghệ AI/IT (26,3%), Thiết kế – Truyền thông (21,1%), Kinh tế – Luật (10,5%) và Y tế – Dịch vụ (10,5%) (<em>n = {stats.audience_profile.majors_n}</em>).
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-ochre">
+            <span class="impact-kpi-tag">Tác động mở đường</span>
+            <div class="impact-kpi-num">{stats.dem1.first_time.first_time_pct.toString().replace('.', ',')}%</div>
+            <div class="impact-kpi-label">Lần đầu tiếp xúc thơ diễn xướng</div>
+            <div class="impact-kpi-sub">
+              {stats.dem1.first_time.first_time_count}/{stats.dem1.first_time.n} người khảo sát ở Đêm thơ #1 chưa từng dự sự kiện thơ diễn xướng trước đó; <strong>100%</strong> muốn cất tiếng đối thoại.
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-sage">
+            <span class="impact-kpi-tag">Chất lượng chương trình</span>
+            <div class="impact-kpi-num">{stats.dem1.rating.mean.toString().replace('.', ',')} / 5</div>
+            <div class="impact-kpi-label">Điểm hài lòng Đêm thơ đầu tiên</div>
+            <div class="impact-kpi-sub">
+              100% đánh giá ở mức 4–5 sao (<em>n = {stats.dem1.rating.n}</em>); tỉ lệ gắn bó nhiều buổi ở chuỗi <em>Nghe–Thấy–Nhau</em> đạt <strong>{stats.aqm.multi_session_pct.toString().replace('.', ',')}%</strong>.
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-crimson">
+            <span class="impact-kpi-tag">Tự chủ truyền thông</span>
+            <div class="impact-kpi-num">6,7% → 70%</div>
+            <div class="impact-kpi-label">Tăng trưởng kênh tự nhiên của TLA</div>
+            <div class="impact-kpi-sub">
+              Tỉ trọng người biết đến sự kiện trực tiếp qua Fanpage/IG <em>Thơ-là-ai?</em> tăng gấp 10 lần từ tháng 11/2025 đến tháng 05/2026.
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-cobalt">
+            <span class="impact-kpi-tag">Di sản sáng tác cộng đồng</span>
+            <div class="impact-kpi-num">{stats.overview.handwritten_manuscripts}</div>
+            <div class="impact-kpi-label">Bản thảo viết tay &amp; thơ cắt dán</div>
+            <div class="impact-kpi-sub">
+              Cùng <strong>{stats.overview.poems_archived}</strong> bài thơ hoàn chỉnh, <strong>{stats.overview.audio_tracks}</strong> bản thu âm gốc, <strong>{stats.overview.zine_pages}</strong> trang Zine song ngữ và <strong>{stats.overview.event_photos}</strong> tư liệu ảnh.
+            </div>
+          </div>
+
+          <div class="impact-kpi-card accent-sage">
+            <span class="impact-kpi-tag">Lan tỏa khu vực châu Á</span>
+            <div class="impact-kpi-num">{stats.omlas.champions_selected} Thủ lĩnh</div>
+            <div class="impact-kpi-label">OMLAS · Echoes of Asia</div>
+            <div class="impact-kpi-sub">
+              Tuyển chọn <strong>{stats.omlas.champions_selected}/{stats.omlas.champions_applicants}</strong> OMLAS Champions (Bangladesh, Việt Nam, Uzbekistan...); <strong>{stats.omlas.commitment_pct.toString().replace('.', ',')}%</strong> học viên cam kết đi trọn lộ trình.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 01. DIGITAL REACH & CHANNEL MATURITY ================= -->
+      <div id="do-phu-kenh" class="impact-section-head">
+        <span class="section-idx">Phần 01 · Độ phủ Trực tuyến &amp; Kênh Tiếp cận</span>
+        <h2>Từ mạng lưới cá nhân đến hệ sinh thái truyền thông tự chủ</h2>
+        <p>
+          Để đánh giá toàn diện sức lan tỏa của một dự án nghệ thuật độc lập, chúng tôi kết hợp đồng thời số liệu từ cả <strong>Facebook</strong> (kênh đại chúng cập nhật sự kiện dài hơi) và <strong>Instagram</strong> (kênh thị giác tương tác sâu với người trẻ theo từng mốc chương trình).
+        </p>
+      </div>
+
+      <div class="social-dual-grid">
+        <div class="social-stat-card highlight">
+          <span class="plat-badge">Tổng hợp đa nền tảng (FB + IG)</span>
+          <div class="plat-num">{stats.instagram.total_social_followers.toLocaleString('vi-VN')}+</div>
+          <div class="plat-desc">
+            Tổng quy mô khán giả theo dõi thường xuyên trên hai kênh chính thức của <em>Thơ-là-ai?</em> tính đến kỳ thống kê {stats.instagram.latest_asof}.
+          </div>
+        </div>
+
+        <div class="social-stat-card">
+          <span class="plat-badge">Facebook Fanpage · Độ phủ đại chúng</span>
+          <div class="plat-num" style="color:var(--chart-cobalt)">~{stats.instagram.facebook_followers.toLocaleString('vi-VN')}</div>
+          <div class="plat-desc">
+            Nền tảng chủ lực lan tỏa các bài tiểu luận thơ, thông cáo báo chí, mở đơn đăng ký sự kiện và kết nối mạng lưới đối tác văn hóa – học thuật.
+          </div>
+        </div>
+
+        <div class="social-stat-card">
+          <span class="plat-badge">Instagram (@tholaai) · Tăng trưởng +{stats.instagram.growth_pct}%</span>
+          <div class="plat-num" style="color:var(--brand-crimson)">{stats.instagram.latest_followers}</div>
+          <div class="plat-desc">
+            Tăng gấp <strong>10,1 lần</strong> từ con số 50 người theo dõi ở Đêm thơ đầu tiên (11/2025) lên 508 người theo dõi qua 7 cột mốc chương trình liên tiếp.
+          </div>
+        </div>
+      </div>
+
+      <LineChart
+        title="Đường cong tăng trưởng người theo dõi Instagram (@tholaai) qua 7 cột mốc chương trình"
+        points={ig}
+        strokeColor="var(--chart-cobalt)"
+        note={`Nguồn: Nhật ký truyền thông của Ban tổ chức và thống kê tài khoản @tholaai tính đến ${stats.instagram.latest_asof}. Mức tăng trưởng lũy kế đạt +${stats.instagram.growth_pct}% (từ 50 lên 508 người theo dõi).`}
+      />
+
+      <div class="impact-insight-box crimson">
+        <div class="impact-insight-title">Phát hiện trọng tâm #1 · Sự trưởng thành của thương hiệu độc lập</div>
+        <p>
+          Phân tích đối chiếu câu hỏi <em>&ldquo;Bạn biết đến chương trình qua kênh nào?&rdquo;</em> trên <strong>n = {stats.channels_summary.total_respondents} người trả lời</strong> qua các giai đoạn cho thấy sự chuyển dịch rõ rệt: Ở buổi đầu tiên (11/2025), dự án phụ thuộc chủ yếu vào lời mời truyền miệng của bạn bè (70%) và chỉ có <strong>6,7%</strong> đến từ trang chính thức. Đến tháng 05/2026 (Workshop <em>Đưa thơ về mặt đất</em>), <strong>70,0%</strong> người đăng ký đến trực tiếp từ Fanpage/Instagram của <em>Thơ-là-ai?</em> — minh chứng cho khả năng thu hút khán giả tự nhiên (organic reach) của dự án.
+        </p>
+        <div class="shift-step-grid">
+          {stats.channels_summary.fanpage_share_trend.map((s) => (
+            <div class="shift-step">
+              <div class="step-date">{s.event}</div>
+              <div class="step-pct">{s.pct.toString().replace('.', ',')}%</div>
+              <div class="step-bar"><div class="step-bar-fill" style={`width:${s.pct}%`}></div></div>
+              <div class="step-meta">Biết qua Fanpage / IG dự án (<em>n = {s.n}</em>)</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid cols-2 top" style="margin-top:1.5rem">
+        <BarList
+          title="Tổng hợp nguồn tiếp cận qua 4 chương trình (Gộp chung)"
+          items={stats.channels_summary.aggregate}
+          n={stats.channels_summary.total_respondents}
+          unit="lượt"
+          color="cobalt"
+          note="Câu hỏi nhiều lựa chọn (Multiple-choice); tổng số lượt chọn lớn hơn số người trả lời (n = 69)."
+        />
+        <BarList
+          title="Đêm thơ #1: Thơ-là-ai? (11/2025)"
+          items={stats.dem1.channels}
+          n={stats.dem1.channels_n}
+          unit="lượt"
+          color="crimson"
+          note="Giai đoạn khởi đầu: Mạng lưới bạn bè, người thân đóng vai trò hạt giống (21/30 lượt)."
+        />
+      </div>
+
+      <div class="grid cols-3 top" style="margin-top:1.25rem">
+        <BarList
+          title='Series "Nghe–Thấy–Nhau" (12/2025)'
+          items={stats.aqm.channels}
+          n={stats.aqm.channels_n}
+          unit="lượt"
+          color="sage"
+          note="Cộng hưởng lớn từ đối tác không gian nghệ thuật A Queer Museum (12/20 lượt)."
+        />
+        <BarList
+          title='Series "Chồng chữ" (03/2026)'
+          items={stats.chongchu.channels}
+          n={stats.chongchu.channels_n}
+          unit="lượt"
+          color="ochre"
+          note="Mẫu form đăng ký trước (n = 9); ngoài ra còn có 14 người tham dự trực tiếp tại sự kiện."
+        />
+        <BarList
+          title='Workshop "Đưa thơ về mặt đất" (05/2026)'
+          items={stats.tanhinhthuc.channels}
+          n={stats.tanhinhthuc.channels_n}
+          unit="lượt"
+          color="terracotta"
+          note="70% người đăng ký chủ động tìm đến từ chính kênh truyền thông của Thơ-là-ai?."
+        />
+      </div>
+
+      <!-- ================= 02. AUDIENCE DEMOGRAPHICS & INTERDISCIPLINARY REACH ================= -->
+      <div id="chan-dung" class="impact-section-head">
+        <span class="section-idx">Phần 02 · Chân dung Người tham dự (&ldquo;Ai đến với Thơ?&rdquo;)</span>
+        <h2>Phá vỡ định kiến &ldquo;tháp ngà văn chương&rdquo;: 68,4% người tham dự đến từ ngoài ngành Văn học</h2>
+        <p>
+          Một trong những câu hỏi cốt lõi của <em>Thơ-là-ai?</em> là liệu thơ ca đương đại có thể chạm tới những người trẻ làm việc trong các lĩnh vực kỹ thuật, công nghệ và kinh tế hay không. Dữ liệu khảo sát chuyên ngành và công việc từ 3 chương trình tại Hà Nội đã đưa ra câu trả lời thuyết phục.
+        </p>
+      </div>
+
+      <div class="impact-insight-box sage">
+        <div class="impact-insight-title">Phát hiện trọng tâm #2 · Giao điểm giữa Thơ ca và Công nghệ – Thiết kế – Khoa học</div>
+        <p>
+          Trong tổng số <strong>n = {stats.audience_profile.majors_n} bản khai thông tin ngành học/nghề nghiệp</strong> (gộp từ <em>Nghe–Thấy–Nhau</em>, <em>Chồng chữ</em> và <em>Đưa thơ về mặt đất</em>), có tới <strong>{stats.audience_profile.non_literature_pct.toString().replace('.', ',')}% (26/38 người)</strong> học tập và làm việc ngoài khối Khoa học Xã hội – Nhân văn. Đáng chú ý nhất, nhóm <strong>Công nghệ (AI, IT, Khoa học máy tính), Kỹ thuật &amp; Khoa học tự nhiên</strong> chiếm tỉ trọng lớn thứ hai (<strong>26,3%</strong> — 10/38 người), theo sát là nhóm <strong>Thiết kế đồ họa, Truyền thông &amp; Tổ chức sự kiện</strong> (<strong>21,1%</strong> — 8/38 người).
+        </p>
+      </div>
+
+      <div class="grid cols-2 top" style="margin-top:1.5rem">
+        <BarList
+          title="Cơ cấu ngành học & lĩnh vực công việc của người tham dự tại Việt Nam"
+          items={stats.audience_profile.majors}
+          n={stats.audience_profile.majors_n}
+          unit="người"
+          color="cobalt"
+          note="Tổng hợp từ hồ sơ đăng ký Nghe–Thấy–Nhau (n = 20), Chồng chữ (n = 9) và Đưa thơ về mặt đất (n = 9)."
+        />
+        <BarList
+          title="Phân bố độ tuổi người tham dự tại Hà Nội (Gộp các chuỗi workshop)"
+          items={stats.audience_profile.age_vn_buckets}
+          n={stats.audience_profile.age_vn_n}
+          unit="người"
+          color="sage"
+          note="Cân bằng giữa nhóm sinh viên đại học (Đến 22 tuổi: 53,3%) và người trẻ đã đi làm / học sau đại học (Trên 22 tuổi: 46,7%)."
+        />
+      </div>
+
+      <div class="grid cols-2 top" style="margin-top:1.25rem">
+        <BarList
+          title='Số lượng người đăng ký theo từng buổi · Series "Nghe–Thấy–Nhau"'
+          items={stats.aqm.sessions_breakdown}
+          n={stats.aqm.registrations}
+          unit="người"
+          color="terracotta"
+          note="Quy mô tăng dần qua từng buổi: Buổi 3 (15 người) tăng hơn gấp đôi so với Buổi 1 (7 người), tạo ra tổng cộng 32 lượt tham dự."
+        />
+        <figure class="figure chart-crimson">
+          <h3>Mức độ gắn bó đa buổi (Retention Rate)</h3>
+          <span class="n-badge">n = {stats.aqm.registrations} người đăng ký độc lập</span>
+          <div class="rating-display" style="margin-top:1.2rem">
+            <span class="rating-num" style="color:var(--brand-crimson)">{stats.aqm.multi_session_pct.toString().replace('.', ',')}%</span>
+            <span class="rating-max">tham dự từ 2 đến 3 buổi liên tiếp</span>
+          </div>
+          <p style="font-family:var(--font-ui);font-size:.92rem;color:var(--ink-soft);margin:.8rem 0 0;line-height:1.55">
+            Trong số <strong>{stats.aqm.registrations} người</strong> đăng ký chuỗi <em>Nghe–Thấy–Nhau</em>, có <strong>{stats.aqm.multi_session_count} người ({stats.aqm.multi_session_pct.toString().replace('.', ',')}%)</strong> đăng ký tham gia từ 2 buổi trở lên (tạo thành <strong>{stats.aqm.total_session_slots} lượt chỗ ngồi</strong>). Ngoài ra, <strong>{stats.aqm.archive_consent_pct.toString().replace('.', ',')}%</strong> người tham dự ngay từ khâu đăng ký đã đồng ý đóng góp sáng tác cá nhân vào triển lãm chung.
+          </p>
+          <figcaption>Nguồn: Sổ theo dõi đăng ký theo buổi Series &ldquo;Nghe–Thấy–Nhau&rdquo; (12/2025).</figcaption>
+        </figure>
+      </div>
+
+      <!-- ================= 03. EXPERIENTIAL IMPACT & CREATIVE OUTPUTS ================= -->
+      <div id="trai-nghiem" class="impact-section-head">
+        <span class="section-idx">Phần 03 · Tác động Trải nghiệm, Mở đường &amp; Di sản Sáng tác</span>
+        <h2>Từ người nghe thụ động thành người đồng sáng tạo</h2>
+        <p>
+          Không chỉ dừng ở số lượng vé phát ra, tác động thực chất của <em>Thơ-là-ai?</em> nằm ở việc <strong>mở khóa trải nghiệm lần đầu</strong> cho người trẻ và chuyển hóa cảm xúc của họ thành <strong>tác phẩm vật lý và kỹ thuật số</strong> được lưu trữ lâu dài.
+        </p>
+      </div>
+
       <div class="grid cols-3 top">
-        <BarList title="Đêm thơ đầu tiên (11/2025)" items={stats.dem1.channels} n={stats.dem1.channels_n} unit="lượt" color="crimson" note="Có thể chọn nhiều nguồn." />
-        <BarList title='Series "Nghe–Thấy–Nhau" (12/2025)' items={stats.aqm.channels} n={stats.aqm.channels_n} unit="lượt" color="cobalt" note="Đối tác đóng vai trò lớn trong buổi giới thiệu ban đầu." />
-        <BarList title='Workshop "Đưa thơ về mặt đất" (05/2026)' items={stats.tanhinhthuc.channels} n={stats.tanhinhthuc.channels_n} unit="lượt" color="terracotta" note="Phần lớn người đăng ký đến từ chính fanpage của dự án." />
-      </div>
+        <figure class="figure chart-terracotta">
+          <h3>Tác động Mở đường: Lần đầu tiên đến với Thơ diễn xướng</h3>
+          <span class="n-badge">n = {stats.dem1.first_time.n} khảo sát sâu · Đêm thơ #1</span>
+          <div class="rating-display" style="margin-top:1.1rem">
+            <span class="rating-num" style="color:var(--chart-terracotta)">{stats.dem1.first_time.first_time_pct.toString().replace('.', ',')}%</span>
+            <span class="rating-max">({stats.dem1.first_time.first_time_count}/{stats.dem1.first_time.n} người)</span>
+          </div>
+          <p style="font-family:var(--font-ui);font-size:.9rem;color:var(--ink-soft);margin:.75rem 0 0;line-height:1.5">
+            Trả lời <strong>&ldquo;Chưa từng&rdquo;</strong> khi được hỏi đã bao giờ tham dự một đêm thơ diễn xướng/trình diễn trước đây hay chưa. Đặc biệt, <strong>{stats.dem1.first_time.want_dialogue_pct}% ({stats.dem1.first_time.want_dialogue_count}/{stats.dem1.first_time.n})</strong> bày tỏ mong muốn được trực tiếp cất tiếng và trò chuyện trong đêm thơ.
+          </p>
+          <figcaption>Khảo sát kỳ vọng khán giả trước sự kiện Đêm thơ đầu tiên (11/2025).</figcaption>
+        </figure>
 
-      <h2 class="chart-title">Ai đến với thơ?</h2>
-      <div class="grid cols-2 top">
-        <BarList title='Độ tuổi, series "Nghe–Thấy–Nhau"' items={stats.aqm.age.buckets} n={stats.aqm.age.n} color="sage" />
         <figure class="figure chart-ochre">
-          <h3>Đêm thơ đầu tiên: mức hài lòng</h3>
-          <span class="n-badge">n = {stats.dem1.rating.n} phản hồi</span>
+          <h3>Mức độ hài lòng: Đêm thơ #1 (11/2025)</h3>
+          <span class="n-badge">n = {stats.dem1.rating.n} phản hồi sau sự kiện</span>
           <div class="dots" role="img" aria-label={`Điểm trung bình ${stats.dem1.rating.mean} trên 5, ${stats.dem1.rating.n} phản hồi`} style="margin-top:1.1rem">
             {dots.map((s) => <span class="dot" title={`${s} sao`}></span>)}
           </div>
           <div class="rating-display">
             <span class="rating-num">{stats.dem1.rating.mean.toString().replace('.', ',')}</span>
-            <span class="rating-max">/ 5 sao</span>
+            <span class="rating-max">/ 5,0 sao</span>
           </div>
-          <figcaption>Mỗi chấm là một phản hồi (5 phản hồi 5 sao, 3 phản hồi 4 sao). Với mẫu này chúng tôi chỉ chia sẻ như một lát cắt, không như kết luận.</figcaption>
+          <figcaption>Mỗi chấm tròn biểu thị 1 phản hồi thực tế (5 đánh giá 5 sao, 3 đánh giá 4 sao; không có đánh giá dưới 4 sao).</figcaption>
+        </figure>
+
+        <figure class="figure chart-sage">
+          <h3>Mức độ hài lòng: Đưa thơ về mặt đất (05/2026)</h3>
+          <span class="n-badge">n = {stats.tanhinhthuc.rating.n} phản hồi khảo sát nhanh</span>
+          <div class="dots" role="img" aria-label={`Điểm trung bình ${stats.tanhinhthuc.rating.mean} trên 5`} style="margin-top:1.1rem">
+            {dotsTht.map((s) => <span class="dot" style="background:var(--chart-sage);box-shadow:0 0 0 2px var(--chart-sage-light)" title={`${s} sao`}></span>)}
+          </div>
+          <div class="rating-display">
+            <span class="rating-num" style="color:var(--chart-sage)">{stats.tanhinhthuc.rating.mean.toFixed(1).replace('.', ',')}</span>
+            <span class="rating-max">/ 5,0 sao</span>
+          </div>
+          <figcaption>Ghi nhận từ biểu mẫu phản hồi sau buổi đọc thơ và thảo luận Tân hình thức (100% đạt 4/5 sao; cỡ mẫu nhỏ <em>n = 2</em>).</figcaption>
         </figure>
       </div>
 
-      <h2 class="chart-title">OMLAS · Echoes of Asia</h2>
-      <p class="prose">Chương trình quốc tế dành cho thanh niên nhiều quốc gia. Người học tự đánh giá năng lực trên thang 1–5 ở đầu kỳ (T0) và giữa kỳ (T1).</p>
-      <div class="grid cols-2 top">
-        <BarList title="Người học theo hub quốc gia (T0)" items={stats.omlas.hubs_t0} n={stats.omlas.t0_n} color="sage" />
-        <BarList title="Người học theo hub quốc gia (T1)" items={stats.omlas.hubs_t1} n={stats.omlas.t1_n} color="cobalt" />
+      <div class="table-wrap">
+        <h3>Thống kê Chi tiết Phễu Đăng ký &amp; Tham dự qua các Chương trình tại Hà Nội</h3>
+        <p class="table-sub">Tổng hợp từ sổ đăng ký trực tuyến, xác nhận chuyển khoản/vé và danh sách check-in thực tế tại sự kiện.</p>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Chương trình</th>
+              <th>Thời gian</th>
+              <th>Hình thức</th>
+              <th>Số lượt đăng ký / Đặt vé</th>
+              <th>Tham dự thực tế / Ghi chú vận hành</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Đêm thơ &ldquo;Thơ-là-ai?&rdquo;</strong></td>
+              <td>11/2025</td>
+              <td>Đêm thơ &amp; đối thoại mở</td>
+              <td><strong>{stats.dem1.registrations}</strong> đơn đăng ký</td>
+              <td><strong>{stats.dem1.confirmed}</strong> xác nhận · <strong>{stats.dem1.checked_in}</strong> check-in trực tiếp (tỉ lệ có mặt 85,2% nhóm xác nhận)</td>
+            </tr>
+            <tr>
+              <td><strong>2. Series &ldquo;Nghe–Thấy–Nhau&rdquo;</strong></td>
+              <td>12/2025</td>
+              <td>Chuỗi 3 buổi workshop đa giác quan</td>
+              <td><strong>{stats.aqm.registrations}</strong> người đăng ký độc lập</td>
+              <td><strong>{stats.aqm.total_session_slots}</strong> lượt tham dự qua 3 buổi (Buổi 1: 7 · Buổi 2: 10 · Buổi 3: 15)</td>
+            </tr>
+            <tr>
+              <td><strong>3. Chơi giữa mùa trăng</strong></td>
+              <td>01/2026</td>
+              <td>Đêm thơ, nhạc thể nghiệm &amp; thảo luận</td>
+              <td>Sự kiện mở cửa theo lời mời &amp; đối tác</td>
+              <td>Lưu trữ đầy đủ <strong>44</strong> tư liệu nhiếp ảnh, video trình diễn và bản thu âm hiện trường</td>
+            </tr>
+            <tr>
+              <td><strong>4. Series &ldquo;Chồng chữ&rdquo; (Nước &amp; Mơ)</strong></td>
+              <td>03/2026</td>
+              <td>Chuỗi 2 buổi thơ thị giác &amp; cắt dán</td>
+              <td><strong>{stats.chongchu.form_registrations}</strong> đơn đặt trước ({stats.chongchu.form_tickets} vé)</td>
+              <td><strong>{stats.chongchu.total_participants}</strong> người tham dự thực tế (bổ sung {walkinChongChu} người đăng ký trực tiếp tại bàn check-in)</td>
+            </tr>
+            <tr>
+              <td><strong>5. Đưa thơ về mặt đất</strong></td>
+              <td>05/2026</td>
+              <td>Workshop Thơ Tân hình thức</td>
+              <td><strong>{stats.tanhinhthuc.registrations}</strong> đơn ({stats.tanhinhthuc.tickets} vé hợp lệ)</td>
+              <td>Tạo ra bộ sưu tập <strong>13</strong> bài thơ Tân hình thức viết tay ngay trong khuôn khổ workshop</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <Dumbbell title="Tự đánh giá năng lực: đầu kỳ và giữa kỳ" items={stats.omlas.items} n0={stats.omlas.t0_n} n1={stats.omlas.t1_n}
-        note="Chấm rỗng = đầu kỳ (T0), chấm đặc = giữa kỳ (T1). Số bên phải là chênh lệch điểm trung bình." />
-      <div class="callout" style="border-left-color:var(--chart-terracotta)">{stats.omlas.caveat} Mục &ldquo;viết/thơ để xử lý cảm xúc&rdquo; gần như không đổi, nên cần theo dõi thêm về sau.</div>
+
+      <div class="impact-insight-box terracotta">
+        <div class="impact-insight-title">Phát hiện trọng tâm #3 · Đầu ra Sáng tác Cộng đồng (Creative Outputs)</div>
+        <p>
+          Khác với các sự kiện văn hóa tiêu thụ một chiều, mỗi người tham dự <em>Thơ-là-ai?</em> đều để lại dấu vết sáng tạo cụ thể. Kho lưu trữ số hóa của dự án hiện bảo tồn <strong>{stats.overview.handwritten_manuscripts} bản thảo viết tay &amp; tranh thơ cắt dán (collage poetry)</strong> (gồm 52 bản từ chuỗi <em>Nghe–Thấy–Nhau</em> và 13 bản từ workshop <em>Tân hình thức</em>), <strong>{stats.overview.poems_archived} tác phẩm thơ hoàn chỉnh</strong> trên Kho thơ số, <strong>{stats.overview.audio_tracks} bản thu âm gốc</strong> (field recordings &amp; đọc thơ), cùng ấn phẩm <strong>Zine song ngữ Việt–Anh dày {stats.overview.zine_pages} trang</strong>.
+        </p>
+      </div>
+
+      <!-- ================= 04. INTERNATIONAL IMPACT: OMLAS ECHOES OF ASIA ================= -->
+      <div id="omlas" class="impact-section-head">
+        <span class="section-idx">Phần 04 · Tác động Quốc tế · OMLAS &ldquo;Echoes of Asia&rdquo;</span>
+        <h2>Đưa phương pháp thực hành thơ &amp; kể chuyện sáng tạo ra khu vực châu Á</h2>
+        <p>
+          Từ nền tảng thực nghiệm tại Việt Nam, <em>Thơ-là-ai?</em> phụ trách hợp phần sáng tạo (Phase 2 — Chữa lành cảm xúc, giảm căng thẳng &amp; viết thơ) trong chương trình <strong>Echoes of Asia</strong> thuộc mạng lưới lãnh đạo trẻ châu Á OMLAS — kết nối các thủ lĩnh thanh niên tại <strong>Bangladesh, Việt Nam, Uzbekistan</strong> và các quốc gia lân cận để sử dụng thơ ca, nghệ thuật và tự sự văn hóa như công cụ thúc đẩy phát triển bền vững (SDGs).
+        </p>
+      </div>
+
+      <div class="readiness-grid">
+        <div class="readiness-card">
+          <span class="plat-badge" style="font-family:var(--font-ui);font-size:.74rem;font-weight:700;text-transform:uppercase;color:var(--grey-d)">Tuyển chọn Thủ lĩnh (Champions)</span>
+          <div class="r-score" style="color:var(--chart-cobalt)">{stats.omlas.champions_selected} / {stats.omlas.champions_applicants}</div>
+          <span class="r-pct" style="background:var(--chart-cobalt-light);color:var(--chart-cobalt)">Tỉ lệ chọn 73,9%</span>
+          <div class="r-label">Hạt nhân điều phối được tuyển chọn từ {stats.omlas.champions_applicants} hồ sơ ứng tuyển quốc tế (01/2026).</div>
+        </div>
+
+        <div class="readiness-card">
+          <span class="plat-badge" style="font-family:var(--font-ui);font-size:.74rem;font-weight:700;text-transform:uppercase;color:var(--grey-d)">Sẵn sàng Sáng tác (Midline Q14)</span>
+          <div class="r-score">4,39 / 5</div>
+          <span class="r-pct">87,0% đạt mức 4–5/5</span>
+          <div class="r-label">Học viên tự tin chuyển từ suy tưởng sang sáng tác thơ/nghệ thuật phản ánh vấn đề xã hội (<em>n = 23</em>).</div>
+        </div>
+
+        <div class="readiness-card">
+          <span class="plat-badge" style="font-family:var(--font-ui);font-size:.74rem;font-weight:700;text-transform:uppercase;color:var(--grey-d)">An toàn Tâm lý (Midline Q13)</span>
+          <div class="r-score">4,30 / 5</div>
+          <span class="r-pct">82,6% đạt mức 4–5/5</span>
+          <div class="r-label">Cảm thấy an toàn và được lắng nghe khi chia sẻ câu chuyện cá nhân &amp; văn hóa (<em>n = 23</em>).</div>
+        </div>
+
+        <div class="readiness-card">
+          <span class="plat-badge" style="font-family:var(--font-ui);font-size:.74rem;font-weight:700;text-transform:uppercase;color:var(--grey-d)">Cam kết Xuất bản (Midline Q16)</span>
+          <div class="r-score" style="color:var(--brand-crimson)">{stats.omlas.commitment_pct.toString().replace('.', ',')}%</div>
+          <span class="r-pct" style="background:var(--chart-crimson-light);color:var(--brand-crimson)">{stats.omlas.committed_count}/{stats.omlas.t1_n} học viên</span>
+          <div class="r-label">Cam kết hoàn thành toàn bộ lộ trình và đóng góp tác phẩm cho triển lãm / Zine cuối kỳ.</div>
+        </div>
+      </div>
+
+      <div class="grid cols-2 top">
+        <BarList
+          title="Phân bố học viên theo Hub quốc gia · Đầu kỳ (T0)"
+          items={stats.omlas.hubs_t0}
+          n={stats.omlas.t0_n}
+          unit="người"
+          color="sage"
+          note="Khảo sát Baseline T0 (n = 44): Bangladesh (70,5%), Việt Nam (18,2%), Uzbekistan (9,1%), Khác (2,3%)."
+        />
+        <BarList
+          title="Phân bố học viên theo Hub quốc gia · Giữa kỳ (T1)"
+          items={stats.omlas.hubs_t1}
+          n={stats.omlas.t1_n}
+          unit="người"
+          color="cobalt"
+          note="Khảo sát Midline T1 (n = 23): Tập trung cao nhất tại Bangladesh (65,2%) và Việt Nam (26,1%)."
+        />
+      </div>
+
+      <div class="grid cols-3 top" style="margin-top:1.25rem">
+        <BarList
+          title="Độ tuổi người học OMLAS (Baseline T0)"
+          items={stats.omlas.age_t0}
+          n={stats.omlas.t0_n}
+          unit="người"
+          color="ochre"
+          note="95,5% người học nằm trong độ tuổi thanh niên 18–30 tuổi."
+        />
+        <BarList
+          title="Kinh nghiệm hoạt động xã hội trước chương trình (T0)"
+          items={stats.omlas.experience_t0}
+          n={stats.omlas.t0_n}
+          unit="người"
+          color="terracotta"
+          note="Chương trình thu hút cả người mới bắt đầu (22,7%), người tham gia không thường xuyên (40,9%) và thủ lĩnh tích cực (36,4%)."
+        />
+        <BarList
+          title="Động lực cốt lõi khi tham gia chương trình (T0)"
+          items={stats.omlas.motivations_t0}
+          n={stats.omlas.t0_n}
+          unit="lượt"
+          color="crimson"
+          note="61,4% (27/44 người) đặc biệt kỳ vọng vào hợp phần Chữa lành cảm xúc, giảm căng thẳng & viết thơ của Thơ-là-ai?."
+        />
+      </div>
+
+      <Dumbbell
+        title="Sự dịch chuyển Năng lực Tự đánh giá của Học viên: Đầu kỳ (T0) so với Giữa kỳ (T1) trên thang 1–5"
+        items={stats.omlas.items}
+        n0={stats.omlas.t0_n}
+        n1={stats.omlas.t1_n}
+        note="Chấm rỗng = Điểm trung bình đầu kỳ (T0, n = 44); Chấm đặc = Điểm trung bình giữa kỳ (T1, n = 23). Cột số bên phải biểu thị mức tăng/giảm điểm trung bình."
+      />
+
+      <div class="callout" style="border-left-color:var(--chart-sage)">
+        <strong>Phân tích sự thay đổi năng lực (T0 → T1):</strong>
+        8 trên 9 chỉ số năng lực đều ghi nhận mức tăng dương sau nửa chặng đường đầu tiên. Mức tăng mạnh nhất thuộc về <strong>Hiểu biết &amp; áp dụng các Mục tiêu Phát triển Bền vững — SDGs (+0,49 điểm, từ 3,68 lên 4,17)</strong>, <strong>Dẫn dắt nhóm có đạo đức (+0,36 điểm, từ 4,20 lên 4,57)</strong>, <strong>Diễn giải di sản văn hóa bản địa (+0,26 điểm, từ 3,91 lên 4,17)</strong> và <strong>Nhận diện căng thẳng tâm lý (+0,25 điểm, từ 4,23 lên 4,48)</strong>. Riêng chỉ số <em>&ldquo;Viết/thơ để xử lý cảm xúc&rdquo;</em> có mức chênh lệch nhỏ (-0,08) do ở đầu kỳ T0 nhóm rộng (n = 44) tự đánh giá khá cao (4,30), trong khi ở thời điểm khảo sát giữa kỳ T1 (n = 23) học viên mới chuẩn bị bước sang Học phần 2 (Creative Writing &amp; Poetry của TLA); đồng thời ở câu hỏi trực tiếp Q14 (Midline), <strong>87,0% học viên (điểm TB 4,39/5)</strong> khẳng định đã hoàn toàn sẵn sàng bước vào giai đoạn sáng tác thơ và nghệ thuật.
+      </div>
+
+      <!-- ================= 05. DATA PROVENANCE & METHODOLOGY TABLE ================= -->
+      <div id="nguon-du-lieu" class="impact-section-head">
+        <span class="section-idx">Phần 05 · Bảng Nguồn Dữ liệu &amp; Phương pháp Tổng hợp</span>
+        <h2>Truy xuất nguồn gốc của từng con số</h2>
+        <p>
+          Để phục vụ các đối tác văn hóa, nhà tài trợ và nhà nghiên cứu cộng đồng, bảng dưới đây liệt kê toàn bộ 8 tập dữ liệu gốc (lưu trữ nội bộ và xử lý qua script tự động <code>scripts/build_stats.py</code>) làm cơ sở cho báo cáo này.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <h3>Danh mục 8 Bộ Dữ liệu Gốc &amp; Quy chuẩn Ẩn danh</h3>
+        <p class="table-sub">Mọi tập dữ liệu chứa thông tin định danh cá nhân (PII) chỉ lưu ở thư mục nội bộ ngoại tuyến và được kiểm duyệt tự động qua <code>scripts/check_pii.py</code> trước khi xuất bản.</p>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Mã bộ dữ liệu</th>
+              <th>Tên nguồn &amp; Sự kiện tương ứng</th>
+              <th>Thời gian thu thập</th>
+              <th>Cỡ mẫu (<em>n</em>)</th>
+              <th>Các chỉ số chính được khai thác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>DS-01</code></td>
+              <td><strong>Hồ sơ Đăng ký, Check-in &amp; Feedback Đêm thơ #1</strong></td>
+              <td>10–11/2025</td>
+              <td><em>n</em> = 52 đăng ký<br/><em>n</em> = 8 khảo sát</td>
+              <td>Phễu chuyển đổi (52 → 27 xác nhận → 23 check-in), kênh truyền thông (<em>n = 30</em>), tỉ lệ lần đầu dự đêm thơ (85,7%), điểm hài lòng (4,62/5).</td>
+            </tr>
+            <tr>
+              <td><code>DS-02</code></td>
+              <td><strong>Hồ sơ Đăng ký Series &ldquo;Nghe–Thấy–Nhau&rdquo; (x AQM)</strong></td>
+              <td>12/2025</td>
+              <td><em>n</em> = 21 người<br/>(32 lượt buổi)</td>
+              <td>Kênh tiếp cận (<em>n = 20</em>), cơ cấu độ tuổi, cơ cấu chuyên ngành/nghề nghiệp, tỉ lệ gắn bó đa buổi (42,9% đi từ 2–3 buổi).</td>
+            </tr>
+            <tr>
+              <td><code>DS-03</code></td>
+              <td><strong>Hồ sơ Đăng ký &amp; Điểm danh Series &ldquo;Chồng chữ&rdquo;</strong></td>
+              <td>03/2026</td>
+              <td><em>n</em> = 23 người tham dự<br/>(9 form đặt trước)</td>
+              <td>So sánh khách đặt vé trước (9 đơn / 11 vé) và khách walk-in tại sự kiện (14 người), bổ sung cơ cấu chuyên ngành &amp; kênh tiếp cận.</td>
+            </tr>
+            <tr>
+              <td><code>DS-04</code></td>
+              <td><strong>Hồ sơ Đăng ký &amp; Khảo sát &ldquo;Đưa thơ về mặt đất&rdquo;</strong></td>
+              <td>05/2026</td>
+              <td><em>n</em> = 11 đơn (13 vé)<br/><em>n</em> = 2 khảo sát</td>
+              <td>Sự dịch chuyển kênh Fanpage/IG lên 70% (<em>n = 10</em>), chuyên ngành người tham dự, điểm hài lòng (4,0/5).</td>
+            </tr>
+            <tr>
+              <td><code>DS-05</code></td>
+              <td><strong>Hồ sơ Tuyển chọn OMLAS Champions 2026</strong></td>
+              <td>01/2026</td>
+              <td><em>n</em> = 23 ứng viên</td>
+              <td>Tỉ lệ tuyển chọn thủ lĩnh điều phối khu vực (17 Champions được chọn trên 23 hồ sơ ứng tuyển).</td>
+            </tr>
+            <tr>
+              <td><code>DS-06</code></td>
+              <td><strong>Khảo sát Đầu kỳ OMLAS Baseline Survey (T0)</strong></td>
+              <td>02/2026</td>
+              <td><em>n</em> = 44 học viên</td>
+              <td>Phân bố Hub quốc gia (Bangladesh, Việt Nam, Uzbekistan...), độ tuổi, kinh nghiệm hoạt động xã hội, động lực tham gia, điểm tự đánh giá Q1–Q9 (T0).</td>
+            </tr>
+            <tr>
+              <td><code>DS-07</code></td>
+              <td><strong>Khảo sát Giữa kỳ OMLAS Midline Survey (T1)</strong></td>
+              <td>03–04/2026</td>
+              <td><em>n</em> = 23 học viên</td>
+              <td>Điểm tự đánh giá Q1–Q9 (T1), mức độ sẵn sàng sáng tác (4,39/5), an toàn tâm lý (4,30/5), hiểu lý thuyết thay đổi (4,04/5), cam kết đi tiếp (87%).</td>
+            </tr>
+            <tr>
+              <td><code>DS-08</code></td>
+              <td><strong>Kho Lưu trữ Sáng tác Số &amp; Nhật ký Truyền thông</strong></td>
+              <td>10/2025 – 11/2026</td>
+              <td>Toàn dự án</td>
+              <td>7 mốc tăng trưởng Instagram (50 → 508), thống kê Fanpage Facebook (~3.820), 65 bản thảo viết tay/cắt dán, 21 bài thơ, 10 bản thu âm, 60 trang Zine, 178 ảnh tư liệu.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 </Base>

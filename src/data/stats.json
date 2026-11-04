@@ -3,37 +3,52 @@
   "instagram": {
     "milestones": [
       {
-        "label": "Đêm thơ đầu tiên",
+        "label": "Đêm thơ #1 (11/2025)",
         "followers": 50
       },
       {
-        "label": "Series Nghe–Thấy–Nhau",
+        "label": "Nghe–Thấy–Nhau (01/2026)",
         "followers": 200
       },
       {
-        "label": "Chơi giữa mùa trăng",
+        "label": "Chơi giữa mùa trăng (04/2026)",
         "followers": 353
       },
       {
-        "label": "Nước và mơ",
+        "label": "Nước và mơ (05/2026)",
         "followers": 383
       },
       {
-        "label": "Thơ tân hình thức",
+        "label": "Giữa kỳ (05/2026)",
+        "followers": 406
+      },
+      {
+        "label": "Đưa thơ về mặt đất (05/2026)",
         "followers": 462
       }
     ],
     "latest_followers": 508,
     "latest_asof": "2026-11",
-    "facebook_followers": 3820
+    "growth_pct": 916,
+    "facebook_followers": 3820,
+    "total_social_followers": 4328
   },
   "dem1": {
     "registrations": 52,
+    "confirmed": 27,
+    "checked_in": 23,
     "channels_n": 30,
     "channels": {
       "Bạn bè, người thân": 21,
       "Khác": 7,
       "Nhóm cộng đồng thơ": 3
+    },
+    "first_time": {
+      "n": 7,
+      "first_time_count": 6,
+      "first_time_pct": 85.7,
+      "want_dialogue_count": 7,
+      "want_dialogue_pct": 100.0
     },
     "rating": {
       "n": 8,
@@ -46,10 +61,19 @@
   },
   "aqm": {
     "registrations": 21,
+    "total_session_slots": 32,
+    "sessions_breakdown": {
+      "Buổi 3 · Triển lãm & Trình diễn Thơ Queer (11/01)": 15,
+      "Buổi 2 · Blackout Poetry Thơ thủ công (28/12)": 10,
+      "Buổi 1 · Thảo luận Thấu-kính-nhau (14/12)": 7
+    },
+    "multi_session_count": 9,
+    "multi_session_pct": 42.9,
+    "archive_consent_pct": 28.6,
     "channels_n": 20,
     "channels": {
-      "Đối tác (AQM)": 12,
-      "Fanpage TLA": 6,
+      "Đối tác (A Queer Museum)": 12,
+      "Fanpage / IG Thơ-là-ai?": 6,
       "Bạn bè, người thân": 3
     },
     "age": {
@@ -60,11 +84,30 @@
       }
     }
   },
+  "chongchu": {
+    "total_participants": 23,
+    "form_registrations": 9,
+    "form_tickets": 11,
+    "channels_n": 9,
+    "channels": {
+      "Bạn bè, người thân": 4,
+      "Đối tác (A Queer Museum)": 3,
+      "Khác": 3
+    },
+    "age": {
+      "n": 9,
+      "buckets": {
+        "Trên 22 tuổi": 5,
+        "Đến 22 tuổi": 4
+      }
+    }
+  },
   "tanhinhthuc": {
     "registrations": 11,
+    "tickets": 13,
     "channels_n": 10,
     "channels": {
-      "Fanpage TLA": 7,
+      "Fanpage / IG Thơ-là-ai?": 7,
       "Bạn bè, người thân": 4
     },
     "rating": {
@@ -72,9 +115,54 @@
       "mean": 4.0
     }
   },
+  "channels_summary": {
+    "total_respondents": 69,
+    "aggregate": {
+      "Bạn bè, người thân": 32,
+      "Fanpage / IG Thơ-là-ai?": 17,
+      "Đối tác (A Queer Museum)": 15,
+      "Khác": 6,
+      "Nhóm cộng đồng thơ": 3
+    },
+    "fanpage_share_trend": [
+      {
+        "event": "Đêm thơ #1 (11/2025)",
+        "n": 30,
+        "pct": 6.7
+      },
+      {
+        "event": "Nghe–Thấy–Nhau (12/2025)",
+        "n": 20,
+        "pct": 30.0
+      },
+      {
+        "event": "Đưa thơ về mặt đất (05/2026)",
+        "n": 10,
+        "pct": 70.0
+      }
+    ]
+  },
+  "audience_profile": {
+    "majors_n": 38,
+    "non_literature_pct": 68.4,
+    "majors": {
+      "KH Xã hội, Nhân văn & Sư phạm": 12,
+      "Công nghệ (AI/IT), Kỹ thuật & KHTN": 10,
+      "Thiết kế, Truyền thông & Sự kiện": 8,
+      "Kinh tế, Quản trị, Ngoại giao & Luật": 4,
+      "Y tế, Hàng không, Dịch vụ & Tự do": 4
+    },
+    "age_vn_n": 30,
+    "age_vn_buckets": {
+      "Đến 22 tuổi (Sinh viên / THPT)": 16,
+      "Trên 22 tuổi (Người đi làm / Sau ĐH)": 14
+    }
+  },
   "omlas": {
     "t0_n": 44,
     "t1_n": 23,
+    "champions_applicants": 23,
+    "champions_selected": 17,
     "hubs_t0": {
       "Bangladesh": 31,
       "Việt Nam": 8,
@@ -86,6 +174,22 @@
       "Việt Nam": 6,
       "Khác": 2
     },
+    "age_t0": {
+      "18 – 24 tuổi": 26,
+      "25 – 30 tuổi": 16,
+      "Khác (<18 hoặc >30)": 2
+    },
+    "experience_t0": {
+      "Thỉnh thoảng tham gia (1–2 dự án ngắn hạn)": 18,
+      "Thủ lĩnh tích cực (Active changemaker)": 16,
+      "Lần đầu tiên tham gia (First-time participant)": 10
+    },
+    "motivations_t0": {
+      "Phát triển lãnh đạo đạo đức & bền vững (Phase 1)": 39,
+      "Kỹ năng quản trị để nhân rộng workshop địa phương": 27,
+      "Chữa lành cảm xúc, giảm căng thẳng & viết thơ (Phase 2 - TLA)": 27,
+      "Mở rộng mạng lưới xuyên biên giới châu Á": 27
+    },
     "items": [
       {
         "id": "Q1",
@@ -96,7 +200,7 @@
       },
       {
         "id": "Q2",
-        "label": "Hiểu biết SDGs",
+        "label": "Hiểu biết & áp dụng SDGs",
         "t0": 3.68,
         "t1": 4.17,
         "delta": 0.49
@@ -110,14 +214,14 @@
       },
       {
         "id": "Q4",
-        "label": "Nhận diện căng thẳng",
+        "label": "Nhận diện căng thẳng tâm lý",
         "t0": 4.23,
         "t1": 4.48,
         "delta": 0.25
       },
       {
         "id": "Q5",
-        "label": "Công cụ tự chăm sóc",
+        "label": "Công cụ tự chăm sóc bản thân",
         "t0": 4.0,
         "t1": 4.17,
         "delta": 0.17
@@ -151,6 +255,41 @@
         "delta": 0.12
       }
     ],
-    "caveat": "T0 và T1 là hai nhóm trả lời khác quy mô, chưa ghép cặp: chỉ mang tính tham khảo."
+    "midline_readiness": [
+      {
+        "id": "Q14",
+        "label": "Sẵn sàng chuyển từ Suy tưởng sang Sáng tác/Viết thơ",
+        "mean": 4.39,
+        "high_pct": 87.0
+      },
+      {
+        "id": "Q13",
+        "label": "Cảm thấy An toàn Tâm lý (Psychological Safety) khi chia sẻ",
+        "mean": 4.3,
+        "high_pct": 82.6
+      },
+      {
+        "id": "Q12",
+        "label": "Nắm vững Lý thuyết Thay đổi (Theory of Change) cho cộng đồng",
+        "mean": 4.04,
+        "high_pct": 73.9
+      }
+    ],
+    "commitment_pct": 87.0,
+    "committed_count": 20,
+    "caveat": "T0 (n = 44) và T1 (n = 23) là hai nhóm trả lời ở hai thời điểm khác quy mô, chưa ghép cặp từng cá nhân: số liệu phản ánh xu hướng chung của lớp học."
+  },
+  "overview": {
+    "total_registrations_and_surveys": 197,
+    "vn_registrations": 107,
+    "intl_surveys": 90,
+    "events_completed": 7,
+    "poems_archived": 21,
+    "audio_tracks": 10,
+    "handwritten_manuscripts": 65,
+    "event_photos": 178,
+    "zine_pages": 60,
+    "artists_count": 9,
+    "cultural_partners": 6
   }
 }

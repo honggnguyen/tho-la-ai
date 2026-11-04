@@ -577,6 +577,310 @@ details.alt summary { cursor: pointer; text-decoration: underline; }
 .chart-title { font-family: var(--font-display); font-style: italic; font-size: 1.9rem; margin: 3.5rem 0 1.2rem; display: flex; align-items: baseline; gap: .6rem; }
 .chart-title::before { content: '✦'; font-style: normal; font-size: .55em; color: var(--brand-crimson); }
 
+/* ===== Trang Báo cáo Tác động (/tac-dong) ===== */
+.impact-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: 1.6rem 0 2.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--pearl-2);
+}
+.impact-nav-pills a {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  text-decoration: none;
+  padding: .45rem .9rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  transition: transform .12s, background .12s, color .12s;
+}
+.impact-nav-pills a:hover {
+  background: var(--ink);
+  color: var(--pearl);
+  transform: translateY(-2px);
+}
+
+.impact-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
+  margin: 1.8rem 0 2.8rem;
+}
+@media (max-width: 960px) { .impact-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .impact-kpi-grid { grid-template-columns: 1fr; } }
+
+.impact-kpi-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  position: relative;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.impact-kpi-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.impact-kpi-card.accent-cobalt { border-top: 4px solid var(--chart-cobalt); }
+.impact-kpi-card.accent-crimson { border-top: 4px solid var(--chart-crimson); }
+.impact-kpi-card.accent-terracotta { border-top: 4px solid var(--chart-terracotta); }
+.impact-kpi-card.accent-sage { border-top: 4px solid var(--chart-sage); }
+.impact-kpi-card.accent-ochre { border-top: 4px solid var(--chart-ochre); }
+
+.impact-kpi-tag {
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grey-d);
+}
+.impact-kpi-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: .1rem 0;
+}
+.impact-kpi-label {
+  font-family: var(--font-ui);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.impact-kpi-sub {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--grey-d);
+  line-height: 1.45;
+  margin-top: auto;
+  padding-top: .45rem;
+  border-top: 1px dashed var(--pearl-2);
+}
+
+.impact-section-head {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .9rem;
+  border-bottom: 2px solid var(--ink);
+}
+.impact-section-head .section-idx {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--brand-crimson);
+  display: block;
+  margin-bottom: .3rem;
+}
+.impact-section-head h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
+  margin: 0 0 .5rem;
+}
+.impact-section-head p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 78ch;
+  line-height: 1.65;
+}
+
+.impact-insight-box {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-left: 5px solid var(--brand-cobalt);
+  padding: 1.25rem 1.5rem;
+  margin: 1.4rem 0;
+  display: grid;
+  gap: .5rem;
+}
+.impact-insight-box.crimson { border-left-color: var(--brand-crimson); }
+.impact-insight-box.sage { border-left-color: var(--chart-sage); }
+.impact-insight-box.terracotta { border-left-color: var(--chart-terracotta); }
+.impact-insight-title {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--brand-cobalt);
+}
+.impact-insight-box.crimson .impact-insight-title { color: var(--brand-crimson); }
+.impact-insight-box.sage .impact-insight-title { color: var(--chart-sage); }
+.impact-insight-box.terracotta .impact-insight-title { color: var(--chart-terracotta); }
+.impact-insight-box p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.social-dual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 860px) { .social-dual-grid { grid-template-columns: 1fr; } }
+
+.social-stat-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.social-stat-card.highlight {
+  background: var(--ink);
+  color: var(--pearl);
+}
+.social-stat-card .plat-badge {
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--grey-d);
+}
+.social-stat-card.highlight .plat-badge { color: #cbd5e1; }
+.social-stat-card .plat-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+.social-stat-card .plat-desc {
+  font-family: var(--font-ui);
+  font-size: .86rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: .2rem;
+}
+.social-stat-card.highlight .plat-desc { color: #e2e8f0; }
+
+.shift-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (max-width: 720px) { .shift-step-grid { grid-template-columns: 1fr; } }
+.shift-step {
+  background: var(--pearl);
+  border: 1px solid var(--ink);
+  padding: 1rem 1.2rem;
+}
+.shift-step .step-date {
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--grey-d);
+}
+.shift-step .step-pct {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-crimson);
+  line-height: 1.1;
+  margin: .2rem 0;
+}
+.shift-step .step-bar {
+  height: .55rem;
+  background: var(--pearl-2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: .45rem 0;
+}
+.shift-step .step-bar-fill {
+  height: 100%;
+  background: var(--brand-crimson);
+}
+.shift-step .step-meta {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+.readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 900px) { .readiness-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .readiness-grid { grid-template-columns: 1fr; } }
+.readiness-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.readiness-card .r-score {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: var(--chart-sage);
+  line-height: 1.05;
+}
+.readiness-card .r-pct {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  background: var(--chart-sage-light);
+  color: var(--chart-sage);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+.readiness-card .r-label {
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-top: .25rem;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 1.25rem 1.4rem;
+  margin: 1.5rem 0;
+}
+.table-wrap h3 {
+  font-style: italic;
+  margin: 0 0 .35rem;
+}
+.table-wrap .table-sub {
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  color: var(--grey-d);
+  margin: 0 0 1rem;
+}
+
 /* ===== Footer ===== */
 .site-footer { border-top: 1px solid var(--ink); padding-block: 3rem 2rem; font-family: var(--font-ui); letter-spacing: .02em; font-size: .9rem; background: var(--pearl); }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
