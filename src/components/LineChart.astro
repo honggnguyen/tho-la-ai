@@ -1,15 +1,17 @@
 ---
-// Đường tăng trưởng (SVG dựng sẵn lúc build, không cần JS).
+// Đường tăng trưởng (SVG dựng sẵn lúc build, hiển thị cả số lượng và % tăng trưởng lũy kế).
 interface Pt { label: string; value: number; }
 interface Props { title: string; points: Pt[]; note?: string; ylabel?: string; strokeColor?: string; }
 const { title, points, note, ylabel = '', strokeColor = '#23497d' } = Astro.props;
-const W = 760, H = 330, L = 56, R = 28, T = 28, B = 92;
+const W = 780, H = 345, L = 58, R = 34, T = 36, B = 94;
 const maxV = Math.ceil(Math.max(...points.map((p) => p.value)) / 100) * 100;
+const baseV = Math.max(points[0]?.value ?? 1, 1);
 const x = (i: number) => L + (i * (W - L - R)) / Math.max(points.length - 1, 1);
 const y = (v: number) => T + (1 - v / maxV) * (H - T - B);
 const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join(' ');
 const area = `${path} L${x(points.length - 1)},${H - B} L${x(0)},${H - B} Z`;
 const ticks = [0, maxV / 2, maxV];
+const growthPct = (v: number, i: number) => i === 0 ? 'Mốc gốc (100%)' : `+${Math.round(((v - baseV) / baseV) * 100)}%`;
 const wrap = (s: string, n = 13) => {
   const out: string[] = []; let cur = '';
   for (const w of s.split(' ')) { if ((cur + ' ' + w).trim().length > n) { out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }
@@ -19,9 +21,9 @@ const wrap = (s: string, n = 13) => {
 <figure class="figure wide chart-growth">
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
     <h3 style="margin:0">{title}</h3>
-    <span class="n-badge" style="border-color:var(--chart-cobalt);color:var(--chart-cobalt)">Chàm tri thức · Instagram</span>
+    <span class="n-badge" style="border-color:var(--chart-cobalt);color:var(--chart-cobalt)">Tăng trưởng lũy kế: +916% (Gấp 10,16 lần)</span>
   </div>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p) => `${p.label} ${p.value}`).join(', ')} style="margin-top:1rem">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + points.map((p, i) => `${p.label} ${p.value} (${growthPct(p.value, i)})`).join(', ')} style="margin-top:1rem">
     <defs>
       <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color={strokeColor} stop-opacity="0.25" />
@@ -39,7 +41,12 @@ const wrap = (s: string, n = 13) => {
     {points.map((p, i) => (
       <g>
         <circle cx={x(i)} cy={y(p.value)} r="6" fill="#ffffff" stroke={strokeColor} stroke-width="3" />
-        <text x={x(i)} y={y(p.value) - 13} text-anchor="middle" font-size="13" font-weight="700" fill={strokeColor} font-family="Be Vietnam Pro, sans-serif">{p.value}</text>
+        <text x={x(i)} y={y(p.value) - 22} text-anchor="middle" font-size="12.5" font-weight="700" fill={strokeColor} font-family="Be Vietnam Pro, sans-serif">{p.value}</text>
+        {i > 0 && (
+          <text x={x(i)} y={y(p.value) - 9} text-anchor="middle" font-size="10" font-weight="600" fill="#9e2a2b" font-family="Be Vietnam Pro, sans-serif">
+            +{Math.round(((p.value - baseV) / baseV) * 100)}%
+          </text>
+        )}
         {wrap(p.label).map((ln, j) => (
           <text x={x(i)} y={H - B + 22 + j * 15} text-anchor="middle" font-size="11" fill="#4a4a4a" font-family="Be Vietnam Pro, sans-serif">{ln}</text>
         ))}
@@ -48,10 +55,26 @@ const wrap = (s: string, n = 13) => {
     {ylabel && <text x="10" y="14" font-size="11.5" fill="#4a4a4a" font-family="Be Vietnam Pro, sans-serif">{ylabel}</text>}
   </svg>
   <details class="alt">
-    <summary>Xem dạng bảng</summary>
+    <summary>Xem bảng thống kê % tăng trưởng qua từng mốc</summary>
     <table class="data">
-      <thead><tr><th>Mốc</th><th>Số người theo dõi</th></tr></thead>
-      <tbody>{points.map((p) => <tr><td>{p.label}</td><td>{p.value}</td></tr>)}</tbody>
+      <thead>
+        <tr>
+          <th>Cột mốc chương trình</th>
+          <th>Số người theo dõi</th>
+          <th>% Tăng trưởng so với mốc đầu</th>
+          <th>% Đạt được so với hiện tại (508)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {points.map((p, i) => (
+          <tr>
+            <td>{p.label}</td>
+            <td><strong>{p.value}</strong></td>
+            <td><strong>{growthPct(p.value, i)}</strong></td>
+            <td>{((p.value / points[points.length - 1].value) * 100).toFixed(1).replace('.', ',')}%</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   </details>
   {note && <figcaption>{note}</figcaption>}

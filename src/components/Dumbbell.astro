@@ -1,21 +1,26 @@
 ---
-// So sánh hai thời điểm (T0 → T1) cho từng mục: chấm rỗng = trước, chấm đặc = giữa kỳ.
+// So sánh hai thời điểm (T0 → T1) cho từng mục: hiển thị cả điểm trung bình và % thay đổi.
 interface Item { id: string; label: string; t0: number; t1: number; delta: number; }
 interface Props { title: string; items: Item[]; n0: number; n1: number; note?: string; }
 const { title, items, n0, n1, note } = Astro.props;
-const W = 820, rowH = 42, L = 295, R = 80, T = 45;
+const W = 860, rowH = 42, L = 290, R = 128, T = 45;
 const H = T + items.length * rowH + 20;
 const lo = 3, hi = 5;
 const x = (v: number) => L + ((v - lo) / (hi - lo)) * (W - L - R);
+const pctDelta = (t0: number, delta: number) => {
+  const p = (delta / Math.max(t0, 0.01)) * 100;
+  const sign = p >= 0 ? '+' : '−';
+  return `${sign}${Math.abs(p).toFixed(1).replace('.', ',')}%`;
+};
 ---
 <figure class="figure wide">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
     <div>
       <h3 style="margin:0 0 .3rem">{title}</h3>
-      <span class="n-badge" style="border-color:#64748b;color:#475569">T0: n = {n0}</span>
-      <span class="n-badge" style="border-color:#166534;color:#166534">T1: n = {n1}</span>
+      <span class="n-badge" style="border-color:#64748b;color:#475569">Đầu kỳ T0: n = {n0} (100%)</span>
+      <span class="n-badge" style="border-color:#166534;color:#166534">Giữa kỳ T1: n = {n1} (100%)</span>
     </div>
-    <div style="display:flex;gap:1.1rem;font-family:var(--font-ui);font-size:0.88rem;align-items:center;background:var(--pearl-2);padding:4px 10px;border-radius:2px">
+    <div style="display:flex;gap:1.1rem;font-family:var(--font-ui);font-size:0.86rem;align-items:center;background:var(--pearl-2);padding:4px 10px;border-radius:2px">
       <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#475569">
         <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f8f8f8" stroke="#64748b" stroke-width="2.5"/></svg> Đầu kỳ (T0)
       </span>
@@ -23,15 +28,15 @@ const x = (v: number) => L + ((v - lo) / (hi - lo)) * (W - L - R);
         <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.5" fill="#166534"/></svg> Giữa kỳ (T1)
       </span>
       <span style="display:inline-flex;align-items:center;gap:0.25rem;font-weight:700;color:#166534">
-        + Chênh lệch
+        + % Tăng trưởng năng lực
       </span>
     </div>
   </div>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + items.map((i) => `${i.label} từ ${i.t0} lên ${i.t1}`).join('; ')} style="margin-top:1.2rem">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}: ` + items.map((i) => `${i.label} từ ${i.t0} lên ${i.t1} (${pctDelta(i.t0, i.delta)})`).join('; ')} style="margin-top:1.2rem">
     {[3, 3.5, 4, 4.5, 5].map((t) => (
       <g>
         <line x1={x(t)} x2={x(t)} y1={T - 8} y2={H - 14} stroke="#e4e0d7" stroke-dasharray="2 3" />
-        <text x={x(t)} y={T - 16} text-anchor="middle" font-size="11.5" fill="#6f6f6f" font-family="Be Vietnam Pro, sans-serif">{t.toFixed(1)}</text>
+        <text x={x(t)} y={T - 16} text-anchor="middle" font-size="11.5" fill="#6f6f6f" font-family="Be Vietnam Pro, sans-serif">{t.toFixed(1)} ({Math.round((t / 5) * 100)}%)</text>
       </g>
     ))}
     {items.map((it, i) => {
@@ -43,17 +48,37 @@ const x = (v: number) => L + ((v - lo) / (hi - lo)) * (W - L - R);
           <line x1={x(it.t0)} x2={x(it.t1)} y1={cy} y2={cy} stroke={isPos ? "#86efac" : "#cbd5e1"} stroke-width="4" stroke-linecap="round" />
           <circle cx={x(it.t0)} cy={cy} r="6.5" fill="#fcfbf9" stroke="#64748b" stroke-width="2.5" />
           <circle cx={x(it.t1)} cy={cy} r="7" fill={isPos ? "#166534" : "#475569"} />
-          <rect x={W - R + 10} y={cy - 11} width="52" height="22" rx="3" fill={isPos ? "#e6f4ea" : "#f1f5f9"} />
-          <text x={W - R + 36} y={cy + 4} text-anchor="middle" font-size="11.5" font-weight="700" fill={isPos ? '#166534' : '#64748b'} font-family="Be Vietnam Pro, sans-serif">{it.delta >= 0 ? '+' : '−'}{Math.abs(it.delta).toFixed(2)}</text>
+          <rect x={W - R + 10} y={cy - 12} width="108" height="24" rx="3" fill={isPos ? "#e6f4ea" : "#f1f5f9"} />
+          <text x={W - R + 64} y={cy + 4} text-anchor="middle" font-size="11" font-weight="700" fill={isPos ? '#166534' : '#64748b'} font-family="Be Vietnam Pro, sans-serif">
+            {pctDelta(it.t0, it.delta)} ({it.delta >= 0 ? '+' : '−'}{Math.abs(it.delta).toFixed(2)})
+          </text>
         </g>
       );
     })}
   </svg>
   <details class="alt">
-    <summary>Xem dạng bảng</summary>
+    <summary>Xem bảng thống kê % mức độ đạt được &amp; % tăng trưởng</summary>
     <table class="data">
-      <thead><tr><th>Mục tự đánh giá</th><th>T0</th><th>T1</th><th>Chênh lệch</th></tr></thead>
-      <tbody>{items.map((i) => <tr><td>{i.label}</td><td>{i.t0}</td><td>{i.t1}</td><td>{i.delta}</td></tr>)}</tbody>
+      <thead>
+        <tr>
+          <th>Mục tự đánh giá năng lực</th>
+          <th>Đầu kỳ T0 (% thang 5)</th>
+          <th>Giữa kỳ T1 (% thang 5)</th>
+          <th>Chênh lệch điểm</th>
+          <th>% Tăng / Giảm</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((i) => (
+          <tr>
+            <td>{i.label}</td>
+            <td>{i.t0.toFixed(2).replace('.', ',')} ({((i.t0 / 5) * 100).toFixed(1).replace('.', ',')}%)</td>
+            <td><strong>{i.t1.toFixed(2).replace('.', ',')} ({((i.t1 / 5) * 100).toFixed(1).replace('.', ',')}%)</strong></td>
+            <td>{i.delta >= 0 ? '+' : '−'}{Math.abs(i.delta).toFixed(2).replace('.', ',')}</td>
+            <td><strong>{pctDelta(i.t0, i.delta)}</strong></td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   </details>
   {note && <figcaption>{note}</figcaption>}

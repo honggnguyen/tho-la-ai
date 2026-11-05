@@ -5,13 +5,46 @@ import artists from '../data/artists.json';
 import PoemCard from '../components/PoemCard.astro';
 
 const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poems.map((p) => p.category)))];
+const poemsWithText = poems.filter((p) => p.text && p.text.trim().length > 20);
+const wordBank = [
+  'nước', 'giấc mơ', 'bản thể', 'khoảng không', 'tiếng thở', 'lặng im',
+  'ánh trăng', 'vỡ tan', 'da thịt', 'mặt đất', 'dịu dàng', 'bóng tối',
+  'chạm', 'người lạ', 'vĩnh viễn', 'căn nhà', 'biển', 'ngọn gió',
+  'chồng chữ', 'tự do', 'vết xước', 'hàn gắn', 'đêm', 'thanh âm',
+  'mùa thu', 'cất tiếng', 'hiện hữu', 'trống rỗng', 'nụ hôn', 'phố cũ',
+  'lắng nghe', 'ánh sáng', 'nhịp đập', 'cơn mưa', 'thời gian', 'chúng ta'
+];
 ---
-<Base title="Kho thơ, Audio & Nghệ sĩ" description="Kho lưu trữ thơ diễn xướng, bản thu âm thơ nhạc, thơ Tân hình thức, thơ thủ công và các nghệ sĩ đồng hành cùng Thơ-là-ai.">
+<Base title="Kho thơ, Audio & Nghệ sĩ" description="Kho lưu trữ thơ diễn xướng, bản thu âm thơ nhạc, thơ Tân hình thức, bàn ghép thơ Chồng Chữ Online và các nghệ sĩ đồng hành cùng Thơ-là-ai.">
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Lưu trữ tác phẩm &amp; thanh âm</p>
-      <h1 class="shadowed">Kho thơ &amp; Audio</h1>
-      <p class="lead">Nơi lưu giữ những vần thơ đã cất lên thành tiếng, những bản thu âm thơ nhạc, thơ Tân hình thức và những mảnh thơ thủ công được tạo tác trong không gian của Thơ-là-ai?.</p>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+        <div>
+          <p class="eyebrow">Lưu trữ tác phẩm &amp; thanh âm · {poems.length} tác phẩm</p>
+          <h1 class="shadowed" style="margin-bottom:0">Kho thơ &amp; Audio</h1>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button type="button" class="btn" id="oracle-draw-btn">✦ Rút một câu thơ ngẫu nhiên</button>
+          <a class="btn ghost" href="#chong-chu-online">✂ Thử ghép thơ Chồng chữ</a>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:1rem">Nơi lưu giữ những vần thơ đã cất lên thành tiếng, những bản thu âm thơ nhạc, thơ Tân hình thức và những mảnh thơ thủ công được tạo tác trong không gian của Thơ-là-ai?.</p>
+
+      <!-- Hộp Rút Quẻ Thơ Ngẫu Nhiên (Poetic Oracle) -->
+      <div class="oracle-card" id="oracle-box" hidden data-poems={JSON.stringify(poemsWithText)}>
+        <div class="oracle-head">
+          <span class="oracle-badge">✦ Lát cắt thi ca ngẫu nhiên dành cho bạn</span>
+          <div style="display:flex;gap:.5rem">
+            <button type="button" class="oracle-action" id="oracle-again">↻ Rút câu khác</button>
+            <button type="button" class="oracle-action" id="oracle-close" aria-label="Đóng">✕</button>
+          </div>
+        </div>
+        <blockquote class="oracle-verse" id="oracle-verse"></blockquote>
+        <div class="oracle-foot">
+          <span class="oracle-meta" id="oracle-meta"></span>
+          <a href="#" class="oracle-jump" id="oracle-jump">Đọc trọn bài &amp; nghe audio ↓</a>
+        </div>
+      </div>
 
       <div class="filter-bar" role="region" aria-label="Bộ lọc tác phẩm">
         {categories.map((cat, idx) => (
@@ -22,6 +55,62 @@ const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poe
 
       <div class="grid cols-2 top" id="poem-grid">
         {poems.map((p) => <PoemCard poem={p} previewLines={6} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bàn Ghép Thơ Tương Tác: Chồng Chữ Online -->
+  <section class="section band-dark" id="chong-chu-online">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Không gian thực hành tương tác · Lấy cảm hứng từ Workshop &ldquo;Chồng chữ&rdquo; &amp; &ldquo;Nghe–Thấy–Nhau&rdquo;</p>
+          <h2>Bàn Cắt Dán Thơ · Chồng Chữ Online</h2>
+        </div>
+      </div>
+      <p style="font-size:1.05rem;opacity:.9;max-width:72ch;margin:0 0 1.5rem">
+        Không cần niêm luật hay vần điệu: hãy chạm vào các mảnh từ vựng bên dưới (hoặc tự gõ thêm từ của bạn) để xếp thành một khổ thơ cắt dán của riêng mình và tải về tấm thẻ thơ mang dấu ấn <em>Thơ-là-ai?</em>.
+      </p>
+
+      <div class="collage-studio">
+        <div class="collage-palette">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem">
+            <span style="font-family:var(--font-ui);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#cbd5e1;font-weight:700">Mảnh từ vựng gợi ý (Chạm để thêm vào thơ)</span>
+            <button type="button" class="collage-tool-btn" id="collage-shuffle">↻ Đảo ngẫu nhiên</button>
+          </div>
+          <div class="word-tiles" id="word-tiles">
+            {wordBank.map((w) => (
+              <button type="button" class="word-tile" data-word={w}>{w}</button>
+            ))}
+          </div>
+          <div class="collage-custom-row">
+            <input type="text" id="collage-custom-input" placeholder="Hoặc nhập thêm từ / cụm từ của riêng bạn rồi nhấn Enter…" aria-label="Nhập thêm từ của bạn" />
+            <button type="button" class="collage-tool-btn" id="collage-add-custom">+ Thêm mảnh chữ</button>
+          </div>
+        </div>
+
+        <div class="collage-canvas-wrap">
+          <div class="collage-paper" id="collage-paper">
+            <div class="collage-paper-head">
+              <span>THƠ-LÀ-AI? · CHỒNG CHỮ</span>
+              <span>✦ BẢN THẢO CẮT DÁN</span>
+            </div>
+            <div class="collage-lines" id="collage-lines">
+              <span class="collage-placeholder">Chạm vào các mảnh từ bên trái để bắt đầu xếp thơ…</span>
+            </div>
+            <div class="collage-paper-foot">
+              <input type="text" id="collage-author" class="collage-sign-input" placeholder="Ký tên hoặc biệt danh của bạn (ẩn danh)" maxlength="36" />
+              <span class="collage-stamp">TLA</span>
+            </div>
+          </div>
+
+          <div class="collage-controls">
+            <button type="button" class="collage-tool-btn" id="collage-newline">↵ Xuống dòng thơ</button>
+            <button type="button" class="collage-tool-btn" id="collage-undo">⌫ Xóa mảnh cuối</button>
+            <button type="button" class="collage-tool-btn" id="collage-clear">✕ Làm mới</button>
+            <button type="button" class="collage-tool-btn primary" id="collage-download">⬇ Tải thẻ thơ (PNG)</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -38,7 +127,17 @@ const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poe
             <h3 style="margin-top:.35rem">{a.name}</h3>
             <p style="font-size:1rem;margin:.35rem 0">{a.bio}</p>
             <p class="meta"><strong>Chương trình:</strong> {a.programs.join(' · ')}</p>
-            {a.works.length > 0 && <p class="meta"><strong>Tác phẩm tiêu biểu:</strong> {a.works.join(', ')}</p>}
+            {a.works.length > 0 && (
+              <p class="meta">
+                <strong>Tác phẩm tiêu biểu:</strong>{' '}
+                {a.works.map((w, i) => (
+                  <>
+                    <button type="button" class="artist-work-link" data-work={w}>{w}</button>
+                    {i < a.works.length - 1 ? ', ' : ''}
+                  </>
+                ))}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -83,5 +182,207 @@ const categories = ['Tất cả', 'Có bản thu âm', ...Array.from(new Set(poe
       audios.forEach((other) => { if (other !== a) other.pause(); });
     });
   });
-</script>
 
+  // Liên kết từ Tác phẩm tiêu biểu của Nghệ sĩ -> Cuộn lên bài thơ tương ứng
+  document.querySelectorAll<HTMLButtonElement>('.artist-work-link').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const workTitle = (btn.dataset.work || '').toLowerCase();
+      // Reset bộ lọc về Tất cả
+      btns.forEach((x, idx) => x.setAttribute('aria-pressed', idx === 0 ? 'true' : 'false'));
+      activeCat = 'Tất cả';
+      if (search) search.value = '';
+      applyFilter();
+
+      const matchCard = Array.from(cards).find((c) => (c.dataset.title || '').toLowerCase().includes(workTitle));
+      if (matchCard) {
+        matchCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        matchCard.classList.add('flash-highlight');
+        setTimeout(() => matchCard.classList.remove('flash-highlight'), 2200);
+      }
+    });
+  });
+
+  // Logic Hộp Rút Quẻ Thơ Ngẫu Nhiên (Poetic Oracle)
+  const oracleBox = document.getElementById('oracle-box');
+  const oracleDrawBtn = document.getElementById('oracle-draw-btn');
+  const oracleAgainBtn = document.getElementById('oracle-again');
+  const oracleCloseBtn = document.getElementById('oracle-close');
+  const oracleVerse = document.getElementById('oracle-verse');
+  const oracleMeta = document.getElementById('oracle-meta');
+  const oracleJump = document.getElementById('oracle-jump') as HTMLAnchorElement | null;
+
+  if (oracleBox && oracleVerse && oracleMeta && oracleJump) {
+    const list = JSON.parse(oracleBox.dataset.poems || '[]');
+    const drawPoem = () => {
+      if (!list.length) return;
+      const p = list[Math.floor(Math.random() * list.length)];
+      const stanzas = (p.text as string).split(/\n\s*\n/).filter((s) => s.trim().length > 10);
+      const chosen = stanzas.length ? stanzas[Math.floor(Math.random() * stanzas.length)] : p.text.split('\n').slice(0, 4).join('\n');
+      oracleVerse.textContent = chosen.trim();
+      oracleMeta.textContent = `— Trích "${p.title}" · ${p.author} (${p.program})`;
+      oracleJump.href = `#${p.id}`;
+      oracleBox.hidden = false;
+    };
+    oracleDrawBtn?.addEventListener('click', drawPoem);
+    oracleAgainBtn?.addEventListener('click', drawPoem);
+    oracleCloseBtn?.addEventListener('click', () => { oracleBox.hidden = true; });
+    oracleJump.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = oracleJump.getAttribute('href')?.slice(1);
+      const target = id ? document.getElementById(id) : null;
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('flash-highlight');
+        setTimeout(() => target.classList.remove('flash-highlight'), 2200);
+      }
+    });
+  }
+
+  // Logic Bàn Ghép Thơ Chồng Chữ Online
+  const linesContainer = document.getElementById('collage-lines');
+  const customInput = document.getElementById('collage-custom-input') as HTMLInputElement | null;
+  const authorInput = document.getElementById('collage-author') as HTMLInputElement | null;
+  const tilesContainer = document.getElementById('word-tiles');
+
+  type Token = { type: 'word'; text: string } | { type: 'br' };
+  let tokens: Token[] = [];
+
+  function renderCollage() {
+    if (!linesContainer) return;
+    linesContainer.innerHTML = '';
+    if (tokens.length === 0) {
+      const ph = document.createElement('span');
+      ph.className = 'collage-placeholder';
+      ph.textContent = 'Chạm vào các mảnh từ bên trái để bắt đầu xếp thơ…';
+      linesContainer.appendChild(ph);
+      return;
+    }
+    tokens.forEach((tk) => {
+      if (tk.type === 'br') {
+        const br = document.createElement('div');
+        br.className = 'collage-line-break';
+        linesContainer.appendChild(br);
+      } else {
+        const span = document.createElement('span');
+        span.className = 'collage-chip';
+        span.textContent = tk.text;
+        linesContainer.appendChild(span);
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.word-tile').forEach((tile) => {
+    tile.addEventListener('click', () => {
+      tokens.push({ type: 'word', text: tile.dataset.word || tile.textContent || '' });
+      renderCollage();
+    });
+  });
+
+  const addCustomWord = () => {
+    const val = (customInput?.value || '').trim();
+    if (!val) return;
+    tokens.push({ type: 'word', text: val });
+    if (customInput) customInput.value = '';
+    renderCollage();
+  };
+  document.getElementById('collage-add-custom')?.addEventListener('click', addCustomWord);
+  customInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addCustomWord();
+    }
+  });
+
+  document.getElementById('collage-newline')?.addEventListener('click', () => {
+    tokens.push({ type: 'br' });
+    renderCollage();
+  });
+  document.getElementById('collage-undo')?.addEventListener('click', () => {
+    tokens.pop();
+    renderCollage();
+  });
+  document.getElementById('collage-clear')?.addEventListener('click', () => {
+    tokens = [];
+    renderCollage();
+  });
+  document.getElementById('collage-shuffle')?.addEventListener('click', () => {
+    if (!tilesContainer) return;
+    const items = Array.from(tilesContainer.children);
+    items.sort(() => Math.random() - 0.5);
+    items.forEach((it) => tilesContainer.appendChild(it));
+  });
+
+  // Xuất thẻ thơ ra ảnh PNG bằng Canvas
+  document.getElementById('collage-download')?.addEventListener('click', () => {
+    if (tokens.length === 0) return;
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1080;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Nền giấy trắng sương Thủy Mặc
+    ctx.fillStyle = '#f7f7f5';
+    ctx.fillRect(0, 0, 1080, 1080);
+
+    // Khung viền kép
+    ctx.strokeStyle = '#121210';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(48, 48, 984, 984);
+    ctx.lineWidth = 1;
+    ctx.strokeRect(60, 60, 960, 960);
+
+    // Header
+    ctx.fillStyle = '#9e2a2b';
+    ctx.font = '700 22px sans-serif';
+    ctx.fillText('✦ THƠ-LÀ-AI? · CHỒNG CHỮ ONLINE', 100, 125);
+
+    // Dựng các dòng thơ
+    const lines: string[][] = [[]];
+    tokens.forEach((tk) => {
+      if (tk.type === 'br') lines.push([]);
+      else lines[lines.length - 1].push(tk.text);
+    });
+
+    let y = 240;
+    ctx.font = 'italic 38px Georgia, serif';
+    lines.forEach((lineWords) => {
+      let x = 100;
+      lineWords.forEach((w) => {
+        const m = ctx.measureText(w);
+        const padX = 18;
+        const boxW = m.width + padX * 2;
+        if (x + boxW > 960) {
+          x = 100;
+          y += 74;
+        }
+        // Vẽ mảnh giấy cắt dán
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x, y - 42, boxW, 56);
+        ctx.strokeStyle = '#121210';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y - 42, boxW, 56);
+
+        ctx.fillStyle = '#121210';
+        ctx.fillText(w, x + padX, y - 2);
+        x += boxW + 14;
+      });
+      y += 80;
+    });
+
+    // Footer & Chữ ký
+    const signer = (authorInput?.value || 'Người làm thơ ẩn danh').trim();
+    ctx.fillStyle = '#575652';
+    ctx.font = '600 24px sans-serif';
+    ctx.fillText(`— ${signer}`, 100, 955);
+
+    ctx.fillStyle = '#1d3b66';
+    ctx.font = 'italic 700 28px Georgia, serif';
+    ctx.fillText('Thơ-là-ai? · Who is Poetry?', 660, 955);
+
+    const link = document.createElement('a');
+    link.download = 'tho-la-ai-chong-chu.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+</script>

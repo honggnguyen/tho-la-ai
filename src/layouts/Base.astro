@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
 import site from '../data/site.json';
+import poems from '../data/poems.json';
 import { u } from '../lib/url';
 
-interface Props { title?: string; description?: string; }
-const { title, description = site.description } = Astro.props;
+interface Props { title?: string; description?: string; image?: string; }
+const { title, description = site.description, image = '/zine/p01.webp' } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.nameEn}`;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -19,6 +20,15 @@ const nav = [
   { href: '/lien-he', label: 'Liên hệ' },
 ];
 const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
+const audioTracks = poems
+  .filter((p) => !!p.audio)
+  .map((p) => ({
+    id: p.id,
+    title: p.title,
+    author: p.author,
+    program: p.program,
+    src: u(p.audio!),
+  }));
 ---
 <!doctype html>
 <html lang="vi">
@@ -30,6 +40,11 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={u(image)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={u(image)} />
     <meta name="theme-color" content="#f7f7f5" />
     <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +56,7 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
   </head>
   <body>
     <a class="skip" href="#main">Bỏ qua điều hướng</a>
-    <header class="site-header" id="site-header">
+    <header class="site-header no-print" id="site-header">
       <div class="wrap">
         <a class="brand" href={u('/')}>Thơ-là-ai?<span class="star" aria-hidden="true">✦</span></a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" id="nav-toggle">Menu</button>
@@ -51,7 +66,31 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
       </div>
     </header>
     <main id="main"><slot /></main>
-    <footer class="site-footer">
+
+    <!-- Đài Phát Thanh Thơ-là-ai? (Floating Mini Audio Player) -->
+    <aside class="tla-radio no-print" id="tla-radio" aria-label="Đài phát thanh Thơ-là-ai?" data-tracks={JSON.stringify(audioTracks)}>
+      <button type="button" class="tla-radio-pill" id="tla-radio-toggle" aria-expanded="false" title="Mở Đài phát thanh Thơ-là-ai? (10 bản thu âm gốc)">
+        <span class="radio-pulse" id="tla-radio-dot"></span>
+        <span>♪ Thanh âm TLA ({audioTracks.length})</span>
+      </button>
+      <div class="tla-radio-panel" id="tla-radio-panel" hidden>
+        <div class="tla-radio-head">
+          <span class="radio-eyebrow">✦ Đài phát thanh Thơ-là-ai?</span>
+          <button type="button" class="tla-radio-close" id="tla-radio-min" aria-label="Thu gọn trình phát">─</button>
+        </div>
+        <div class="tla-radio-title" id="tla-radio-title">{audioTracks[0]?.title}</div>
+        <div class="tla-radio-meta" id="tla-radio-meta">{audioTracks[0]?.author} · {audioTracks[0]?.program}</div>
+        <audio id="tla-radio-audio" preload="none" src={audioTracks[0]?.src}></audio>
+        <div class="tla-radio-controls">
+          <button type="button" id="tla-radio-prev" aria-label="Bản trước" title="Bản trước">⏮</button>
+          <button type="button" id="tla-radio-play" class="play-btn" aria-label="Phát hoặc Tạm dừng">▶ Phát</button>
+          <button type="button" id="tla-radio-next" aria-label="Bản tiếp" title="Bản tiếp">⏭</button>
+          <a id="tla-radio-link" href={u(`/kho-tho#${audioTracks[0]?.id}`)} class="tla-radio-open" title="Đọc lời thơ">Lời thơ ↗</a>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="site-footer no-print">
       <div class="wrap">
         <div class="footer-grid">
           <div>
@@ -71,8 +110,8 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
           <div>
             <h4>Kết nối</h4>
             <ul>
-              <li><a href={site.facebook} rel="noopener">Facebook</a></li>
-              <li><a href={site.instagram} rel="noopener">Instagram</a></li>
+              <li><a href={site.facebook} target="_blank" rel="noopener">Facebook</a></li>
+              <li><a href={site.instagram} target="_blank" rel="noopener">Instagram</a></li>
               <li><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
             </ul>
           </div>
@@ -87,6 +126,74 @@ const isActive = (h: string) => rel === h || rel.startsWith(h + '/');
         const open = header.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(open));
       });
+
+      // Logic Đài Phát Thanh Thơ-là-ai?
+      const radioEl = document.getElementById('tla-radio');
+      if (radioEl) {
+        const tracks = JSON.parse(radioEl.dataset.tracks || '[]');
+        const toggleBtn = document.getElementById('tla-radio-toggle')!;
+        const minBtn = document.getElementById('tla-radio-min')!;
+        const panel = document.getElementById('tla-radio-panel')!;
+        const audio = document.getElementById('tla-radio-audio') as HTMLAudioElement;
+        const titleEl = document.getElementById('tla-radio-title')!;
+        const metaEl = document.getElementById('tla-radio-meta')!;
+        const playBtn = document.getElementById('tla-radio-play')!;
+        const prevBtn = document.getElementById('tla-radio-prev')!;
+        const nextBtn = document.getElementById('tla-radio-next')!;
+        const linkEl = document.getElementById('tla-radio-link') as HTMLAnchorElement;
+        const dotEl = document.getElementById('tla-radio-dot')!;
+
+        let rIdx = 0;
+        const setTrack = (i: number, autoPlay = false) => {
+          if (!tracks.length) return;
+          rIdx = (i + tracks.length) % tracks.length;
+          const t = tracks[rIdx];
+          audio.src = t.src;
+          titleEl.textContent = t.title;
+          metaEl.textContent = `${t.author} · ${t.program}`;
+          const baseHref = linkEl.getAttribute('href')?.split('#')[0] || '/kho-tho';
+          linkEl.href = `${baseHref}#${t.id}`;
+          if (autoPlay) {
+            audio.play().catch(() => {});
+          }
+        };
+
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = panel.hidden;
+          panel.hidden = !isHidden;
+          toggleBtn.setAttribute('aria-expanded', String(isHidden));
+        });
+
+        minBtn.addEventListener('click', () => {
+          panel.hidden = true;
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        playBtn.addEventListener('click', () => {
+          if (audio.paused) {
+            // Pause any inline audio on page
+            document.querySelectorAll<HTMLAudioElement>('audio').forEach((a) => {
+              if (a !== audio) a.pause();
+            });
+            audio.play().catch(() => {});
+          } else {
+            audio.pause();
+          }
+        });
+
+        audio.addEventListener('play', () => {
+          playBtn.textContent = '⏸ Tạm dừng';
+          dotEl.classList.add('playing');
+        });
+        audio.addEventListener('pause', () => {
+          playBtn.textContent = '▶ Phát';
+          dotEl.classList.remove('playing');
+        });
+        audio.addEventListener('ended', () => setTrack(rIdx + 1, true));
+
+        prevBtn.addEventListener('click', () => setTrack(rIdx - 1, !audio.paused));
+        nextBtn.addEventListener('click', () => setTrack(rIdx + 1, !audio.paused));
+      }
     </script>
   </body>
 </html>

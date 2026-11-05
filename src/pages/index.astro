@@ -74,8 +74,11 @@ const featuredPhotos = gallery.filter((g) => !seen.has(g.eventSlug) && seen.add(
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="eyebrow">Lắng nghe &amp; đọc</p><h2>Thơ &amp; thanh âm</h2></div>
-        <a class="link-arrow" href={u('/kho-tho')}>Mở Kho thơ →</a>
+        <div><p class="eyebrow">Lắng nghe, đọc &amp; tự tay xếp chữ</p><h2>Thơ &amp; thanh âm</h2></div>
+        <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+          <a class="btn ghost" href={u('/kho-tho#chong-chu-online')} style="padding:.4rem .85rem;font-size:.82rem">✂ Tự ghép thơ Chồng Chữ Online</a>
+          <a class="link-arrow" href={u('/kho-tho')}>Mở Kho thơ ({poems.length}) →</a>
+        </div>
       </div>
       <div class="grid cols-2 top">
         {featuredPoems.map((p) => <PoemCard poem={p} previewLines={6} />)}

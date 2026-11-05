@@ -1,5 +1,5 @@
 ---
-// Biểu đồ cột ngang bằng HTML/CSS thuần: nhẹ, truy cập tốt, kèm bảng số liệu thay thế.
+// Biểu đồ cột ngang hiển thị theo Tỉ lệ phần trăm (%) kèm số lượng thực tế và bảng dữ liệu.
 interface Props {
   title: string;
   items: Record<string, number>;
@@ -10,25 +10,53 @@ interface Props {
 }
 const { title, items, n, note, unit = 'người', color = 'ink' } = Astro.props;
 const entries = Object.entries(items);
-const max = Math.max(...entries.map(([, v]) => v), 1);
+const safeN = Math.max(n, 1);
+const fmtPct = (v: number) => {
+  const p = (v / safeN) * 100;
+  return p.toFixed(1).replace(/\.0$/, '').replace('.', ',') + '%';
+};
 ---
 <figure class={`figure chart-${color}`}>
-  <h3>{title}</h3>
-  <span class="n-badge">n = {n}</span>
-  <div class="bars" role="img" aria-label={`${title}: ` + entries.map(([k, v]) => `${k} ${v}`).join(', ')}>
-    {entries.map(([k, v]) => (
-      <div class="bar-row">
-        <span>{k}</span>
-        <div class="bar-track"><div class="bar-fill" style={`width:${(v / max) * 100}%`}></div></div>
-        <span class="val">{v}</span>
-      </div>
-    ))}
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;flex-wrap:wrap">
+    <h3>{title}</h3>
+    <span class="n-badge">n = {n} ({unit})</span>
+  </div>
+  <div class="bars" role="img" aria-label={`${title}: ` + entries.map(([k, v]) => `${k} ${fmtPct(v)} (${v} ${unit})`).join(', ')}>
+    {entries.map(([k, v]) => {
+      const pctNum = Math.min((v / safeN) * 100, 100);
+      return (
+        <div class="bar-row">
+          <span class="bar-label">{k}</span>
+          <div class="bar-track">
+            <div class="bar-fill" style={`width:${pctNum.toFixed(1)}%`}></div>
+          </div>
+          <span class="val">
+            <strong>{fmtPct(v)}</strong>
+            <small class="val-count">({v})</small>
+          </span>
+        </div>
+      );
+    })}
   </div>
   <details class="alt">
-    <summary>Xem dạng bảng</summary>
+    <summary>Xem bảng thống kê % &amp; số lượng</summary>
     <table class="data">
-      <thead><tr><th>Nhóm</th><th>Số {unit}</th></tr></thead>
-      <tbody>{entries.map(([k, v]) => <tr><td>{k}</td><td>{v}</td></tr>)}</tbody>
+      <thead>
+        <tr>
+          <th>Nhóm phân loại</th>
+          <th>Tỉ lệ (%)</th>
+          <th>Số {unit} (n = {n})</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries.map(([k, v]) => (
+          <tr>
+            <td>{k}</td>
+            <td><strong>{fmtPct(v)}</strong></td>
+            <td>{v}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   </details>
   {note && <figcaption>{note}</figcaption>}

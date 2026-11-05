@@ -18,7 +18,7 @@ const photos = gallery.filter((g) => g.eventSlug === e.id);
 const hero = d.cover || photos.find((p) => p.width >= p.height)?.src;
 const eventPoems = poems.filter((p) => p.eventSlug === e.id);
 ---
-<Base title={d.title} description={d.summary}>
+<Base title={d.title} description={d.summary} image={hero}>
   <section class="section">
     <div class="wrap">
       <p class="eyebrow"><a href={u('/chuong-trinh')} style="text-decoration:none">← Chương trình</a></p>
@@ -71,14 +71,21 @@ const eventPoems = poems.filter((p) => p.eventSlug === e.id);
         <div style="margin-top:4rem">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Tư liệu hình ảnh · {photos.length} tư liệu</p>
+              <p class="eyebrow">Tư liệu hình ảnh · {photos.length} tư liệu (Chạm vào ảnh để phóng to)</p>
               <h2>Khoảnh khắc</h2>
             </div>
-            <a class="link-arrow" href={u(`/thu-vien#album-${e.id}`)}>Xem trọn bộ {photos.length} ảnh &amp; bản thảo →</a>
+            <a class="link-arrow" href={u(`/thu-vien#album-${e.id}`)}>Xem trọn bộ {photos.length} ảnh &amp; bản thảo tại Thư viện →</a>
           </div>
           <div class="album-grid" style="margin-top:1.25rem">
-            {photos.slice(0, 8).map((img) => (
-              <a class="gallery-item" href={u(`/thu-vien#album-${e.id}`)}>
+            {photos.slice(0, 8).map((img, idx) => (
+              <button
+                type="button"
+                class="gallery-item ev-lb-trigger"
+                data-idx={idx}
+                data-src={u(img.src)}
+                data-title={img.title}
+                data-prog={img.kind === 'product' ? '✦ Sản phẩm lưu trữ' : d.title}
+              >
                 <div class="gallery-thumb-box">
                   <img src={u(img.src)} width={img.width} height={img.height} alt={img.title} loading="lazy" />
                 </div>
@@ -86,11 +93,71 @@ const eventPoems = poems.filter((p) => p.eventSlug === e.id);
                   <span class="prog">{img.kind === 'product' ? '✦ Sản phẩm lưu trữ' : d.title}</span>
                   <span>{img.title}</span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
       )}
     </div>
   </section>
+
+  {photos.length > 0 && (
+    <dialog class="lightbox" id="ev-lightbox" aria-label="Xem ảnh phóng to" data-photos={JSON.stringify(photos.map((p) => ({ src: u(p.src), title: p.title, prog: p.kind === 'product' ? '✦ Sản phẩm lưu trữ' : d.title })))}>
+      <div class="lb-body">
+        <div class="lb-bar">
+          <span id="ev-lb-caption"></span>
+          <div style="display:flex;gap:.5rem">
+            <button type="button" id="ev-lb-prev" aria-label="Ảnh trước">← Trước</button>
+            <button type="button" id="ev-lb-next" aria-label="Ảnh tiếp">Tiếp →</button>
+            <button type="button" id="ev-lb-close" aria-label="Đóng">Đóng ✕</button>
+          </div>
+        </div>
+        <img id="ev-lb-img" src="" alt="" />
+        <div class="lb-bar">
+          <a href={u(`/thu-vien#album-${e.id}`)}>Mở toàn bộ Album trong Thư viện ảnh →</a>
+          <span id="ev-lb-count" class="meta"></span>
+        </div>
+      </div>
+    </dialog>
+  )}
 </Base>
+
+<script>
+  const dlg = document.getElementById('ev-lightbox') as HTMLDialogElement | null;
+  if (dlg) {
+    const allPhotos = JSON.parse(dlg.dataset.photos || '[]');
+    const lbImg = document.getElementById('ev-lb-img') as HTMLImageElement;
+    const lbCap = document.getElementById('ev-lb-caption')!;
+    const lbCount = document.getElementById('ev-lb-count')!;
+    let cur = 0;
+
+    const show = (i: number) => {
+      if (!allPhotos.length) return;
+      cur = (i + allPhotos.length) % allPhotos.length;
+      const p = allPhotos[cur];
+      lbImg.src = p.src;
+      lbImg.alt = p.title;
+      lbCap.textContent = `${p.prog} · ${p.title}`;
+      lbCount.textContent = `Tư liệu ${cur + 1} / ${allPhotos.length}`;
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('.ev-lb-trigger').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.idx || '0', 10);
+        show(idx);
+        dlg.showModal();
+      });
+    });
+
+    document.getElementById('ev-lb-prev')?.addEventListener('click', () => show(cur - 1));
+    document.getElementById('ev-lb-next')?.addEventListener('click', () => show(cur + 1));
+    document.getElementById('ev-lb-close')?.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    window.addEventListener('keydown', (e) => {
+      if (!dlg.open) return;
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'Escape') dlg.close();
+    });
+  }
+</script>

@@ -1,7 +1,7 @@
 ---
 import { u } from '../lib/url';
 interface Props {
-  poem: { id: string; title: string; author: string; program: string; category: string; audio?: string; note?: string; text: string };
+  poem: { id: string; title: string; author: string; program: string; category: string; audio?: string; note?: string; text: string; eventSlug?: string };
   previewLines?: number;
   showProgram?: boolean;
 }
@@ -9,18 +9,23 @@ const { poem, previewLines = 5, showProgram = true } = Astro.props;
 const lines = poem.text ? poem.text.split('\n') : [];
 const needsMore = lines.length > previewLines + 2;
 const preview = needsMore ? lines.slice(0, previewLines).join('\n') : poem.text;
-const rest = needsMore ? lines.slice(previewLines).join('\n') : '';
 ---
-<article class="poem-card" id={poem.id} data-category={poem.category} data-audio={poem.audio ? 'yes' : 'no'}>
+<article class="poem-card" id={poem.id} data-category={poem.category} data-audio={poem.audio ? 'yes' : 'no'} data-title={poem.title}>
   <div class="poem-top">
     <span class="tag">{poem.category}</span>
-    {showProgram && <span class="meta">{poem.program}</span>}
+    {showProgram && (
+      poem.eventSlug ? (
+        <a class="meta poem-prog-link" href={u(`/chuong-trinh/${poem.eventSlug}`)} title="Xem chương trình">{poem.program} ↗</a>
+      ) : (
+        <span class="meta">{poem.program}</span>
+      )
+    )}
   </div>
   <h3>{poem.title}</h3>
   <div class="poem-author">{poem.author}</div>
   {poem.audio && (
     <div class="audio-box">
-      <span class="audio-label">♪ Bản thu âm</span>
+      <span class="audio-label">♪ Bản thu âm gốc</span>
       <audio controls preload="none" src={u(poem.audio)}></audio>
     </div>
   )}
@@ -29,10 +34,13 @@ const rest = needsMore ? lines.slice(previewLines).join('\n') : '';
       {!needsMore ? (
         <div class="poem-text">{poem.text}</div>
       ) : (
-        <div class="poem-expandable">
+        <div class="poem-expandable" data-expanded="false">
           <div class="poem-text poem-preview">{preview}…</div>
           <div class="poem-text poem-full" hidden>{poem.text}</div>
-          <button type="button" class="poem-expand-btn">Đọc toàn bài ↓</button>
+          <div class="poem-actions-row">
+            <button type="button" class="poem-expand-btn" aria-expanded="false">Đọc toàn bài ↓</button>
+            <button type="button" class="poem-share-btn" data-poem-id={poem.id} title="Sao chép liên kết bài thơ">Sao chép link</button>
+          </div>
         </div>
       )}
     </div>
@@ -41,16 +49,43 @@ const rest = needsMore ? lines.slice(previewLines).join('\n') : '';
 </article>
 
 <script>
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement | null;
-    const btn = target?.closest('.poem-expand-btn');
-    if (!btn) return;
-    const parent = btn.closest('.poem-expandable');
-    if (!parent) return;
-    const preview = parent.querySelector('.poem-preview') as HTMLElement | null;
-    const full = parent.querySelector('.poem-full') as HTMLElement | null;
-    if (preview) preview.hidden = true;
-    if (full) full.hidden = false;
-    btn.remove();
-  });
+  if (!(window as any).__poemCardInit) {
+    (window as any).__poemCardInit = true;
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      const expandBtn = target?.closest('.poem-expand-btn') as HTMLButtonElement | null;
+      if (expandBtn) {
+        const parent = expandBtn.closest('.poem-expandable') as HTMLElement | null;
+        if (!parent) return;
+        const isExp = parent.dataset.expanded === 'true';
+        const preview = parent.querySelector('.poem-preview') as HTMLElement | null;
+        const full = parent.querySelector('.poem-full') as HTMLElement | null;
+        if (isExp) {
+          if (preview) preview.hidden = false;
+          if (full) full.hidden = true;
+          parent.dataset.expanded = 'false';
+          expandBtn.setAttribute('aria-expanded', 'false');
+          expandBtn.textContent = 'Đọc toàn bài ↓';
+        } else {
+          if (preview) preview.hidden = true;
+          if (full) full.hidden = false;
+          parent.dataset.expanded = 'true';
+          expandBtn.setAttribute('aria-expanded', 'true');
+          expandBtn.textContent = 'Thu gọn bài thơ ↑';
+        }
+        return;
+      }
+
+      const shareBtn = target?.closest('.poem-share-btn') as HTMLButtonElement | null;
+      if (shareBtn) {
+        const id = shareBtn.dataset.poemId || '';
+        const url = `${window.location.origin}${window.location.pathname}#${id}`;
+        navigator.clipboard?.writeText(url).then(() => {
+          const old = shareBtn.textContent;
+          shareBtn.textContent = '✓ Đã chép link';
+          setTimeout(() => { shareBtn.textContent = old; }, 1800);
+        });
+      }
+    });
+  }
 </script>
